@@ -4,21 +4,19 @@ interface Props {
   email: string;
   image: string;
 }
-const Sidebar: React.FC<Props> = (props) => {
+const Sidebar: React.FC<Props> = ({ name, email, image }) => {
   return (
     <div className="w-max h-screen bg-gray-800 p-2 rounded-r-3xl">
       <div className="">
         <img
           className="rounded-full w-1/2 self-center mx-auto my-2"
-          src={props.image}
+          src={image}
           alt=""
         />
         <h2 className="text-white text-center font-medium tracking-wider">
-          {props.name}
+          {name}
         </h2>
-        <h3 className="text-white text-opacity-20 text-center mb-2">
-          {props.email}
-        </h3>
+        <h3 className="text-white text-opacity-20 text-center mb-2">{email}</h3>
       </div>
       <div>
         <li className="flex list-none border-b-2 p-2 text-2xl font-semibold text-center tracking-wider border-gray-600">
