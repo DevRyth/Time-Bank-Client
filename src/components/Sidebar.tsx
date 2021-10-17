@@ -34,12 +34,12 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
             />
           </svg>
-          <a href="" className="text-white ">
+          <a href="/" className="text-white ">
             Dashboard
           </a>
         </li>
         <li className="list-none border-b-2 p-2 text-2xl font-semibold text-center tracking-wider border-gray-600">
-          <a href="" className="flex text-white ">
+          <a href="/" className="flex text-white ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-2 mt-2"
@@ -52,7 +52,7 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
           </a>
         </li>
         <li className="list-none border-b-2 p-2 text-2xl font-semibold text-center tracking-wider border-gray-600">
-          <a href="" className="flex text-white ">
+          <a href="/" className="flex text-white ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-2 mt-2"
@@ -65,7 +65,7 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
           </a>
         </li>
         <li className="list-none border-b-2  p-2 text-2xl font-semibold text-center tracking-wider border-gray-600">
-          <a href="" className="flex text-white">
+          <a href="/" className="flex text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 mr-2 mt-2"
