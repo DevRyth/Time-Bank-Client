@@ -1,16 +1,10 @@
 import "./App.css";
 import Sidebar from "./components/Sidebar";
+import Input from "./sharedComponents/input/Input";
+import { RiLockPasswordFill } from "react-icons/all";
 
 function App() {
-  return (
-    <div>
-      <Sidebar
-        name="Utkarsh Gangwar"
-        email="utkarshgangwar909@gmail.com"
-        image="https://imgur.com/aFFF1uw.jpg"
-      />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
