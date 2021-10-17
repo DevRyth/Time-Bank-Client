@@ -4,15 +4,25 @@ module.exports = {
   theme: {
     extend: {
       color: {
-        primary: "#3C5654",
-        secondary: "#C89C32",
-        "primary-lite": "#425C5A",
-        "secondary-lite": "#D6AF14",
-        brandPrimary: "#3391b2",
-        brandSecondary: "#51B4A8",
-        "background-lite": "#E2ECEB",
-        "on-primary": "#ECFAFA",
-        "on-primary-lite": "#FFFFFF",
+        primary: {
+          dark: "#3C5654",
+          lite: "#425C5A",
+        },
+        secondary: {
+          dark: "#C89C32",
+          lite: "#D6AF14",
+        },
+        brand: {
+          primary: "#3391b2",
+          secondary: "#51B4A8",
+        },
+        background: {
+          lite: "#E2ECEB",
+        },
+        "on-primary": {
+          dark: "#ECFAFA",
+          lite: "#FFFFFF",
+        },
         "on-secondary": "#697C7A",
       },
     },
