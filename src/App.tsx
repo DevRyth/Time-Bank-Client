@@ -9,7 +9,7 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/dashboard">
             <Sidebar
               name="Utkarsh Gangwar"
               email="utkarshgangwar909@gmail.com"

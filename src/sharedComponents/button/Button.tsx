@@ -12,7 +12,7 @@ const Button: React.FC<Props> = ({ title, theme }) => {
   return (
     <div>
       <button
-        className={`${bgColor} hover:bg-blue-700 text-white text-sm md:text-base font-medium py-2 px-4 rounded-full`}
+        className={`${bgColor} hover:bg-blue-700 text-white text-sm md:text-base py-2 px-6 rounded-full`}
       >
         {title}
       </button>
