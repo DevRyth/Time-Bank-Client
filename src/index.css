@@ -15,3 +15,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+#switch-button::after {
+  content: "";
+  @apply h-9 w-9 rounded-full bg-primary-dark absolute left-0 top-0 transform scale-110 transition duration-200;
+}
+#switch-button:checked::after {
+  @apply transform scale-110 translate-x-10;
+}
