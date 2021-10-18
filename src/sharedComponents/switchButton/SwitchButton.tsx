@@ -6,9 +6,8 @@ interface Props {
 
 const SwitchButton: React.FC<Props> = ({ text }) => {
   return (
-    <div className="bg-gray-900 h-screen flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <label htmlFor="switch-button">
-        {text}
         <input
           type="checkbox"
           id="switch-button"

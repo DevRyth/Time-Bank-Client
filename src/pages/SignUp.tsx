@@ -13,7 +13,7 @@ const SignUp: React.FC = () => {
         </h1>
         <p className="tracking-wider md:text-sm pt-4 text-xs">
           Already have an account?{" "}
-          <Link to="/dashboard" className="text-secondary-dark underline">
+          <Link className="text-secondary-dark underline" to="/dashboard">
             Log in
           </Link>
         </p>
