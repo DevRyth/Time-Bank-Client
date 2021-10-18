@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
+import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 
 const SignUp: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const SignUp: React.FC = () => {
         </h1>
         <p className="tracking-wider md:text-sm pt-4 text-xs">
           Already have an account?{" "}
-          <Link className="text-secondary-dark underline" to="/dashboard">
+          <Link to="/dashboard" className="text-secondary-dark underline">
             Log in
           </Link>
         </p>
@@ -54,7 +55,8 @@ const SignUp: React.FC = () => {
           >
             <CgPassword />
           </Input>
-          <div className="pt-5">
+          <SwitchButton className="pt-3" text="Show Password" />
+          <div className="pt-3">
             <Button title="Sign Up" theme="primary" />
           </div>
         </div>

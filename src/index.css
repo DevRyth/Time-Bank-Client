@@ -17,8 +17,8 @@ code {
 }
 #switch-button::after {
   content: "";
-  @apply h-9 w-9 rounded-full bg-primary-dark absolute left-0 top-0 transform scale-110 transition duration-200;
+  @apply h-5 w-5 rounded-full bg-primary-dark absolute left-0 top-0 transform scale-90 transition duration-200;
 }
 #switch-button:checked::after {
-  @apply transform scale-110 translate-x-10;
+  @apply transform scale-110 translate-x-6 bg-on-primary-dark;
 }
