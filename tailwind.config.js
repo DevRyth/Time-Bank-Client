@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      color: {
+      colors: {
         primary: {
           dark: "#3C5654",
           lite: "#425C5A",
@@ -28,7 +28,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['checked'],
+    },
   },
   plugins: [],
 };
