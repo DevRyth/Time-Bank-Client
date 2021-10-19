@@ -5,6 +5,7 @@ import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik, FormikProps, FormikValues } from "formik";
+import axios from "axios";
 
 const SignUp: React.FC = () => {
   const initialValues = {
@@ -36,7 +37,9 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              console.log("Mapped Values", mappedValues);
+              axios.put("", mappedValues).then((res) => {
+                console.log("Response", res);
+              }); // url here
             } else {
               console.log("Password entered is not matching!");
             }
