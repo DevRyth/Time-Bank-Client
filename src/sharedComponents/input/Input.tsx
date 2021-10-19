@@ -11,6 +11,7 @@ const Input: React.FC<Props> = ({
   className,
   children,
   iconColor,
+  ...rest
 }) => {
   return (
     <div className="flex justify-center">
@@ -21,6 +22,7 @@ const Input: React.FC<Props> = ({
             type={type}
             name={name}
             placeholder={placeholder}
+            {...rest}
             className={`outline-none text-sm md:text-base tracking-wider ${className} w-full`}
           />
         </div>

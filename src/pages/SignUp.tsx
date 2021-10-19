@@ -4,7 +4,7 @@ import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
-import { Formik } from "formik";
+import { Formik, FormikProps, FormikValues } from "formik";
 
 const SignUp: React.FC = () => {
   const initialValues = {
@@ -28,36 +28,38 @@ const SignUp: React.FC = () => {
         </p>
         <Formik
           initialValues={initialValues}
-          onSubmit={async (values, helper) => {
+          onSubmit={(values, helper) => {
+            helper.setSubmitting(true);
             const mappedValues = {
               username: values.username,
               email: values.email,
               password: values.password,
             };
-            console.log("Mapped Values", mappedValues);
+            if (values.confirmPassword === values.password) {
+              console.log("Mapped Values", mappedValues);
+            } else {
+              console.log("Password entered is not matching!");
+            }
+            helper.setSubmitting(false);
           }}
         >
-          {(formikProps) => (
+          {(formikProps: FormikProps<FormikValues>) => (
             <form
               onSubmit={formikProps.handleSubmit}
               className="pt-6 space-y-3 md:space-y-6 md:pt-10"
             >
               <Input
                 onChange={formikProps.handleChange}
-                onBlur={formikProps.handleBlur}
-                value={formikProps.values.username}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
-                type="username"
-                name="text"
+                type="text"
+                name="username"
                 placeholder="Username"
               >
                 <HiOutlineUser />
               </Input>
               <Input
                 onChange={formikProps.handleChange}
-                onBlur={formikProps.handleBlur}
-                value={formikProps.values.email}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="email"
@@ -68,8 +70,6 @@ const SignUp: React.FC = () => {
               </Input>
               <Input
                 onChange={formikProps.handleChange}
-                onBlur={formikProps.handleBlur}
-                value={formikProps.values.password}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="password"
@@ -80,11 +80,10 @@ const SignUp: React.FC = () => {
               </Input>
               <Input
                 onChange={formikProps.handleChange}
-                onBlur={formikProps.handleBlur}
-                value={formikProps.values.confirmPassword}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type={showPassword ? "text" : "password"}
+                name="confirmPassword"
                 placeholder="Confirm Password"
               >
                 <CgPassword />
@@ -96,7 +95,7 @@ const SignUp: React.FC = () => {
                 text="Show Password"
               />
               <div className="pt-3">
-                <Button title="Sign Up" theme="primary" />
+                <Button type="submit" title="Sign Up" theme="primary" />
               </div>
             </form>
           )}
