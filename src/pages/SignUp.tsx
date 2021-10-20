@@ -37,7 +37,7 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios.put("", mappedValues).then((res) => {
+              axios.post("http://localhost:4000/register", mappedValues).then((res) => {
                 console.log("Response", res);
               }); // url here
             } else {
