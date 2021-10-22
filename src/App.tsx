@@ -2,14 +2,18 @@ import "./App.css";
 import React from "react";
 import Sidebar from "./components/Sidebar";
 import SignUp from "./pages/SignUp";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 import LogIn from "./pages/LogIn";
 
 function App() {
   return (
     <div>
-
       <Router>
         <Switch>
           <Route exact path="/dashboard">
@@ -19,14 +23,16 @@ function App() {
               image="https://imgur.com/aFFF1uw.jpg"
             />
           </Route>
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
           <Route exact path="/signup">
             <SignUp />
           </Route>
           <Route exact path="/login">
-            <LogIn/>
+            <LogIn />
           </Route>
         </Switch>
-
       </Router>
     </div>
   );
