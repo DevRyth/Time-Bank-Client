@@ -5,11 +5,11 @@ import SignUp from "./pages/SignUp";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LogIn from "./pages/LogIn";
+import CoursesPage from "./pages/Courses.page";
 
 function App() {
   return (
     <div>
-
       <Router>
         <Switch>
           <Route exact path="/dashboard">
@@ -23,10 +23,12 @@ function App() {
             <SignUp />
           </Route>
           <Route exact path="/login">
-            <LogIn/>
+            <LogIn />
+          </Route>
+          <Route exact path="/courses">
+            <CoursesPage />
           </Route>
         </Switch>
-
       </Router>
     </div>
   );
