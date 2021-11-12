@@ -16,6 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 #switch-button::after {
   content: "";
   @apply h-5 w-5 rounded-full bg-primary-dark absolute left-0 top-0 transform scale-90 transition duration-200;
