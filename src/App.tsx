@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import LogIn from "./pages/LogIn";
+import Page404 from "./sharedComponents/page404/Page404";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <LogIn />
+          </Route>
+          <Route exact path="/404error">
+            <Page404></Page404>
           </Route>
         </Switch>
       </Router>
