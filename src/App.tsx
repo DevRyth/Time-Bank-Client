@@ -12,6 +12,7 @@ import {
 import LogIn from "./pages/LogIn.page";
 import CoursesPage from "./pages/Courses.page";
 import CourseDetailPage from "./pages/CourseDetail.page";
+import Page404 from "./sharedComponents/page404/Page404";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/courses/1">
             <CourseDetailPage />
+          </Route>
+          <Route exact path="/page-404">
+            <Page404 />
           </Route>
         </Switch>
       </Router>
