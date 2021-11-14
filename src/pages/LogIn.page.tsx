@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, CgPassword } from "react-icons/all";
@@ -7,6 +8,7 @@ import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
 
 const LogIn: React.FC = () => {
+  const history = useHistory();
   const initialValues = {
     email: "",
     // username: "",
@@ -24,16 +26,18 @@ const LogIn: React.FC = () => {
         </p>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values, helper) => {
+          onSubmit={async (values, helper) => {
             helper.setSubmitting(true);
             const mappedValues = {
               email: values.email,
               // username: values.username,
               password: values.password,
             };
-              axios.post("http://localhost:4000/login", mappedValues).then((res) => {
-                console.log("Response", res);
-              }); // url here
+              const response: any = await axios.post("https://fierce-shore-21287.herokuapp.com/login", mappedValues);
+              if(response.status === 200) {
+                localStorage.setItem('token', response.data.token);
+                history.push('/dashboard');
+              }
             helper.setSubmitting(false);
           }}
         >
