@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -15,16 +16,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 #switch-button::after {
   content: "";
   @apply h-5 w-5 rounded-full bg-primary-dark absolute left-0 top-0 transform scale-90 transition duration-200;
 }
 #switch-button:checked::after {
   @apply transform scale-110 translate-x-6 bg-on-primary-dark;
-}
-.animate {
-  /* transition-timing-function: ease; */
-  transform: translateY(320px);
-  transition-timing-function: ease-in;
-  transition-duration: 2ms;
 }

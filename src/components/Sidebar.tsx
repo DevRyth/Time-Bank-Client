@@ -28,7 +28,7 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
           </nav>
 
           <div
-            className={` animate w-full bg-brand-secondary absolute ${
+            className={`w-full bg-brand-secondary absolute ${
               !isOpen && "hidden"
             }`}
           >

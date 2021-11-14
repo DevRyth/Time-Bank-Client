@@ -1,16 +1,17 @@
 import "./App.css";
 import React from "react";
 import Sidebar from "./components/Sidebar";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/SignUp.page";
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
+  Redirect,
 } from "react-router-dom";
 
-import LogIn from "./pages/LogIn";
-import CardTimeStatus from "./sharedComponents/cardTimeStatus/CardTimeStatus";
+import LogIn from "./pages/LogIn.page";
+import CoursesPage from "./pages/Courses.page";
+import CourseDetailPage from "./pages/CourseDetail.page";
 
 function App() {
   return (
@@ -32,6 +33,12 @@ function App() {
           </Route>
           <Route exact path="/login">
             <LogIn />
+          </Route>
+          <Route exact path="/courses">
+            <CoursesPage />
+          </Route>
+          <Route exact path="/courses/1">
+            <CourseDetailPage />
           </Route>
         </Switch>
       </Router>
