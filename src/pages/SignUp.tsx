@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
@@ -8,6 +9,9 @@ import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
 
 const SignUp: React.FC = () => {
+
+  const history = useHistory();
+
   const initialValues = {
     username: "",
     email: "",
@@ -37,8 +41,8 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios.post("http://localhost:4000/register", mappedValues).then((res) => {
-                console.log("Response", res);
+              axios.post("https://fierce-shore-21287.herokuapp.com/signup", mappedValues).then((res) => {
+                if(res.status === 200) {history.push("/register");}
               }); // url here
             } else {
               console.log("Password entered is not matching!");
