@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { HiMenu } from "react-icons/hi";
+import Navigation from "./Navigation";
 
 interface Props {
   name: string;
@@ -15,6 +16,9 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
 
   return (
     <div>
+      <header>
+        <Navigation />
+      </header>
       <div className="sm:hidden">
         <div className="">
           <nav
