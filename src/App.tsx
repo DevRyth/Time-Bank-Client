@@ -12,7 +12,7 @@ import {
 import LogIn from "./pages/LogIn.page";
 import CoursesPage from "./pages/Courses.page";
 import CourseDetailPage from "./pages/CourseDetail.page";
-import Page404 from "./sharedComponents/page404/Page404";
+import Page404 from "./pages/Page404";
 
 function App() {
   return (
