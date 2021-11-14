@@ -9,7 +9,6 @@ import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
 
 const SignUp: React.FC = () => {
-
   const history = useHistory();
 
   const initialValues = {
@@ -41,9 +40,16 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios.post("https://fierce-shore-21287.herokuapp.com/signup", mappedValues).then((res) => {
-                if(res.status === 200) {history.push("/register");}
-              }); // url here
+              axios
+                .post(
+                  "https://fierce-shore-21287.herokuapp.com/signup",
+                  mappedValues
+                )
+                .then((res) => {
+                  if (res.status === 200) {
+                    history.push("/register");
+                  }
+                }); // url here
             } else {
               console.log("Password entered is not matching!");
             }
