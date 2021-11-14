@@ -1,16 +1,53 @@
-import React from "react";
-import { BiMenu } from "react-icons/bi";
+import React, { useState } from "react";
+import { HiMenu } from "react-icons/hi";
+
 interface Props {
   name: string;
   email: string;
   image: string;
 }
 const Sidebar: React.FC<Props> = ({ name, email, image }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const updateInitial = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div>
       <div className="sm:hidden">
-        <div className="border-b-2">
-          <BiMenu className="rigth-0 m-2 border-2 " />
+        <div className="">
+          <nav
+            className="bg-primary-dark 
+          "
+          >
+            <HiMenu
+              className="text-on-primary-lite text-4xl mx-auto"
+              onClick={updateInitial}
+            />
+          </nav>
+
+          <div
+            className={` animate w-full bg-brand-secondary absolute ${
+              !isOpen && "hidden"
+            }`}
+          >
+            <li className="flex justify-center list-none border-b p-2 text-2xl font-semibold  tracking-wider border-gray-600">
+              Profile
+            </li>
+            <li className="flex justify-center list-none border-b p-2 text-2xl font-semibold  tracking-wider border-gray-600">
+              Dashboard
+            </li>
+            <li className="flex justify-center list-none border-b p-2 text-2xl font-semibold  tracking-wider border-gray-600">
+              Statistics
+            </li>
+            <li className="flex justify-center list-none border-b p-2 text-2xl font-semibold  tracking-wider border-gray-600">
+              Courses
+            </li>
+            <li className="flex justify-center list-none border-b p-2 text-2xl font-semibold  tracking-wider border-gray-600">
+              logout
+            </li>
+          </div>
         </div>
       </div>
       <div className="hidden sm:block w-max h-screen bg-primary-dark  ">
