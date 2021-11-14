@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import LogIn from "./pages/LogIn";
+import CardTimeStatus from "./sharedComponents/cardTimeStatus/CardTimeStatus";
 
 function App() {
   return (
