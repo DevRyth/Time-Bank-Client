@@ -22,3 +22,9 @@ code {
 #switch-button:checked::after {
   @apply transform scale-110 translate-x-6 bg-on-primary-dark;
 }
+.animate {
+  /* transition-timing-function: ease; */
+  transform: translateY(320px);
+  transition-timing-function: ease-in;
+  transition-duration: 2ms;
+}
