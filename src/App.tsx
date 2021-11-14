@@ -13,6 +13,7 @@ import LogIn from "./pages/LogIn.page";
 import CoursesPage from "./pages/Courses.page";
 import CourseDetailPage from "./pages/CourseDetail.page";
 import Page404 from "./pages/Page404";
+import Appointment from "./components/Appointment.component";
 
 function App() {
   return (
@@ -44,8 +45,13 @@ function App() {
           <Route exact path="/page-404">
             <Page404 />
           </Route>
+          <Route exact path="/appointment">
+            <Appointment/>
+          </Route>
+          
         </Switch>
       </Router>
+    
     </div>
   );
 }
