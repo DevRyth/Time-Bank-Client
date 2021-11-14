@@ -13,6 +13,7 @@ import LogIn from "./pages/LogIn.page";
 import CoursesPage from "./pages/Courses.page";
 import CourseDetailPage from "./pages/CourseDetail.page";
 import Page404 from "./pages/Page404";
+import PersonalDetails from "./pages/Register/PersonalDetails";
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/page-404">
             <Page404 />
+          </Route>
+          <Route exact path="/register">
+            <PersonalDetails />
           </Route>
         </Switch>
       </Router>
