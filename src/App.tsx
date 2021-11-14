@@ -3,14 +3,12 @@ import React from "react";
 import Sidebar from "./components/Sidebar";
 import SignUp from "./pages/SignUp";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import LogIn from "./pages/LogIn";
-import Register from "./pages/Register/Register";
+import PersonalDetails from "./pages/Register/PersonalDetails";
 
 function App() {
   return (
     <div>
-
       <Router>
         <Switch>
           <Route exact path="/dashboard">
@@ -24,13 +22,12 @@ function App() {
             <SignUp />
           </Route>
           <Route exact path="/login">
-            <LogIn/>
+            <LogIn />
           </Route>
           <Route exact path="/register">
-            <Register/>
+            <PersonalDetails />
           </Route>
         </Switch>
-
       </Router>
     </div>
   );
