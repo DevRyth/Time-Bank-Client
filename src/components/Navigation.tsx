@@ -1,37 +1,60 @@
-import React from "react";
-import { HiOutlineUser, CgPassword } from "react-icons/all";
+import React, { useState } from "react";
 import Button from "../sharedComponents/button/Button";
-import Input from "../sharedComponents/input/Input";
+
 interface Props {}
 const Navigation: React.FC<Props> = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const update = () => {
+    setIsLoggedIn(!isLoggedIn);
+  };
   return (
     <div>
-      <header>
-        <nav className="bg-primary-dark flex">
-          <li className="list-none">Home</li>
-          <li className="list-none">About</li>
-          <li className="list-none">Courses</li>
-          <Input
-            type="text"
-            name="Username"
-            placeholder="Username"
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-          >
-            <HiOutlineUser />
-          </Input>
-          <Input
-            type="password"
-            name="Password"
-            placeholder="Password"
-            className="text-primary-dark"
-            iconColor="text-primary-dark"
-          >
-            <CgPassword />
-          </Input>
-          <Button title={"Login"} className="py-0" />
-        </nav>
-      </header>
+      <div className="sm:hidden min-w-full text-sm">
+        <header className="bg-on-secondary ">
+          <nav></nav>
+        </header>
+      </div>
+      <div className="hidden sm:block">
+        <header className="bg-on-secondary ">
+          <nav className="py-2">
+            <div className=" mr-2 flex justify-between">
+              <div className=" flex items-center">
+                <li className="list-none px-2 ">
+                  <a className="text-white" href="#">
+                    Home
+                  </a>
+                </li>
+                <li className="list-none px-2 ">
+                  <a className="text-white" href="#">
+                    About
+                  </a>
+                </li>
+                <li className="list-none px-2 ">
+                  <a className="text-white" href="#">
+                    Courses
+                  </a>
+                </li>
+              </div>
+              <div className="flex items-center">
+                <Button
+                  title="Login"
+                  type="submit"
+                  theme="secondary"
+                  className={"py-0.5 mr-2"}
+                  onClick={update}
+                />
+                <Button
+                  title="Signup"
+                  type="submit"
+                  theme="secondary"
+                  className={"py-0.5 "}
+                  onClick={update}
+                />
+              </div>
+            </div>
+          </nav>
+        </header>
+      </div>
     </div>
   );
 };
