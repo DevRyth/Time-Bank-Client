@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Avatar from "../sharedComponents/Avatar";
 import Button from "../sharedComponents/button/Button";
 
 interface Props {}
@@ -11,7 +12,13 @@ const Navigation: React.FC<Props> = () => {
     <div>
       <div className="sm:hidden min-w-full text-sm">
         <header className="bg-on-secondary ">
-          <nav></nav>
+          <nav className="">
+            <div className=" flex justify-end mr-2 py-1">
+              <a href="#">
+                <Avatar shape="rounded-full" />
+              </a>
+            </div>
+          </nav>
         </header>
       </div>
       <div className="hidden sm:block">
