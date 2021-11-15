@@ -13,7 +13,7 @@ import LogIn from "./pages/LogIn.page";
 import CoursesPage from "./pages/Courses.page";
 import CourseDetailPage from "./pages/CourseDetail.page";
 import Page404 from "./pages/Page404";
-import PersonalDetails from "./pages/Register/PersonalDetails";
+import PersonalDetails from "./pages/PersonalDetails";
 
 function App() {
   return (

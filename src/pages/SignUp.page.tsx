@@ -33,7 +33,7 @@ const SignUp: React.FC = () => {
         </p>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values, helper) => {
+          onSubmit={async (values, helper) => {
             helper.setSubmitting(true);
             const mappedValues = {
               username: values.username,
@@ -41,9 +41,13 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios.post("https://fierce-shore-21287.herokuapp.com/signup", mappedValues).then((res) => {
-                if(res.status === 200) {history.push("/register");}
-              }); // url here
+              const url = "https://fierce-shore-21287.herokuapp.com/signup";
+              // const url = "http://localhost:4000/signup";
+              const response: any = await axios.post(url, mappedValues);
+              if (response.status === 200) {
+                localStorage.setItem('token', response.data.token);
+                history.push('/register');
+              }
             } else {
               console.log("Password entered is not matching!");
             }

@@ -33,11 +33,13 @@ const LogIn: React.FC = () => {
               // username: values.username,
               password: values.password,
             };
-              const response: any = await axios.post("https://fierce-shore-21287.herokuapp.com/login", mappedValues);
-              if(response.status === 200) {
-                localStorage.setItem('token', response.data.token);
-                history.push('/dashboard');
-              }
+            const url = "https://fierce-shore-21287.herokuapp.com/login";
+            // const url = "http://localhost:4000/login";
+            const response: any = await axios.post(url, mappedValues);
+            if (response.status === 200) {
+              localStorage.setItem('token', response.data.token);
+              history.push('/dashboard');
+            }
             helper.setSubmitting(false);
           }}
         >
@@ -46,35 +48,35 @@ const LogIn: React.FC = () => {
               onSubmit={formikProps.handleSubmit}
               className="pt-6 space-y-3 md:space-y-6 md:pt-10"
             >
-        <div className="pt-6 space-y-3 md:space-y-6 md:pt-10">
-          <Input
-            onChange={formikProps.handleChange}
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-            type="email"
-            name="email"
-            placeholder="Email"
-          >
-            <HiOutlineUser />
-          </Input>
+              <div className="pt-6 space-y-3 md:space-y-6 md:pt-10">
+                <Input
+                  onChange={formikProps.handleChange}
+                  iconColor="text-primary-dark"
+                  className="text-primary-dark"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                >
+                  <HiOutlineUser />
+                </Input>
 
-          <Input
-            onChange={formikProps.handleChange}
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-            type="password"
-            name="password"
-            placeholder="Password"
-          >
-            <CgPassword />
-          </Input>
+                <Input
+                  onChange={formikProps.handleChange}
+                  iconColor="text-primary-dark"
+                  className="text-primary-dark"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                >
+                  <CgPassword />
+                </Input>
 
-          <div className="pt-5">
-            <Button title="Log In" theme="primary" />
-          </div>
-        </div>
-        </form>
-        )}
+                <div className="pt-5">
+                  <Button title="Log In" theme="primary" />
+                </div>
+              </div>
+            </form>
+          )}
         </Formik>
       </div>
     </div>
