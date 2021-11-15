@@ -37,9 +37,11 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios.post("http://localhost:4000/register", mappedValues).then((res) => {
-                console.log("Response", res);
-              }); // url here
+              axios
+                .post("http://localhost:4000/register", mappedValues)
+                .then((res) => {
+                  console.log("Response", res);
+                }); // url here
             } else {
               console.log("Password entered is not matching!");
             }
@@ -59,7 +61,7 @@ const SignUp: React.FC = () => {
                 name="username"
                 placeholder="Username"
               >
-                <HiOutlineUser />
+                <HiOutlineUser />3
               </Input>
               <Input
                 onChange={formikProps.handleChange}

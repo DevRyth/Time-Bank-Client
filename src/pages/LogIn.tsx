@@ -31,7 +31,9 @@ const LogIn: React.FC = () => {
               // username: values.username,
               password: values.password,
             };
-              axios.post("http://localhost:4000/login", mappedValues).then((res) => {
+            axios
+              .post("http://localhost:4000/login", mappedValues)
+              .then((res) => {
                 console.log("Response", res);
               }); // url here
             helper.setSubmitting(false);
@@ -42,35 +44,35 @@ const LogIn: React.FC = () => {
               onSubmit={formikProps.handleSubmit}
               className="pt-6 space-y-3 md:space-y-6 md:pt-10"
             >
-        <div className="pt-6 space-y-3 md:space-y-6 md:pt-10">
-          <Input
-            onChange={formikProps.handleChange}
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-            type="email"
-            name="email"
-            placeholder="Email"
-          >
-            <HiOutlineUser />
-          </Input>
+              <div className="pt-6 space-y-3 md:space-y-6 md:pt-10">
+                <Input
+                  onChange={formikProps.handleChange}
+                  iconColor="text-primary-dark"
+                  className="text-primary-dark"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                >
+                  <HiOutlineUser />
+                </Input>
 
-          <Input
-            onChange={formikProps.handleChange}
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-            type="password"
-            name="password"
-            placeholder="Password"
-          >
-            <CgPassword />
-          </Input>
+                <Input
+                  onChange={formikProps.handleChange}
+                  iconColor="text-primary-dark"
+                  className="text-primary-dark"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                >
+                  <CgPassword />
+                </Input>
 
-          <div className="pt-5">
-            <Button title="Log In" theme="primary" />
-          </div>
-        </div>
-        </form>
-        )}
+                <div className="pt-5">
+                  <Button title="Log In" theme="primary" />
+                </div>
+              </div>
+            </form>
+          )}
         </Formik>
       </div>
     </div>
