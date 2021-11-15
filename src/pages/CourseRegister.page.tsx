@@ -5,9 +5,9 @@ interface Props {}
 const CourseRegister: React.FC<Props> = ({}) => {
   return (
     <div className=" bg-on-secondary px-4 pt-6 h-screen w-screen sm:">
-      <div className="max-h p-6  bg-primary-lite font-extrabold sm:w-max ">
+      <div className="max-h p-6  bg-primary-lite font-extrabold sm:w-max h-screen lg:w-1/2">
         Register for course
-        <div className="  bg-white p-4 max-h font-bold sm:">
+        <div className="  bg-white p-4 max-h font-bold sm:p-8 h-1/3  md:h-1/2 lg:h-2/3">
           Course Details
           <div className="p-2">
             <Input
