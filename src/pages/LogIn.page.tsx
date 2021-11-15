@@ -33,8 +33,8 @@ const LogIn: React.FC = () => {
               // username: values.username,
               password: values.password,
             };
-            const url = "https://fierce-shore-21287.herokuapp.com/login";
-            // const url = "http://localhost:4000/login";
+            // const url = "https://fierce-shore-21287.herokuapp.com/login";
+            const url = "http://localhost:4000/login";
             const response: any = await axios.post(url, mappedValues);
             if (response.status === 200) {
               localStorage.setItem('token', response.data.token);

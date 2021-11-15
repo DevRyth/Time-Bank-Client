@@ -7,10 +7,12 @@ import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
+import PersonalDetails from "./PersonalDetails";
 
 const SignUp: React.FC = () => {
 
   const history = useHistory();
+  const [showRegisterPage, setShowRegisterPage] = useState(false);
 
   const initialValues = {
     username: "",
@@ -20,7 +22,7 @@ const SignUp: React.FC = () => {
   };
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="bg-background-lite p-10 h-screen w-screen">
+    <div className="bg-background-lite p-10 h-screen w-screen flex justify-center">
       <div className="text-center min-h-full p-10 bg-on-primary-lite">
         <h1 className="text-center text-xl md:text-3xl font-bold">
           Get Started
@@ -41,13 +43,15 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              const url = "https://fierce-shore-21287.herokuapp.com/signup";
-              // const url = "http://localhost:4000/signup";
-              const response: any = await axios.post(url, mappedValues);
-              if (response.status === 200) {
-                localStorage.setItem('token', response.data.token);
-                history.push('/register');
-              }
+              // const url = "https://fierce-shore-21287.herokuapp.com/signup";
+              const url = "http://localhost:4000/signup";
+              // const response: any = await axios.post(url, mappedValues);
+              // if (response.status === 200) {
+              //   localStorage.setItem('token', response.data.token);
+              //   history.push('/register');
+              // }
+              setShowRegisterPage(true);
+              console.log(mappedValues);
             } else {
               console.log("Password entered is not matching!");
             }
@@ -112,6 +116,7 @@ const SignUp: React.FC = () => {
           )}
         </Formik>
       </div>
+      {(showRegisterPage) ? <PersonalDetails className="absolute top-0 bg-red-400"/> : null}
     </div>
   );
 };

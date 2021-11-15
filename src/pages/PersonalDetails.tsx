@@ -10,7 +10,11 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import Button from "../sharedComponents/button/Button";
 
-export default function PersonalDetails() {
+interface Props {
+  className?: string;
+}
+
+const PersonalDetails: React.FC<Props> = ({className}) => {
 
   const history = useHistory();
 
@@ -39,7 +43,7 @@ export default function PersonalDetails() {
   for (let i = 1971; i < 2016; i++) year.push(i.toString());
 
   return (
-    <div>
+    <div className={className}>
       <div className="text-center  text-yellow-700 from-on-primary-dark text-3xl">
         Registration
       </div>
@@ -64,8 +68,8 @@ export default function PersonalDetails() {
             },
             token: localStorage.getItem("token")
           }
-          const url = "https://fierce-shore-21287.herokuapp.com/register";
-          // const url = "http://localhost:4000/register";
+          // const url = "https://fierce-shore-21287.herokuapp.com/register";
+          const url = "http://localhost:4000/register";
           const response: any = await axios.post(url, mappedValues);
           if (response.status === 200) {
             history.push("/dashboard");
@@ -74,7 +78,7 @@ export default function PersonalDetails() {
           helper.setSubmitting(false);
         }}>
         {(formikProps: FormikProps<FormikValues>) => (
-          <form onSubmit={formikProps.handleSubmit}>
+          <form onSubmit={formikProps.handleSubmit} className="flex flex-col justify-center">
             <div className="border  border-gray-400 rounded-lg space-y-3	m-16 p-3">
               <div className="flex flex-col justify-around sm:flex-row ">
                 <div className="flex flex-col -space-y-0  ">
@@ -246,7 +250,7 @@ export default function PersonalDetails() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="flex justify-center">
               <Button title="Submit" theme="primary" />
             </div>
           </form>
@@ -255,3 +259,5 @@ export default function PersonalDetails() {
     </div>
   );
 }
+
+ export default React.memo(PersonalDetails);
