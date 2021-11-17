@@ -5,20 +5,16 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { BiBuildingHouse } from "react-icons/bi";
 import { MdPersonPinCircle } from "react-icons/md";
 import { MdOutlineRealEstateAgent } from "react-icons/md";
-import { Formik, FormikProps, FormikValues } from 'formik';
+import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
-import { useHistory } from "react-router";
 import Button from "../sharedComponents/button/Button";
-import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
+import { BASE_URL } from "../constants/constants";
 
 interface Props {
   className?: string;
 }
 
-const PersonalDetails: React.FC<Props> = ({className}) => {
-
-  const history = useHistory();
-
+const PersonalDetails: React.FC<Props> = ({ className }) => {
   const initialValues = {
     first_name: "",
     middle_name: "",
@@ -31,8 +27,8 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
     district: "",
     state: "",
     pincode: "",
-    phone_number: ""
-  }
+    phone_number: "",
+  };
 
   let day = ["Day"];
   for (let i = 1; i < 32; i++) day.push(i.toString());
@@ -65,20 +61,23 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
               district: values.district,
               state: values.state,
               pincode: values.pincode,
-              phone_number: values.phone_number
+              phone_number: values.phone_number,
             },
-            token: localStorage.getItem(LS_AUTH_TOKEN)
-          }
+          };
           const url = BASE_URL + "/register";
           const response: any = await axios.post(url, mappedValues);
           if (response.status === 200) {
-            history.push("/dashboard");
+            window.location.href = "/dashboard";
           }
           // console.log(mappedValues);
           helper.setSubmitting(false);
-        }}>
+        }}
+      >
         {(formikProps: FormikProps<FormikValues>) => (
-          <form onSubmit={formikProps.handleSubmit} className="flex flex-col justify-center">
+          <form
+            onSubmit={formikProps.handleSubmit}
+            className="flex flex-col justify-center"
+          >
             <div className="border  border-gray-400 rounded-lg space-y-3	m-16 p-3">
               <div className="flex flex-col justify-around sm:flex-row ">
                 <div className="flex flex-col -space-y-0  ">
@@ -124,14 +123,16 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
 
               <div className="flex flex-col md:flex-row -space-y-0 justify-around">
                 <div className="flex flex-col">
-                  <label className="hidden text-sm sm:block font-bold">DOB*</label>
+                  <label className="hidden text-sm sm:block font-bold">
+                    DOB*
+                  </label>
                   <div className="flex">
                     <select
                       onChange={formikProps.handleChange}
                       name="birth_date"
                     >
                       {day.map((value, index) => {
-                        return <option key={index}>{value}</option>
+                        return <option key={index}>{value}</option>;
                       })}
                     </select>
                     <select
@@ -139,7 +140,7 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
                       name="birth_month"
                     >
                       {month.map((value, index) => {
-                        return <option key={index}>{value}</option>
+                        return <option key={index}>{value}</option>;
                       })}
                     </select>
                     <select
@@ -147,7 +148,7 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
                       name="birth_year"
                     >
                       {year.map((value, index) => {
-                        return <option key={index}>{value}</option>
+                        return <option key={index}>{value}</option>;
                       })}
                     </select>
                   </div>
@@ -162,8 +163,7 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
                     type="radio"
                     name="gender"
                     value="Male"
-                  >
-                  </input>
+                  ></input>
                   <span>Male</span>
                   <input
                     onChange={formikProps.handleChange}
@@ -226,7 +226,9 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
 
               <div className="flex flex-col justify-around sm:flex-row">
                 <div className=" flex flex-col">
-                  <label className=" hidden text-sm sm:block font-bold">Phone Number*</label>
+                  <label className=" hidden text-sm sm:block font-bold">
+                    Phone Number*
+                  </label>
                   <Input
                     onChange={formikProps.handleChange}
                     name="phone_number"
@@ -238,7 +240,9 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
                 </div>
 
                 <div className=" flex flex-col">
-                  <label className=" hidden text-sm sm:block font-bold">State*</label>
+                  <label className=" hidden text-sm sm:block font-bold">
+                    State*
+                  </label>
                   <Input
                     onChange={formikProps.handleChange}
                     name="state"
@@ -258,6 +262,6 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
       </Formik>
     </div>
   );
-}
+};
 
- export default React.memo(PersonalDetails);
+export default React.memo(PersonalDetails);
