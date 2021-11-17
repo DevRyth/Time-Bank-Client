@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
@@ -8,10 +8,11 @@ import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
 import PersonalDetails from "./PersonalDetails";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 const SignUp: React.FC = () => {
 
-  const history = useHistory();
+  // const history = useHistory();
   const [showRegisterPage, setShowRegisterPage] = useState(false);
 
   const initialValues = {
@@ -43,14 +44,13 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              // const url = "https://fierce-shore-21287.herokuapp.com/signup";
-              const url = "http://localhost:4000/signup";
-              // const response: any = await axios.post(url, mappedValues);
-              // if (response.status === 200) {
-              //   localStorage.setItem('token', response.data.token);
-              //   history.push('/register');
-              // }
-              setShowRegisterPage(true);
+              const url = BASE_URL + "/signup";
+              const response: any = await axios.post(url, mappedValues);
+              if (response.status === 200) {
+                localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+                // history.push('/register');
+                setShowRegisterPage(true);
+              }
               console.log(mappedValues);
             } else {
               console.log("Password entered is not matching!");
@@ -116,7 +116,7 @@ const SignUp: React.FC = () => {
           )}
         </Formik>
       </div>
-      {(showRegisterPage) ? <PersonalDetails className="absolute top-0 bg-red-400"/> : null}
+      {(showRegisterPage || localStorage.getItem(LS_AUTH_TOKEN)) ? <PersonalDetails className="absolute top-0 bg-secondary-dark"/> : null}
     </div>
   );
 };

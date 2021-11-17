@@ -6,6 +6,7 @@ import { HiOutlineUser, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 const LogIn: React.FC = () => {
   const history = useHistory();
@@ -33,12 +34,12 @@ const LogIn: React.FC = () => {
               // username: values.username,
               password: values.password,
             };
-            // const url = "https://fierce-shore-21287.herokuapp.com/login";
-            const url = "http://localhost:4000/login";
+            const url = BASE_URL + "/login";
             const response: any = await axios.post(url, mappedValues);
             if (response.status === 200) {
-              localStorage.setItem('token', response.data.token);
-              history.push('/dashboard');
+              localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+              // history.push('/dashboard');
+              window.location.href = '/dashboard'
             }
             helper.setSubmitting(false);
           }}

@@ -9,6 +9,7 @@ import { Formik, FormikProps, FormikValues } from 'formik';
 import axios from "axios";
 import { useHistory } from "react-router";
 import Button from "../sharedComponents/button/Button";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 interface Props {
   className?: string;
@@ -66,10 +67,9 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
               pincode: values.pincode,
               phone_number: values.phone_number
             },
-            token: localStorage.getItem("token")
+            token: localStorage.getItem(LS_AUTH_TOKEN)
           }
-          // const url = "https://fierce-shore-21287.herokuapp.com/register";
-          const url = "http://localhost:4000/register";
+          const url = BASE_URL + "/register";
           const response: any = await axios.post(url, mappedValues);
           if (response.status === 200) {
             history.push("/dashboard");
