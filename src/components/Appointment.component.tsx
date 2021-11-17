@@ -16,32 +16,42 @@ export default function Appointment() {
   return (
     <div>
       <div className="border border-gray-900  	 p-3 ">
-        <button className="p-1">
+
+
+        <div className="flex justify-center ">
+
+        <button className="p-2">
           <AiOutlinePlusCircle />
         </button>
-        <h1 className="text-center font-bold ">Appointment Details</h1>
-        <div className="flex space-x-5 justify-center ">
-          <select name="days" className="h-6	">
+
+        <h1 className="text-center font-bold p-2">Appointment Details</h1>
+        </div>
+        <div className="flex space-x-7 justify-center ">
+        
+          <select name="days " className="w-min border border-black rounded-md">
             <option selected>Days</option>
             {days.map((item) => (
               <option>{item}</option>
             ))}
           </select>
-          <select className="h-5" name="min">
+          <div className=" flex space-x-1">
+          <select className=" border border-black rounded-md 	w-24" name="min">
             <option selected>min</option>
             {min.map((item) => (
               <option>{item}</option>
             ))}
           </select>
-
-          <select name="sec">
+          <p className="font-bold">
+              :</p>
+          <select name="sec" className=" border border-black w-24 rounded-md">
             <option selected>sec</option>
             {min.map((item) => (
               <option>{item}</option>
             ))}
           </select>
+          </div>
         </div>
       </div>
-    </div>
+         </div>
   );
 }
