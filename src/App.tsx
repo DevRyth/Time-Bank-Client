@@ -14,6 +14,7 @@ import CourseDetailPage from "./pages/CourseDetail.page";
 import Page404 from "./pages/Page404";
 import { LS_AUTH_TOKEN } from "./constants/constants";
 import { axiosRequest, axiosResponse } from "./axios/axios";
+import PersonalDetails from "./pages/PersonalDetails";
 
 const App: React.FC = () => {
 
@@ -51,6 +52,9 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/page-404">
             <Page404 />
+          </Route>
+          <Route exact path="/register">
+            <PersonalDetails></PersonalDetails>
           </Route>
         </Switch>
       </Router>
