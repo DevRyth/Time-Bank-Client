@@ -5,7 +5,7 @@ import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
-import { Formik, FormikProps, FormikValues } from "formik";
+import { Formik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 
