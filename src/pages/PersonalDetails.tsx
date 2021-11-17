@@ -66,13 +66,12 @@ const PersonalDetails: React.FC<Props> = ({className}) => {
               state: values.state,
               pincode: values.pincode,
               phone_number: values.phone_number
-            },
-            token: localStorage.getItem(LS_AUTH_TOKEN)
+            }
           }
           const url = BASE_URL + "/register";
           const response: any = await axios.post(url, mappedValues);
           if (response.status === 200) {
-            history.push("/dashboard");
+            window.location.href = "/dashboard";
           }
           // console.log(mappedValues);
           helper.setSubmitting(false);

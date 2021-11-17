@@ -39,7 +39,7 @@ const LogIn: React.FC = () => {
             if (response.status === 200) {
               localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
               // history.push('/dashboard');
-              window.location.href = '/dashboard'
+              window.location.href = '/dashboard';
             }
             helper.setSubmitting(false);
           }}
