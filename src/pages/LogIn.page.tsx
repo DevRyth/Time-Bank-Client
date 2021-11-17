@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, CgPassword } from "react-icons/all";
@@ -7,9 +6,9 @@ import Button from "../sharedComponents/button/Button";
 import { Formik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 const LogIn: React.FC = () => {
-  const history = useHistory();
   const initialValues = {
     email: "",
     password: "",
@@ -42,13 +41,12 @@ const LogIn: React.FC = () => {
               email: values.email,
               password: values.password,
             };
-            const response: any = await axios.post(
-              "https://fierce-shore-21287.herokuapp.com/login",
-              mappedValues
-            );
+            const url = BASE_URL + "/login";
+            const response: any = await axios.post(url, mappedValues);
             if (response.status === 200) {
-              localStorage.setItem("token", response.data.token);
-              history.push("/dashboard");
+              localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+              // history.push('/dashboard');
+              window.location.href = "/dashboard";
             }
             helper.setSubmitting(false);
           }}

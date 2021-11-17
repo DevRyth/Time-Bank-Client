@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
@@ -8,9 +8,12 @@ import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
+import PersonalDetails from "./PersonalDetails";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 const SignUp: React.FC = () => {
-  const history = useHistory();
+  // const history = useHistory();
+  const [showRegisterPage, setShowRegisterPage] = useState(false);
 
   const initialValues = {
     username: "",
@@ -50,7 +53,7 @@ const SignUp: React.FC = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, helper) => {
+          onSubmit={async (values, helper) => {
             helper.setSubmitting(true);
             const mappedValues = {
               username: values.username,
@@ -58,16 +61,14 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios
-                .post(
-                  "https://fierce-shore-21287.herokuapp.com/signup",
-                  mappedValues
-                )
-                .then((res) => {
-                  if (res.status === 200) {
-                    history.push("/register");
-                  }
-                }); // url here
+              const url = BASE_URL + "/signup";
+              const response: any = await axios.post(url, mappedValues);
+              if (response.status === 200) {
+                localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+                // history.push('/register');
+                setShowRegisterPage(true);
+              }
+              console.log(mappedValues);
             } else {
               console.log("Password entered is not matching!");
             }
@@ -140,6 +141,9 @@ const SignUp: React.FC = () => {
           )}
         </Formik>
       </div>
+      {showRegisterPage || localStorage.getItem(LS_AUTH_TOKEN) ? (
+        <PersonalDetails className="absolute top-0 bg-secondary-dark" />
+      ) : null}
     </div>
   );
 };
