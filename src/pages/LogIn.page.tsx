@@ -45,13 +45,12 @@ const LogIn: React.FC = () => {
             const response: any = await axios.post(url, mappedValues);
             if (response.status === 200) {
               localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-              // history.push('/dashboard');
               window.location.href = "/dashboard";
             }
             helper.setSubmitting(false);
           }}
         >
-          {({ touched, errors, handleChange, handleSubmit }) => (
+          {({ touched, errors, handleChange, handleSubmit, isSubmitting }) => (
             <form
               onSubmit={handleSubmit}
               className="pt-6 space-y-3 md:space-y-6 md:pt-10"
@@ -84,7 +83,11 @@ const LogIn: React.FC = () => {
                 </Input>
 
                 <div className="pt-5">
-                  <Button title="Log In" theme="primary" />
+                  <Button
+                    title="Log In"
+                    isSubmitting={isSubmitting}
+                    theme="primary"
+                  />
                 </div>
               </div>
             </form>

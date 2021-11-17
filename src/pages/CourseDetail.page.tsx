@@ -67,7 +67,7 @@ const CourseDetail: React.FC = () => {
         </div>
         <hr className="border mt-3 md:hidden" />
       </div>
-      <div className="m-3 rounded-xl p-6 shadow-stacked">
+      <div className="m-3 rounded-xl p-6 shadow-stacked md:mx-10 md:mt-6">
         <div>
           <h2 className="text-lg font-bold">About this course</h2>
         </div>

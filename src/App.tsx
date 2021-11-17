@@ -17,23 +17,25 @@ import { axiosRequest, axiosResponse } from "./axios/axios";
 import PersonalDetails from "./pages/PersonalDetails";
 
 const App: React.FC = () => {
-
   axiosRequest();
   axiosResponse();
 
   const token = localStorage.getItem(LS_AUTH_TOKEN);
-  console.log(token);
 
   return (
     <div>
       <Router>
         <Switch>
           <Route exact path="/dashboard">
-            {token ? <Sidebar
-              name="Utkarsh Gangwar"
-              email="utkarshgangwar909@gmail.com"
-              image="https://imgur.com/aFFF1uw.jpg"
-            /> : <Redirect to="/login" />}
+            {token ? (
+              <Sidebar
+                name="Utkarsh Gangwar"
+                email="utkarshgangwar909@gmail.com"
+                image="https://imgur.com/aFFF1uw.jpg"
+              />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route exact path="/">
             <Redirect to="/login" />
@@ -42,24 +44,24 @@ const App: React.FC = () => {
             {token ? <Redirect to="/dashboard" /> : <SignUp />}
           </Route>
           <Route exact path="/login">
-            {token ? <Redirect to="/dashboard" /> :<LogIn />}
+            {token ? <Redirect to="/dashboard" /> : <LogIn />}
           </Route>
           <Route exact path="/courses">
-            { token ? <CoursesPage /> : <Redirect to="/login" />}
+            {token ? <CoursesPage /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/courses/1">
             {token ? <CourseDetailPage /> : <Redirect to="/login" />}
           </Route>
-          <Route exact path="/page-404">
-            <Page404 />
-          </Route>
           <Route exact path="/register">
             <PersonalDetails></PersonalDetails>
+          </Route>
+          <Route path="/">
+            <Page404 />
           </Route>
         </Switch>
       </Router>
     </div>
   );
-}
+};
 
 export default React.memo(App);

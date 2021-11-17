@@ -22,10 +22,9 @@ const SignUp: React.FC = () => {
     confirmPassword: "",
   };
   const validationSchema = Yup.object().shape({
-    username: Yup.string().min(
-      6,
-      ({ min }) => `Username must be atleast ${min} chars`
-    ),
+    username: Yup.string()
+      .min(6, ({ min }) => `Username must be atleast ${min} chars`)
+      .required("Username is required field!"),
     email: Yup.string()
       .email("Invalid Email")
       .required("Email is the required field!"),
@@ -75,7 +74,7 @@ const SignUp: React.FC = () => {
             helper.setSubmitting(false);
           }}
         >
-          {({ handleChange, handleSubmit, errors, touched }) => (
+          {({ handleChange, handleSubmit, errors, touched, isSubmitting }) => (
             <form
               onSubmit={handleSubmit}
               className="pt-6 space-y-3 md:space-y-10 md:pt-10"
@@ -134,8 +133,13 @@ const SignUp: React.FC = () => {
                 className="pt-3"
                 text="Show Password"
               />
-              <div className="pt-3">
-                <Button type="submit" title="Sign Up" theme="primary" />
+              <div>
+                <Button
+                  isSubmitting={isSubmitting}
+                  type="submit"
+                  title="Sign Up"
+                  theme="primary"
+                />
               </div>
             </form>
           )}
