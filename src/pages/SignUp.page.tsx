@@ -7,7 +7,7 @@ import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
-import PersonalDetails from "./PersonalDetails";
+// import PersonalDetails from "./PersonalDetails";
 import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 const SignUp: React.FC = () => {
@@ -48,8 +48,8 @@ const SignUp: React.FC = () => {
               const response: any = await axios.post(url, mappedValues);
               if (response.status === 200) {
                 localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-                // history.push('/register');
-                setShowRegisterPage(true);
+                window.location.href = "/register";
+                // setShowRegisterPage(true);
               }
               console.log(mappedValues);
             } else {
@@ -116,7 +116,7 @@ const SignUp: React.FC = () => {
           )}
         </Formik>
       </div>
-      {(showRegisterPage || localStorage.getItem(LS_AUTH_TOKEN)) ? <PersonalDetails className="absolute top-0 bg-secondary-dark"/> : null}
+      {/* {(showRegisterPage || localStorage.getItem(LS_AUTH_TOKEN)) ? <PersonalDetails className="absolute top-0 bg-secondary-dark"/> : null} */}
     </div>
   );
 };
