@@ -21,7 +21,7 @@ const SignUp: React.FC = () => {
   const validationSchema = Yup.object().shape({
     username: Yup.string().min(
       6,
-      ({ min }) => "Username must be atleast 6 chars"
+      ({ min }) => `Username must be atleast ${min} chars`
     ),
     email: Yup.string()
       .email("Invalid Email")
