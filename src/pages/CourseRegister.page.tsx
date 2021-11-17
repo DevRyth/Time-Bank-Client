@@ -2,7 +2,7 @@ import React from "react";
 
 import Input from "../sharedComponents/input/Input";
 interface Props {}
-const CourseRegister: React.FC<Props> = ({}) => {
+const CourseRegister: React.FC<Props> = () => {
   return (
     // <div className=" bg-on-secondary px-4  pt-6 h-screen w-screen sm:">
     <div className="max-h p-6 bg-primary-lite font-extrabold sm:w-max h-screen lg:w-1/2 lg:text-3xl">
@@ -12,7 +12,7 @@ const CourseRegister: React.FC<Props> = ({}) => {
         <div className="p-2 lg:p-8 lg:pt-12">
           <Input
             className="text-primary-dark pt-2 "
-            outerClassName="border p-0 rounded-lg  sm:content-start text-left  "
+            outerClassName="border p-0 rounded-lg "
             type="text"
             name="Title"
             placeholder="Title"
@@ -26,14 +26,20 @@ const CourseRegister: React.FC<Props> = ({}) => {
             placeholder="Discription"
             children={undefined}
           ></Input>
-          <Input
+          <textarea
+            rows={1}
+            cols={23}
+            className=" border border-gray-600 resize rounded-lg text-center text-base pt-3 pb-3"
+            placeholder="What you will learn"
+          ></textarea>
+          {/* <Input
             className="text-primary-dark pt-2"
             outerClassName="border p-0 rounded-lg "
             type="text"
             name="What you will learn"
             placeholder="What you will learn"
             children={undefined}
-          ></Input>
+          ></Input> */}
         </div>
       </div>
     </div>
