@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { HiMenu } from "react-icons/hi";
+import { LS_AUTH_TOKEN } from "../constants/constants";
 
 interface Props {
   name: string;
@@ -110,7 +111,7 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
               Courses
             </a>
           </li>
-          <li className="list-none border-b-2  p-2 text-2xl font-semibold text-center tracking-wider border-gray-600">
+          <li className="list-none border-b-2  p-2 text-2xl font-semibold text-center tracking-wider border-gray-600" onClick={() => {localStorage.removeItem(LS_AUTH_TOKEN);}}>
             <a href="/" className="flex text-white text-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
