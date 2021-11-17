@@ -4,16 +4,25 @@ import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
-import { Formik, FormikProps, FormikValues } from "formik";
+import { Formik } from "formik";
 import axios from "axios";
+import * as Yup from "yup";
 
 const LogIn: React.FC = () => {
   const history = useHistory();
   const initialValues = {
     email: "",
-    // username: "",
     password: "",
   };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid Email")
+      .required("Email is the required field!"),
+    password: Yup.string()
+      .min(6, ({ min }) => `Password must be atleast ${min} chars`)
+      .required("Password is the required field!"),
+  });
+
   return (
     <div className="bg-background-lite p-10 h-screen w-screen">
       <div className="text-center min-h-full p-10 bg-on-primary-lite">
@@ -26,55 +35,62 @@ const LogIn: React.FC = () => {
         </p>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={async (values, helper) => {
             helper.setSubmitting(true);
             const mappedValues = {
               email: values.email,
-              // username: values.username,
               password: values.password,
             };
-              const response: any = await axios.post("https://fierce-shore-21287.herokuapp.com/login", mappedValues);
-              if(response.status === 200) {
-                localStorage.setItem('token', response.data.token);
-                history.push('/dashboard');
-              }
+            const response: any = await axios.post(
+              "https://fierce-shore-21287.herokuapp.com/login",
+              mappedValues
+            );
+            if (response.status === 200) {
+              localStorage.setItem("token", response.data.token);
+              history.push("/dashboard");
+            }
             helper.setSubmitting(false);
           }}
         >
-          {(formikProps: FormikProps<FormikValues>) => (
+          {({ touched, errors, handleChange, handleSubmit }) => (
             <form
-              onSubmit={formikProps.handleSubmit}
+              onSubmit={handleSubmit}
               className="pt-6 space-y-3 md:space-y-6 md:pt-10"
             >
-        <div className="pt-6 space-y-3 md:space-y-6 md:pt-10">
-          <Input
-            onChange={formikProps.handleChange}
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-            type="email"
-            name="email"
-            placeholder="Email"
-          >
-            <HiOutlineUser />
-          </Input>
+              <div className="pt-6 space-y-3 md:space-y-10 md:pt-10">
+                <Input
+                  onChange={handleChange}
+                  iconColor="text-primary-dark"
+                  className="text-primary-dark"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  touched={touched.email}
+                  errorMessage={errors.email}
+                >
+                  <HiOutlineUser />
+                </Input>
 
-          <Input
-            onChange={formikProps.handleChange}
-            iconColor="text-primary-dark"
-            className="text-primary-dark"
-            type="password"
-            name="password"
-            placeholder="Password"
-          >
-            <CgPassword />
-          </Input>
+                <Input
+                  onChange={handleChange}
+                  iconColor="text-primary-dark"
+                  className="text-primary-dark"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  touched={touched.password}
+                  errorMessage={errors.password}
+                >
+                  <CgPassword />
+                </Input>
 
-          <div className="pt-5">
-            <Button title="Log In" theme="primary" />
-          </div>
-        </div>
-        </form>
-        )}
+                <div className="pt-5">
+                  <Button title="Log In" theme="primary" />
+                </div>
+              </div>
+            </form>
+          )}
         </Formik>
       </div>
     </div>

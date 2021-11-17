@@ -7,6 +7,7 @@ import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
+import * as Yup from "yup";
 
 const SignUp: React.FC = () => {
   const history = useHistory();
@@ -17,9 +18,25 @@ const SignUp: React.FC = () => {
     password: "",
     confirmPassword: "",
   };
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().min(
+      6,
+      ({ min }) => "Username must be atleast 6 chars"
+    ),
+    email: Yup.string()
+      .email("Invalid Email")
+      .required("Email is the required field!"),
+    password: Yup.string()
+      .min(6, ({ min }) => `Password must be atleast ${min} chars`)
+      .required("Password is the required field!"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Password must match"
+    ),
+  });
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="bg-background-lite p-10 h-screen w-screen">
+    <div className="bg-background-lite p-10 min-h-screen">
       <div className="text-center min-h-full p-10 bg-on-primary-lite">
         <h1 className="text-center text-xl md:text-3xl font-bold">
           Get Started
@@ -32,6 +49,7 @@ const SignUp: React.FC = () => {
         </p>
         <Formik
           initialValues={initialValues}
+          validationSchema={validationSchema}
           onSubmit={(values, helper) => {
             helper.setSubmitting(true);
             const mappedValues = {
@@ -56,48 +74,56 @@ const SignUp: React.FC = () => {
             helper.setSubmitting(false);
           }}
         >
-          {(formikProps: FormikProps<FormikValues>) => (
+          {({ handleChange, handleSubmit, errors, touched }) => (
             <form
-              onSubmit={formikProps.handleSubmit}
-              className="pt-6 space-y-3 md:space-y-6 md:pt-10"
+              onSubmit={handleSubmit}
+              className="pt-6 space-y-3 md:space-y-10 md:pt-10"
             >
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="text"
                 name="username"
                 placeholder="Username"
+                touched={touched.username}
+                errorMessage={errors.username}
               >
                 <HiOutlineUser />
               </Input>
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="email"
                 name="email"
                 placeholder="Email"
+                touched={touched.email}
+                errorMessage={errors.email}
               >
                 <MdEmail />
               </Input>
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="password"
                 name="password"
                 placeholder="Password"
+                touched={touched.password}
+                errorMessage={errors.password}
               >
                 <CgPassword />
               </Input>
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type={showPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm Password"
+                touched={touched.confirmPassword}
+                errorMessage={errors.confirmPassword}
               >
                 <CgPassword />
               </Input>
