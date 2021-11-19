@@ -35,7 +35,6 @@ const LogIn: React.FC = () => {
             Create One
           </Link>
         </p>
-
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -79,6 +78,7 @@ const LogIn: React.FC = () => {
                   placeholder="Email"
                   touched={touched.email}
                   errorMessage={errors.email}
+                  outerClassName="mx-auto"
                 >
                   <HiOutlineUser />
                 </Input>
@@ -92,6 +92,7 @@ const LogIn: React.FC = () => {
                   placeholder="Password"
                   touched={touched.password}
                   errorMessage={errors.password}
+                  outerClassName="mx-auto"
                 >
                   <CgPassword />
                 </Input>

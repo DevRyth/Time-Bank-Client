@@ -4,9 +4,9 @@ import CourseRegister from "./CourseRegister.page";
 
 const CourseRegistration: React.FC = () => {
   return (
-    <div>
+    <div className="flex">
       <CourseRegister />
-      <Appointment />
+      {/* <Appointment /> */}
     </div>
   );
 };

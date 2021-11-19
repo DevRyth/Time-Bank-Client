@@ -12,7 +12,7 @@ const Navigation: React.FC<Props> = () => {
   };
   return (
     <div>
-      <div className="sm:hidden w-screen">
+      <div className="sm:hidden min-w-full">
         <header className="bg-on-secondary ">
           <nav className="flex justify-between">
             <div className="flex items-center">
@@ -51,21 +51,21 @@ const Navigation: React.FC<Props> = () => {
         </div>
       </div>
       <div className="hidden sm:block">
-        <header className="bg-primary-dark ">
-          <nav className="py-3 px-6">
+        <header className="bg-on-secondary ">
+          <nav className="py-3">
             <div className=" mr-2 flex justify-between">
               <div className="flex items-center">
-                <li className="list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite">
+                <li className="list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-dark">
                   <a className="text-white" href="https://www.google.com/">
                     Home
                   </a>
                 </li>
-                <li className="list-none px-2 cursor-pointer hover:bg-primary-lite p-2 rounded-lg">
+                <li className="list-none px-2 cursor-pointer hover:bg-primary-dark p-2 rounded-lg">
                   <a className="text-white" href="https://www.google.com/">
                     About
                   </a>
                 </li>
-                <li className="list-none px-2 hover:bg-primary-lite cursor-pointer p-2 rounded-lg">
+                <li className="list-none px-2 hover:bg-primary-dark cursor-pointer p-2 rounded-lg">
                   <a className="text-white" href="https://www.google.com/">
                     Courses
                   </a>

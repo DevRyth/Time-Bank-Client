@@ -69,13 +69,16 @@ const Courses: React.FC = () => {
       </div>
       <div className="pt-5 md:flex justify-center md:pt-10">
         <label htmlFor="search"></label>
+        {/* <div className="text-center"> */}
         <Input
           children={<AiOutlineSearch fontSize="1.2rem" />}
           type="text"
           placeholder="Search Courses"
           name="search"
-          className="text-center text-base md:w-72 lg:w-96"
+          className="text-base md:w-72 lg:w-96"
+          outerClassName="mx-auto"
         />
+        {/* </div> */}
         <div className="text-center pt-2 md:pl-3">
           <Button
             title="search"
@@ -85,7 +88,7 @@ const Courses: React.FC = () => {
         </div>
       </div>
 
-      <div className="px-5 lg:px-16 mt-5 py-2 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
+      <div className="px-5 lg:px-16 mt-5 py-2 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
         {Array(10)
           .fill(1)
           .map((item, index) => (

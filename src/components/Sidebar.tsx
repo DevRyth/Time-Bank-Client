@@ -5,7 +5,7 @@ import Avatar from "../sharedComponents/Avatar";
 interface Props {}
 const Sidebar: React.FC<Props> = () => {
   return (
-    <div className="hidden sm:block bg-primary-dark height w-60 fixed z-10">
+    <div className="hidden md:block bg-primary-dark height md:w-60 md:fixed md:z-10">
       <div className="bg-primary-lite p-2">
         <Avatar
           url="https://imgur.com/aFFF1uw.jpg"
