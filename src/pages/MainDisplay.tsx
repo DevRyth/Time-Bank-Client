@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import CourseDetailPage from "./CourseDetail.page";
+import CourseRegistrationPage from "./CourseRegistration.page";
 import CoursesPage from "./Courses.page";
 import PersonalDetails from "./PersonalDetails";
 
@@ -20,6 +21,9 @@ const MainDisplay = () => {
           </Route>
           <Route exact path="/register">
             <PersonalDetails />
+          </Route>
+          <Route exact path="/course-register">
+            <CourseRegistrationPage />
           </Route>
         </Switch>
       </div>

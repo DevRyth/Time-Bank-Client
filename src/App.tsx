@@ -13,7 +13,6 @@ import Navigation from "./components/Navigation";
 import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
 import LogIn from "./pages/LogIn.page";
-import CourseRegister from "./pages/CourseRegister.page";
 
 const App: React.FC = () => {
   axiosRequest();
@@ -39,12 +38,15 @@ const App: React.FC = () => {
           </Route>
           <Route
             exact
-            path={["/dashboard", "/courses", "/courses/1", "/register"]}
+            path={[
+              "/dashboard",
+              "/courses",
+              "/courses/1",
+              "/register",
+              "/course-register",
+            ]}
           >
             {token ? <MainDisplay /> : <Redirect to="/login" />}
-          </Route>
-          <Route exact path="/course-register">
-            <CourseRegister />
           </Route>
           <Route path="/">
             <Page404 />
