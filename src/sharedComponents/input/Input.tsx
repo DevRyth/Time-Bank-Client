@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes, ReactNode } from "react";
 import { IoWarningOutline } from "react-icons/all";
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  outerClassName?: string;
   children: ReactNode;
   iconColor?: string;
   touched?: boolean;
@@ -8,6 +9,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<Props> = ({
+  outerClassName,
   name,
   errorMessage,
   placeholder,
@@ -20,8 +22,10 @@ const Input: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <div className="flex justify-center">
-        <div className="border-b pb-1 pl-1 border-gray-600 flex">
+      <div className="flex justify-start">
+        <div
+          className={`border-b pb-1 pl-1 border-gray-600 flex ${outerClassName}`}
+        >
           <div className={`flex-row my-auto ${iconColor}`}>{children}</div>
           <div className="flex flex-col">
             <div className="flex-row m-2">

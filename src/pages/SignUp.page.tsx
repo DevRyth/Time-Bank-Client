@@ -89,7 +89,7 @@ const SignUp: React.FC = () => {
                 touched={touched.username}
                 errorMessage={errors.username}
               >
-                <HiOutlineUser />
+                <HiOutlineUser />3
               </Input>
               <Input
                 onChange={handleChange}
