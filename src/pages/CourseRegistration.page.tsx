@@ -4,9 +4,10 @@ import CourseRegister from "./CourseRegister.page";
 
 const CourseRegistration: React.FC = () => {
   return (
-    <div>
-      <CourseRegister />
-      <Appointment />
+    <div className="h-full p-4 bg-primary-lite font-extrabold lg:text-3xl flex flex-col space-y-4">
+      <span>Register for course</span>
+      <CourseRegister></CourseRegister>
+      <Appointment></Appointment>
     </div>
   );
 };

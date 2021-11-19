@@ -1,49 +1,39 @@
 import React from "react";
-
 import Input from "../sharedComponents/input/Input";
-interface Props {}
+import { MdTitle } from "react-icons/md";
+
+interface Props { }
+
 const CourseRegister: React.FC<Props> = () => {
   return (
     // <div className=" bg-on-secondary px-4  pt-6 h-screen w-screen sm:">
-    <div className="max-h p-6 bg-primary-lite font-extrabold sm:w-max h-screen lg:w-1/2 lg:text-3xl">
-      Register for course
-      <div className="  bg-white p-4  m-4 max-h rounded-lg font-bold sm: h-2/5  md:h-2/3 lg:h-2/3">
-        Course Details
-        <div className="p-2 lg:p-8 lg:pt-12">
+    <div className="bg-white p-4 max-h rounded-lg font-bold">
+      Course Details
+      <div className="flex flex-col space-y-4 p-2 lg:p-8 lg:pt-12">
+        <label className="flex flex-col space-y-2">
+          <span>Title</span>
           <Input
-            className="text-primary-dark pt-2 "
-            outerClassName="border p-0 rounded-lg "
+            className="text-primary-dark pt-2"
+            outerClassName="border p-0 rounded-lg w-full"
             type="text"
             name="Title"
             placeholder="Title"
-            children={undefined}
-          ></Input>
-          <Input
-            className="text-primary-dark pt-2"
-            outerClassName="border rounded-lg "
-            type="text"
-            name="Discription"
-            placeholder="Discription"
-            children={undefined}
-          ></Input>
+          ><MdTitle /></Input>
+        </label>
+        <label className="flex flex-col space-y-2">
+          <span>Description</span>
           <textarea
             rows={1}
             cols={23}
-            className=" border border-gray-600 resize rounded-lg text-center text-base pt-3 pb-3"
+            className="border border-gray-600 rounded-lg w-full h-96 text-base pt-3 pb-3"
             placeholder="What you will learn"
           ></textarea>
-          {/* <Input
-            className="text-primary-dark pt-2"
-            outerClassName="border p-0 rounded-lg "
-            type="text"
-            name="What you will learn"
-            placeholder="What you will learn"
-            children={undefined}
-          ></Input> */}
-        </div>
+        </label>
       </div>
     </div>
-    // </div>
   );
 };
 export default CourseRegister;
+
+
+
