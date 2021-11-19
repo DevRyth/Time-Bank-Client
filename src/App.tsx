@@ -15,6 +15,7 @@ import Page404 from "./pages/Page404";
 import { LS_AUTH_TOKEN } from "./constants/constants";
 import { axiosRequest, axiosResponse } from "./axios/axios";
 import PersonalDetails from "./pages/PersonalDetails";
+import Footer from "./sharedComponents/footer/Footer";
 
 const App: React.FC = () => {
   axiosRequest();
@@ -51,6 +52,9 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/courses/1">
             {token ? <CourseDetailPage /> : <Redirect to="/login" />}
+          </Route>
+          <Route exact path="/footer">
+            <Footer />
           </Route>
           <Route exact path="/register">
             <PersonalDetails></PersonalDetails>
