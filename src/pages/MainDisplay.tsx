@@ -9,7 +9,7 @@ import PersonalDetails from "./PersonalDetails";
 const MainDisplay = () => {
   return (
     <div className="flex">
-      <Sidebar />
+      <Sidebar name="Utkarsh Gangwar" email="utkarshgangwar909@gmail.com" />
       <div className="height w-72"></div>
       <div className="w-full">
         <Switch>

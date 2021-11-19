@@ -13,19 +13,23 @@ const Navigation: React.FC<Props> = () => {
   return (
     <div>
       <div className="sm:hidden w-screen">
-        <header className="bg-on-secondary ">
+        <header className="bg-primary-dark ">
           <nav className="flex justify-between">
             <div className="flex items-center">
-              <li className="list-none px-2">
-                <a className="text-white" href="https://www.google.com/">
-                  Home
-                </a>
-              </li>
-              <li className="list-none px-2 ">
-                <a className="text-white" href="https://www.google.com/">
-                  About
-                </a>
-              </li>
+              <ListElement
+                title="Home"
+                path="/dashboard"
+                className={
+                  "text-white cursor-pointer ml-1 p-2 rounded-lg hover:bg-primary-lite "
+                }
+              />
+              <ListElement
+                title="About"
+                path="/about"
+                className={
+                  "text-white cursor-pointer p-2 rounded-lg hover:bg-primary-lite "
+                }
+              />
             </div>
             <div className=" flex justify-end mr-2 py-1">
               <div onClick={updateInitial}>
@@ -43,11 +47,40 @@ const Navigation: React.FC<Props> = () => {
             !isOpen && "hidden"
           }`}
         >
-          <ListElement title="Profile" path="/profile" />
-          <ListElement title="Dashboard" path="/dashboard" />
-          <ListElement title="Statistics" path="/statistics" />
-          <ListElement title="Courses" path="/courses" />
-          <ListElement title="Logout" />
+          <ListElement
+            title="Profile"
+            path="/profile"
+            className={
+              "flex justify-center  border-b py-1 text-sm font-semibold  tracking-wider border-gray-600"
+            }
+          />
+          <ListElement
+            title="Dashboard"
+            path="/dashboard"
+            className={
+              "flex justify-center  border-b py-1 text-sm font-semibold  tracking-wider border-gray-600"
+            }
+          />
+          <ListElement
+            title="Statistics"
+            path="/statistics"
+            className={
+              "flex justify-center  border-b py-1 text-sm font-semibold  tracking-wider border-gray-600"
+            }
+          />
+          <ListElement
+            title="Courses"
+            path="/courses"
+            className={
+              "flex justify-center  border-b py-1 text-sm font-semibold  tracking-wider border-gray-600"
+            }
+          />
+          <ListElement
+            title="Logout"
+            className={
+              "flex justify-center  border-b py-1 text-sm font-semibold  tracking-wider border-gray-600"
+            }
+          />
         </div>
       </div>
       <div className="hidden sm:block">
@@ -55,21 +88,27 @@ const Navigation: React.FC<Props> = () => {
           <nav className="py-3 px-6">
             <div className=" mr-2 flex justify-between">
               <div className="flex items-center">
-                <li className="list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite">
-                  <a className="text-white" href="https://www.google.com/">
-                    Home
-                  </a>
-                </li>
-                <li className="list-none px-2 cursor-pointer hover:bg-primary-lite p-2 rounded-lg">
-                  <a className="text-white" href="https://www.google.com/">
-                    About
-                  </a>
-                </li>
-                <li className="list-none px-2 hover:bg-primary-lite cursor-pointer p-2 rounded-lg">
-                  <a className="text-white" href="https://www.google.com/">
-                    Courses
-                  </a>
-                </li>
+                <ListElement
+                  title="Home"
+                  path="/dashboard"
+                  className={
+                    "list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite text-white"
+                  }
+                />
+                <ListElement
+                  title="About"
+                  path="/about"
+                  className={
+                    "list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite text-white"
+                  }
+                />
+                <ListElement
+                  title="Course"
+                  path="/course"
+                  className={
+                    "list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite text-white"
+                  }
+                />
               </div>
               {!localStorage.getItem("auth_token") && (
                 <div className="flex items-center">

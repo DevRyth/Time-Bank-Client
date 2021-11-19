@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../sharedComponents/Avatar";
 
-interface Props {}
-const Sidebar: React.FC<Props> = () => {
+interface Props {
+  name: string;
+  email: string;
+}
+const Sidebar: React.FC<Props> = ({ name, email }) => {
   return (
     <div className="hidden sm:block bg-primary-dark height w-60 fixed z-10">
       <div className="bg-primary-lite p-2">
@@ -13,10 +16,10 @@ const Sidebar: React.FC<Props> = () => {
           className="h-28 w-28 self-center mx-auto my-2"
         />
         <h2 className="text-white text-center text-xl font-medium tracking-wider">
-          Utkarsh Gangwar
+          {name}
         </h2>
         <h3 className="text-white text-xs text-opacity-20 text-center mb-2">
-          utkarshgangwar909@gmail.com
+          {email}
         </h3>
       </div>
       <div className="mt-4">
