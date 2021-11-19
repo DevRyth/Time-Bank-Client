@@ -3,7 +3,6 @@ import Button from "../sharedComponents/button/Button";
 import Input from "../sharedComponents/input/Input";
 import { AiOutlineSearch } from "react-icons/all";
 import CourseCards from "../sharedComponents/Cards/CourseCards";
-import { Link } from "react-router-dom";
 
 const Courses: React.FC = () => {
   const fields = [
@@ -90,9 +89,7 @@ const Courses: React.FC = () => {
         {Array(10)
           .fill(1)
           .map((item, index) => (
-            <Link to="/courses/1">
-              <CourseCards data={fields[index]} />
-            </Link>
+            <CourseCards data={fields[index]} />
           ))}
       </div>
     </div>

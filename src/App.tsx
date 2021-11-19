@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import Sidebar from "./components/Sidebar";
 import SignUp from "./pages/SignUp.page";
 import {
   BrowserRouter as Router,
@@ -8,13 +7,12 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import LogIn from "./pages/LogIn.page";
-import CoursesPage from "./pages/Courses.page";
-import CourseDetailPage from "./pages/CourseDetail.page";
-import Page404 from "./pages/Page404";
 import { LS_AUTH_TOKEN } from "./constants/constants";
 import { axiosRequest, axiosResponse } from "./axios/axios";
-import PersonalDetails from "./pages/PersonalDetails";
+import Navigation from "./components/Navigation";
+import MainDisplay from "./pages/MainDisplay";
+import Page404 from "./pages/Page404";
+import LogIn from "./pages/LogIn.page";
 
 const App: React.FC = () => {
   axiosRequest();
@@ -25,18 +23,10 @@ const App: React.FC = () => {
   return (
     <div>
       <Router>
+        <div className="sticky top-0 z-10">
+          <Navigation />
+        </div>
         <Switch>
-          <Route exact path="/dashboard">
-            {token ? (
-              <Sidebar
-                name="Utkarsh Gangwar"
-                email="utkarshgangwar909@gmail.com"
-                image="https://imgur.com/aFFF1uw.jpg"
-              />
-            ) : (
-              <Redirect to="/login" />
-            )}
-          </Route>
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
@@ -46,14 +36,11 @@ const App: React.FC = () => {
           <Route exact path="/login">
             {token ? <Redirect to="/dashboard" /> : <LogIn />}
           </Route>
-          <Route exact path="/courses">
-            {token ? <CoursesPage /> : <Redirect to="/login" />}
-          </Route>
-          <Route exact path="/courses/1">
-            {token ? <CourseDetailPage /> : <Redirect to="/login" />}
-          </Route>
-          <Route exact path="/register">
-            <PersonalDetails></PersonalDetails>
+          <Route
+            exact
+            path={["/dashboard", "/courses", "/courses/1", "/register"]}
+          >
+            {token ? <MainDisplay /> : <Redirect to="/login" />}
           </Route>
           <Route path="/">
             <Page404 />
