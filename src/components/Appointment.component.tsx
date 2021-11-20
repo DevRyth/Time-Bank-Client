@@ -42,7 +42,7 @@ export default function Appointment() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {appointment.map((value, index) => {
-          return <div className="lg:text-lg flex flex-col space-y-2 border p-2 rounded-lg">
+          return <div className="lg:text-lg flex flex-col space-y-2 border p-2 rounded-lg shadow-stacked">
               <div className="flex flex-row justify-between items-center">
                 <span>Duration:</span>
                 <SelectTag name="min" options={min.slice(10, 46)} label="Minutes" />
