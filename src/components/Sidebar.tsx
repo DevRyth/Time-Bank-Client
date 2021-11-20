@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../sharedComponents/Avatar";
-import Navigation from "./Navigation";
+import ProgressBar from "../sharedComponents/ProgressBar";
 
 interface Props {
   name: string;
@@ -12,7 +12,8 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
   return (
     <div>
       <div>
-        <Navigation />
+        <ProgressBar />
+        {/* <Navigation /> */}
       </div>
       <div className="hidden sm:block w-max h-screen bg-primary-dark">
         <div className="bg-primary-lite p-2">
