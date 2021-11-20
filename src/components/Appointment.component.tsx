@@ -37,28 +37,29 @@ export default function Appointment() {
         <button className="p-2" onClick={() => setAppointment((prev) => prev.concat(1))}>
           <AiOutlinePlusCircle />
         </button>
-        <h1 className="text-center font-bold p-2">Appointment Details</h1>
+        <h1 className="text-center lg:text-xl font-bold p-2">Appointment Details</h1>
       </div>
 
-      <div className="flex flex-col space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {appointment.map((value, index) => {
-          return <div className="flex flex-col space-y-2 border p-2 rounded-lg">
-            <SelectTag name="days" options={days} label="Days" className="self-center" />
-            <div className="flex flex-col space-y-0.5">
+          return <div className="lg:text-lg flex flex-col space-y-2 border p-2 rounded-lg">
               <div className="flex flex-row justify-between items-center">
-                <span>Start Time:</span>
-                <div className="flex space-x-1 items-center">
+                <span>Duration:</span>
+                <SelectTag name="min" options={min.slice(10, 46)} label="Minutes" />
+              </div>
+              <div className="flex flex-row justify-between items-center">
+                <span>Select Day:</span>
+                <SelectTag name="days" options={days} label="Days" className="self-center" />
+              </div>
+              <div className="flex flex-row justify-between items-center">
+                <span className="">Start Time:</span>
+                <div className="flex space-x-1 lg:space-x-3 items-center">
                   <SelectTag name="hrs" options={hrs} label="Hours" />
                   <p className="font-bold">:</p>
                   <SelectTag name="min" options={min} label="Minutes" />
                 </div>
               </div>
-              <div className="flex flex-row justify-between items-center">
-                <span>Duration:</span>
-                <SelectTag name="min" options={min.slice(10, 46)} label="Minutes" />
-              </div>
             </div>
-          </div>
         })}
       </div>
 

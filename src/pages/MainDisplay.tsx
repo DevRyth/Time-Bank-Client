@@ -9,8 +9,8 @@ import PersonalDetails from "./PersonalDetails";
 const MainDisplay = () => {
   return (
     <div className="flex">
-      <Sidebar />
-      <div className="height w-72"></div>
+      {/* <Sidebar />
+      <div className="height w-72"></div> */}
       <div className="w-full">
         <Switch>
           <Route exact path="/courses/1">

@@ -7,9 +7,9 @@ interface Props { }
 const CourseRegister: React.FC<Props> = () => {
   return (
     // <div className=" bg-on-secondary px-4  pt-6 h-screen w-screen sm:">
-    <div className="bg-white p-4 max-h rounded-lg font-bold">
+    <div className="bg-white p-4 max-h rounded-lg font-bold lg:text-xl">
       Course Details
-      <div className="flex flex-col space-y-4 p-2 lg:p-8 lg:pt-12">
+      <div className="flex flex-col space-y-4 p-2 lg:p-8">
         <label className="flex flex-col space-y-2">
           <span>Title</span>
           <Input
@@ -25,7 +25,7 @@ const CourseRegister: React.FC<Props> = () => {
           <textarea
             rows={1}
             cols={23}
-            className="border border-gray-600 rounded-lg w-full h-96 text-base pt-3 pb-3"
+            className="border border-gray-600 rounded-lg w-full h-96 text-base p-2"
             placeholder="What you will learn"
           ></textarea>
         </label>
