@@ -9,6 +9,8 @@ import { Formik, FormikProps, FormikValues } from "formik";
 import axios from "axios";
 import Button from "../sharedComponents/button/Button";
 import { BASE_URL } from "../constants/constants";
+import Select from "../sharedComponents/Select";
+import homeImage from "../Images/home.png";
 
 interface Props {
   className?: string;
@@ -41,7 +43,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="text-center  text-yellow-700 from-on-primary-dark text-3xl">
+      <div className="text-center text-yellow-700 from-on-primary-dark text-3xl">
         Registration
       </div>
       <Formik
@@ -78,155 +80,156 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
             onSubmit={formikProps.handleSubmit}
             className="flex flex-col justify-center"
           >
-            <div className="border  border-gray-400 rounded-lg space-y-3	m-16 p-3">
-              <div className="flex flex-col justify-around sm:flex-row ">
-                <div className="flex flex-col -space-y-0  ">
-                  <label className="text-sm  hidden sm:block font-bold">
-                    First name*
-                  </label>
-                  <Input
-                    onChange={formikProps.handleChange}
-                    name="first_name"
-                    type="text"
-                    placeholder="Akarsh"
-                  >
-                    <AiOutlineUser />
-                  </Input>
-                </div>
-                <div className="flex flex-col -space-y-0  ">
-                  <label className="text-sm hidden sm:block font-bold">
-                    Middle name
-                  </label>
-                  <Input
-                    onChange={formikProps.handleChange}
-                    name="middle_name"
-                    type="text"
-                    placeholder="Singh"
-                  >
-                    <AiOutlineUser />
-                  </Input>
-                </div>
-                <div className="flex flex-col  -space-y-0 ">
-                  <label className="text-sm  hidden sm:block font-bold">
-                    Last name*
-                  </label>
-                  <Input
-                    onChange={formikProps.handleChange}
-                    name="last_name"
-                    type="text"
-                    placeholder="Gangwar"
-                  >
-                    <AiOutlineUser />
-                  </Input>
+            <div className="border border-gray-400 rounded-lg space-y-7 m-7 p-2">
+              <div className="flex flex-col sm:flex-row justify-around items-center sm:items-stretch">
+                <div className="border border-black w-36 h-40 rounded-lg pb-3 sm:pb-0 text-center flex items-center sm:mt-5">Click here to upload Profile Photo</div>
+                <div className="flex flex-col space-y-7">
+                  <div className="flex flex-row items-center space-x-2">
+                    <label className="text-sm  hidden sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                      First name*
+                    </label>
+                    <Input
+                      onChange={formikProps.handleChange}
+                      name="first_name"
+                      type="text"
+                      placeholder="Akarsh"
+                    >
+                      <AiOutlineUser />
+                    </Input>
+                  </div>
+
+                  <div className="flex flex-row items-center space-x-2">
+                    <label className="text-sm hidden sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                      Middle name
+                    </label>
+                    <Input
+                      onChange={formikProps.handleChange}
+                      name="middle_name"
+                      type="text"
+                      placeholder="Singh"
+                    >
+                      <AiOutlineUser />
+                    </Input>
+                  </div>
+
+                  <div className="flex flex-row items-center space-x-2">
+                    <label className="text-sm hidden sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                      Last name*
+                    </label>
+                    <Input
+                      onChange={formikProps.handleChange}
+                      name="last_name"
+                      type="text"
+                      placeholder="Gangwar"
+                    >
+                      <AiOutlineUser />
+                    </Input>
+                  </div>
+
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row -space-y-0 justify-around">
-                <div className="flex flex-col">
-                  <label className="hidden text-sm sm:block font-bold">
+              <div className="flex flex-col sm:flex-row -space-y-0 justify-around items-center pb-3">
+
+                <div className="flex flex-row items-center space-x-2">
+                  <label className="hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
                     DOB*
                   </label>
-                  <div className="flex">
-                    <select
-                      onChange={formikProps.handleChange}
-                      name="birth_date"
-                    >
-                      {day.map((value, index) => {
-                        return <option key={index}>{value}</option>;
-                      })}
-                    </select>
-                    <select
-                      onChange={formikProps.handleChange}
-                      name="birth_month"
-                    >
-                      {month.map((value, index) => {
-                        return <option key={index}>{value}</option>;
-                      })}
-                    </select>
-                    <select
-                      onChange={formikProps.handleChange}
-                      name="birth_year"
-                    >
-                      {year.map((value, index) => {
-                        return <option key={index}>{value}</option>;
-                      })}
-                    </select>
+                  <div className="flex justify-center space-x-2">
+                    <Select label="Day" name="birth_date" options={day} onChange={formikProps.handleChange} />
+                    <Select label="Month" name="birth_month" options={month} onChange={formikProps.handleChange} />
+                    <Select label="Year" name="birth_year" options={year} onChange={formikProps.handleChange} />
                   </div>
                 </div>
-                <div className=" mx-auto sm:mx-0 space-y-3">
-                  <label className="hidden  sm:block text-sm font-bold ">
+
+                <div className="space-y-3 flex flex-row items-center space-x-2">
+                  <label className="hidden  sm:block text-sm font-bold md:text-lg lg:text-xl xl:text-2xl">
                     Gender*
                   </label>
-                  <input
-                    onChange={formikProps.handleChange}
-                    className=""
-                    type="radio"
-                    name="gender"
-                    value="Male"
-                  ></input>
-                  <span>Male</span>
-                  <input
-                    onChange={formikProps.handleChange}
-                    className=""
-                    type="radio"
-                    name="gender"
-                    value="Female"
-                  ></input>
-                  <span>Female</span>
+                  <div className="flex flex-row space-x-7 items-center">
+                    <label className="flex flex-row space-x-2 items-center">
+                      <span>Male</span>
+                      <input
+                        onChange={formikProps.handleChange}
+                        className=""
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                      ></input>
+                    </label>
+                    <label className="flex flex-row space-x-2 items-center">
+                      <span>Female</span>
+                      <input
+                        onChange={formikProps.handleChange}
+                        className=""
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                      ></input>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="border border-gray-400 rounded-lg	m-16 p-3">
+
+
+            <div className="border border-gray-400 rounded-lg	m-7 p-3">
               {/* address */}
+              <div className="flex flex-row justify-center sm:justify-around">
+                <div className="flex flex-col justify-around space-y-2 sm:space-y-0">
 
-              <div className="flex flex-col justify-around sm:flex-row">
-                <div className=" flex flex-col">
-                  <label className="hidden sm:block text-sm font-bold ">
-                    Address*
-                  </label>
-                  <Input
-                    onChange={formikProps.handleChange}
-                    name="address"
-                    type="text"
-                    placeholder="Flat no./area"
-                  >
-                    <BiBuildingHouse />
-                  </Input>
-                </div>
-                <div className=" flex flex-col">
-                  <label className=" hidden text-sm sm:block font-bold">
-                    District*
-                  </label>
-                  <Input
-                    onChange={formikProps.handleChange}
-                    name="district"
-                    type="text"
-                    placeholder="District"
-                  >
-                    <FaRegAddressCard />
-                  </Input>
-                </div>
+                  <div className="flex flex-col sm:flex-row items-center space-x-2">
+                    <label className="hidden sm:block text-sm font-bold md:text-lg lg:text-xl xl:text-2xl">
+                      Address*
+                    </label>
+                    <Input
+                      onChange={formikProps.handleChange}
+                      name="address"
+                      type="text"
+                      placeholder="Flat no./area"
+                    >
+                      <BiBuildingHouse />
+                    </Input>
+                  </div>
 
-                <div className=" flex flex-col">
-                  <label className=" hidden text-sm sm:block font-bold">
-                    Pincode*
-                  </label>
-                  <Input
-                    onChange={formikProps.handleChange}
-                    name="pincode"
-                    type="text"
-                    placeholder="Pincode"
-                  >
-                    <MdPersonPinCircle />
-                  </Input>
+                  <div className="flex flex-col sm:flex-row items-center space-x-2">
+                    <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                      District*
+                    </label>
+                    <Input
+                      onChange={formikProps.handleChange}
+                      name="district"
+                      type="text"
+                      placeholder="District"
+                    >
+                      <FaRegAddressCard />
+                    </Input>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center space-x-2">
+                    <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                      Pincode*
+                    </label>
+                    <Input
+                      onChange={formikProps.handleChange}
+                      name="pincode"
+                      type="text"
+                      placeholder="Pincode"
+                    >
+                      <MdPersonPinCircle />
+                    </Input>
+                  </div>
+                </div>
+                <div className="hidden rounded-full w-1/2 sm:flex justify-center">
+                  <img src={homeImage} className="w-full max-w-md"></img>
                 </div>
               </div>
 
               {/* contact */}
 
-              <div className="flex flex-col justify-around sm:flex-row">
-                <div className=" flex flex-col">
-                  <label className=" hidden text-sm sm:block font-bold">
+              <div className="flex flex-col justify-around sm:flex-row pb-3 space-y-2 sm:space-y-0">
+                <div className="flex flex-col sm:flex-row items-center space-x-2">
+                  <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
                     Phone Number*
                   </label>
                   <Input
@@ -239,8 +242,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                   </Input>
                 </div>
 
-                <div className=" flex flex-col">
-                  <label className=" hidden text-sm sm:block font-bold">
+                <div className=" flex flex-col sm:flex-row items-center space-x-2">
+                  <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
                     State*
                   </label>
                   <Input
