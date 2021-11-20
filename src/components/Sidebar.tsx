@@ -42,7 +42,7 @@ const Sidebar: React.FC<Props> = () => {
         />
         <ListElement
           title="Courses"
-          path="/course"
+          path="/courses"
           icon={<FaFolder className="text-white my-auto " />}
           className={
             "list-none hover:bg-primary-lite cursor-pointer border-b p-3 text-base text-white font-semibold text-center tracking-wider border-gray-600"

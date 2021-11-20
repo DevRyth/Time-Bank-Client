@@ -13,7 +13,7 @@ const Navigation: React.FC<Props> = () => {
       {isOpen && (
         <div>
           <div
-            className={`text-5xl w-40 md:w-60 font-extrabold bg-primary-lite p-4 text-white right-0 top-16 absolute`}
+            className={`text-5xl w-40 md:w-60 font-extrabold bg-primary-lite p-4 text-white right-0 top-12 absolute`}
           >
             <ListElement
               onClick={() => setIsOpen(false)}
@@ -63,14 +63,14 @@ const Navigation: React.FC<Props> = () => {
       )}
       <div>
         <div className="bg-on-secondary ">
-          <nav className="py-3">
-            <div className="mr-2 flex justify-between">
+          <nav className="py-0.5">
+            <div className="flex justify-between">
               <div className="flex items-center">
                 <ListElement
                   title="Home"
                   path="/dashboard"
                   className={
-                    "list-none cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite text-white"
+                    "list-none cursor-pointer text-center ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite text-white"
                   }
                 />
                 <ListElement
@@ -82,7 +82,7 @@ const Navigation: React.FC<Props> = () => {
                 />
                 <ListElement
                   title="Course"
-                  path="/course"
+                  path="/courses"
                   className={
                     "list-none hidden md:block cursor-pointer ml-2 px-2 p-2 rounded-lg hover:bg-primary-lite text-white"
                   }
