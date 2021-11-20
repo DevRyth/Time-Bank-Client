@@ -20,10 +20,10 @@ const Sidebar: React.FC<Props> = ({ name, email }) => {
           className="h-28 w-28 self-center mx-auto my-2"
         />
         <h2 className="text-white text-center text-xl font-medium tracking-wider">
-          {name}
+          <span>Utkarsh Gangwar</span>
         </h2>
         <h3 className="text-white text-xs text-opacity-20 text-center mb-2">
-          {email}
+          <span>utkarshgangwar909@gmail.com</span>
         </h3>
       </div>
       <div className="mt-4">
