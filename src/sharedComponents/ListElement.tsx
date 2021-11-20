@@ -4,16 +4,16 @@ interface Props {
   title: string;
   path?: string;
   className?: string;
+  icon?: string;
+  onClick?: () => void;
 }
-const ListElement: React.FC<Props> = ({ title, className, path }) => {
+const ListElement: React.FC<Props> = ({ onClick, title, className, path }) => {
   return (
-    <Link to={path!}>
-      <li
-        className={`flex justify-center list-none border-b py-1 text-sm font-semibold px-2 tracking-wider border-gray-600 ${className}`}
-      >
-        {title}
-      </li>
-    </Link>
+    <div className={className} onClick={onClick}>
+      <Link to={path!}>
+        <li className={`list-none`}>{title}</li>
+      </Link>
+    </div>
   );
 };
 

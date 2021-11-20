@@ -16,7 +16,7 @@ const Sidebar: React.FC<Props> = () => {
           Utkarsh Gangwar
         </h2>
         <h3 className="text-white text-xs text-opacity-20 text-center mb-2">
-          utkarshgangwar909@gmail.com
+          utkarshgangwar@gmail.com
         </h3>
       </div>
       <div className="mt-4">
