@@ -46,10 +46,11 @@ const CourseRegister: React.FC<Props> = () => {
         </div>
 
         <label className="flex flex-col space-y-2">
-          <span>Description</span>
+          <span>Summary</span>
           <textarea
             rows={1}
             cols={23}
+            name="summary"
             className="border border-gray-600 rounded-lg w-full h-96 text-base p-2"
             placeholder="What you will learn"
           ></textarea>
