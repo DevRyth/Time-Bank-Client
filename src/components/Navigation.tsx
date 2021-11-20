@@ -44,7 +44,7 @@ const Navigation: React.FC<Props> = () => {
               title="Courses"
               path="/courses"
               className={
-                "flex justify-center  border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"
+                "flex justify-center border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"
               }
             />
             <ListElement
