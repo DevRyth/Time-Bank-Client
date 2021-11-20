@@ -12,7 +12,7 @@ const Sidebar: React.FC<Props> = ({ name, email, image }) => {
   return (
     <div>
       <div>
-        <ProgressBar />
+        <ProgressBar percentage={19} />
         {/* <Navigation /> */}
       </div>
       <div className="hidden sm:block w-max h-screen bg-primary-dark">
