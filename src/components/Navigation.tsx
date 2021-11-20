@@ -7,7 +7,6 @@ import ListElement from "../sharedComponents/ListElement";
 interface Props {}
 const Navigation: React.FC<Props> = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div>
       {isOpen && (
