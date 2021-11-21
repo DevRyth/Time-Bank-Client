@@ -23,7 +23,7 @@ const CourseRegister: React.FC<Props> = () => {
             </Input>
           </label>
 
-          <label className="flex flex-col space-y-0 lg:flex-1 px-4">
+          <label className="flex flex-col space-y-0 lg:flex-1 lg:pl-4">
             <span>Difficulty</span>
 
             <label className="flex justify-around border  border-gray-800 py-3 rounded-lg ">
