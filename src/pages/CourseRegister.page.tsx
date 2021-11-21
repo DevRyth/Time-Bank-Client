@@ -23,7 +23,7 @@ const CourseRegister: React.FC<Props> = () => {
             </Input>
           </label>
 
-          <label className="flex flex-col space-y-0 lg:flex-1 px-4">
+          <label className="flex flex-col space-y-0 lg:flex-1 lg:pl-4">
             <span>Difficulty</span>
 
             <label className="flex justify-around border  border-gray-800 py-3 rounded-lg ">
@@ -46,10 +46,11 @@ const CourseRegister: React.FC<Props> = () => {
         </div>
 
         <label className="flex flex-col space-y-2">
-          <span>Description</span>
+          <span>Summary</span>
           <textarea
             rows={1}
             cols={23}
+            name="summary"
             className="border border-gray-600 rounded-lg w-full h-96 text-base p-2"
             placeholder="What you will learn"
           ></textarea>
