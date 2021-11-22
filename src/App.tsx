@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import Sidebar from "./components/Sidebar";
 import SignUp from "./pages/SignUp.page";
 import {
   BrowserRouter as Router,
@@ -8,50 +7,54 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-
-import LogIn from "./pages/LogIn.page";
-import CoursesPage from "./pages/Courses.page";
-import CourseDetailPage from "./pages/CourseDetail.page";
+import { LS_AUTH_TOKEN } from "./constants/constants";
+import { axiosRequest, axiosResponse } from "./axios/axios";
+import Navigation from "./components/Navigation";
+import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
-import PersonalDetails from "./pages/Register/PersonalDetails";
+import LogIn from "./pages/LogIn.page";
 
-function App() {
+const App: React.FC = () => {
+  axiosRequest();
+  axiosResponse();
+
+  const token = localStorage.getItem(LS_AUTH_TOKEN);
+
   return (
     <div>
       <Router>
+        <div className="sticky top-0 z-10">
+          <Navigation />
+        </div>
         <Switch>
-          <Route exact path="/dashboard">
-            <Sidebar
-              name="Utkarsh Gangwar"
-              email="utkarshgangwar909@gmail.com"
-              image="https://imgur.com/aFFF1uw.jpg"
-            />
-          </Route>
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
           <Route exact path="/signup">
-            <SignUp />
+            {token ? <Redirect to="/dashboard" /> : <SignUp />}
           </Route>
           <Route exact path="/login">
-            <LogIn />
+            {token ? <Redirect to="/dashboard" /> : <LogIn />}
           </Route>
-          <Route exact path="/courses">
-            <CoursesPage />
+          <Route
+            exact
+            path={[
+              "/dashboard",
+              "/courses",
+              "/courses/1",
+              "/register",
+              "/course-register",
+            ]}
+          >
+            {token ? <MainDisplay /> : <Redirect to="/login" />}
           </Route>
-          <Route exact path="/courses/1">
-            <CourseDetailPage />
-          </Route>
-          <Route exact path="/page-404">
+          <Route path="/">
             <Page404 />
-          </Route>
-          <Route exact path="/register">
-            <PersonalDetails />
           </Route>
         </Switch>
       </Router>
     </div>
   );
-}
+};
 
 export default React.memo(App);

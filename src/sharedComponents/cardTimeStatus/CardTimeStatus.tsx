@@ -14,4 +14,4 @@ const CardTimeStatus: React.FC<Props> = ({ name, className, num }) => {
     </div>
   );
 };
-export default CardTimeStatus;
+export default React.memo(CardTimeStatus);

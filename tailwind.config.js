@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      width: {
+        500: "500px",
+      },
       boxShadow: {
         success: "0 10px 15px -3px #D3F2EC, 0 4px 6px -2px rgba(0, 0, 0, 0)",
         primary: "0 10px 15px -3px #ffffff, 0 4px 6px -2px rgba(0, 0, 0, 0)",

@@ -24,3 +24,7 @@ code {
 #switch-button:checked::after {
   @apply transform scale-110 translate-x-6 bg-on-primary-dark;
 }
+
+.height {
+  height: calc(100vh - 50px);
+}

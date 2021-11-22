@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
-import { Formik, FormikProps, FormikValues } from "formik";
+import { Formik } from "formik";
 import axios from "axios";
+import * as Yup from "yup";
+// import PersonalDetails from "./PersonalDetails";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 
 const SignUp: React.FC = () => {
-  const history = useHistory();
+  // const history = useHistory();
+  // const [showRegisterPage, setShowRegisterPage] = useState(false);
 
   const initialValues = {
     username: "",
@@ -17,9 +21,24 @@ const SignUp: React.FC = () => {
     password: "",
     confirmPassword: "",
   };
+  const validationSchema = Yup.object().shape({
+    username: Yup.string()
+      .min(6, ({ min }) => `Username must be atleast ${min} chars`)
+      .required("Username is required field!"),
+    email: Yup.string()
+      .email("Invalid Email")
+      .required("Email is the required field!"),
+    password: Yup.string()
+      .min(6, ({ min }) => `Password must be atleast ${min} chars`)
+      .required("Password is the required field!"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Password must match"
+    ),
+  });
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="bg-background-lite p-10 h-screen w-screen">
+    <div className="bg-background-lite p-10 min-h-screen">
       <div className="text-center min-h-full p-10 bg-on-primary-lite">
         <h1 className="text-center text-xl md:text-3xl font-bold">
           Get Started
@@ -32,7 +51,8 @@ const SignUp: React.FC = () => {
         </p>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values, helper) => {
+          validationSchema={validationSchema}
+          onSubmit={async (values, helper) => {
             helper.setSubmitting(true);
             const mappedValues = {
               username: values.username,
@@ -40,64 +60,74 @@ const SignUp: React.FC = () => {
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              axios
-                .post(
-                  "https://fierce-shore-21287.herokuapp.com/signup",
-                  mappedValues
-                )
-                .then((res) => {
-                  if (res.status === 200) {
-                    history.push("/register");
-                  }
-                }); // url here
+              const url = BASE_URL + "/signup";
+              const response: any = await axios.post(url, mappedValues);
+              if (response.status === 200) {
+                localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+                window.location.href = "/register";
+                // setShowRegisterPage(true);
+              }
+              console.log(mappedValues);
             } else {
               console.log("Password entered is not matching!");
             }
             helper.setSubmitting(false);
           }}
         >
-          {(formikProps: FormikProps<FormikValues>) => (
+          {({ handleChange, handleSubmit, errors, touched, isSubmitting }) => (
             <form
-              onSubmit={formikProps.handleSubmit}
-              className="pt-6 space-y-3 md:space-y-6 md:pt-10"
+              onSubmit={handleSubmit}
+              className="pt-6 space-y-3 md:space-y-10 md:pt-10"
             >
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="text"
                 name="username"
                 placeholder="Username"
+                touched={touched.username}
+                errorMessage={errors.username}
+                outerClassName="mx-auto max-w-max"
               >
                 <HiOutlineUser />
               </Input>
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="email"
                 name="email"
                 placeholder="Email"
+                touched={touched.email}
+                errorMessage={errors.email}
+                outerClassName="mx-auto max-w-max"
               >
                 <MdEmail />
               </Input>
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type="password"
                 name="password"
                 placeholder="Password"
+                touched={touched.password}
+                errorMessage={errors.password}
+                outerClassName="mx-auto max-w-max"
               >
                 <CgPassword />
               </Input>
               <Input
-                onChange={formikProps.handleChange}
+                onChange={handleChange}
                 iconColor="text-primary-dark"
                 className="text-primary-dark"
                 type={showPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm Password"
+                touched={touched.confirmPassword}
+                errorMessage={errors.confirmPassword}
+                outerClassName="mx-auto max-w-max"
               >
                 <CgPassword />
               </Input>
@@ -107,13 +137,19 @@ const SignUp: React.FC = () => {
                 className="pt-3"
                 text="Show Password"
               />
-              <div className="pt-3">
-                <Button type="submit" title="Sign Up" theme="primary" />
+              <div>
+                <Button
+                  isSubmitting={isSubmitting}
+                  type="submit"
+                  title="Sign Up"
+                  theme="primary"
+                />
               </div>
             </form>
           )}
         </Formik>
       </div>
+      {/* {(showRegisterPage || localStorage.getItem(LS_AUTH_TOKEN)) ? <PersonalDetails className="absolute top-0 bg-secondary-dark"/> : null} */}
     </div>
   );
 };
