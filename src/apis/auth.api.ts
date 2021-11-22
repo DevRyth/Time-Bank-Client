@@ -1,5 +1,5 @@
-import axios from "axios"
-import { BASE_URL } from "../constants/constants"
+import axios from "axios";
+import { BASE_URL } from "../constants/constants";
 
 export interface LoginRequest {
   email: string;
@@ -13,7 +13,8 @@ export interface LoginResponse {
 }
 
 const login = async (data: LoginRequest) => {
-    try {
-        const response = await axios.post<LoginResponse>(`${BASE_URL}/login`, data);
-    }
-}
+  try {
+    const response = await axios.post<LoginResponse>(`${BASE_URL}/login`, data);
+    console.log(response);
+  } catch (error) {}
+};
