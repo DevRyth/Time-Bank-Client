@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
 import LogIn from "./pages/LogIn.page";
+import Aboutus from "./components/aboutus/Aboutus";
 
 const App: React.FC = () => {
   axiosRequest();
@@ -23,9 +24,9 @@ const App: React.FC = () => {
   return (
     <div>
       <Router>
-        <div className="sticky top-0 z-10">
+        {/* <div className="sticky top-0 z-10">
           <Navigation />
-        </div>
+        </div> */}
         <Switch>
           <Route exact path="/">
             <Redirect to="/login" />
@@ -35,6 +36,9 @@ const App: React.FC = () => {
           </Route>
           <Route exact path="/login">
             {token ? <Redirect to="/dashboard" /> : <LogIn />}
+          </Route>
+          <Route exact path="/aboutus">
+            <Aboutus></Aboutus>
           </Route>
           <Route
             exact
