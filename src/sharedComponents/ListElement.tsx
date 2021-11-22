@@ -8,10 +8,16 @@ interface Props {
   icon?: ReactNode;
 }
 
-const ListElement: React.FC<Props> = ({ title, className, path, icon }) => {
+const ListElement: React.FC<Props> = ({
+  title,
+  onClick,
+  className,
+  path,
+  icon,
+}) => {
   return (
     <Link to={path!}>
-      <li className={`list-none px-2 flex ${className}`}>
+      <li className={`list-none px-2 flex ${className}`} onClick={onClick}>
         <div className="flex-row m-2 my-auto">{icon}</div>
         <span>{title}</span>
       </li>

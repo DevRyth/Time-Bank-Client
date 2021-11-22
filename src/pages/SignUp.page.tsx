@@ -88,7 +88,7 @@ const SignUp: React.FC = () => {
                 placeholder="Username"
                 touched={touched.username}
                 errorMessage={errors.username}
-                outerClassName="mx-auto"
+                outerClassName="mx-auto max-w-max"
               >
                 <HiOutlineUser />
               </Input>
@@ -101,7 +101,7 @@ const SignUp: React.FC = () => {
                 placeholder="Email"
                 touched={touched.email}
                 errorMessage={errors.email}
-                outerClassName="mx-auto"
+                outerClassName="mx-auto max-w-max"
               >
                 <MdEmail />
               </Input>
@@ -114,7 +114,7 @@ const SignUp: React.FC = () => {
                 placeholder="Password"
                 touched={touched.password}
                 errorMessage={errors.password}
-                outerClassName="mx-auto"
+                outerClassName="mx-auto max-w-max"
               >
                 <CgPassword />
               </Input>
@@ -127,7 +127,7 @@ const SignUp: React.FC = () => {
                 placeholder="Confirm Password"
                 touched={touched.confirmPassword}
                 errorMessage={errors.confirmPassword}
-                outerClassName="mx-auto"
+                outerClassName="mx-auto max-w-max"
               >
                 <CgPassword />
               </Input>

@@ -78,7 +78,7 @@ const LogIn: React.FC = () => {
                   placeholder="Email"
                   touched={touched.email}
                   errorMessage={errors.email}
-                  outerClassName="mx-auto"
+                  outerClassName="mx-auto max-w-max"
                 >
                   <HiOutlineUser />
                 </Input>
@@ -92,7 +92,7 @@ const LogIn: React.FC = () => {
                   placeholder="Password"
                   touched={touched.password}
                   errorMessage={errors.password}
-                  outerClassName="mx-auto"
+                  outerClassName="mx-auto max-w-max"
                 >
                   <CgPassword />
                 </Input>

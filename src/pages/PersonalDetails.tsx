@@ -87,42 +87,42 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                 </div>
                 <div className="flex flex-col space-y-7">
                   <div className="flex flex-row items-center space-x-2">
-                    <label className="text-sm  hidden sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                    <label className="text-sm md:text-base hidden sm:block font-bold">
                       First name*
                     </label>
                     <Input
                       onChange={formikProps.handleChange}
                       name="first_name"
                       type="text"
-                      placeholder="Akarsh"
+                      placeholder="First Name"
                     >
                       <AiOutlineUser />
                     </Input>
                   </div>
 
                   <div className="flex flex-row items-center space-x-2">
-                    <label className="text-sm hidden sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                    <label className="hidden sm:block font-bold">
                       Middle name
                     </label>
                     <Input
                       onChange={formikProps.handleChange}
                       name="middle_name"
                       type="text"
-                      placeholder="Singh"
+                      placeholder="Middle Name"
                     >
                       <AiOutlineUser />
                     </Input>
                   </div>
 
                   <div className="flex flex-row items-center space-x-2">
-                    <label className="text-sm hidden sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                    <label className="hidden sm:block font-bold">
                       Last name*
                     </label>
                     <Input
                       onChange={formikProps.handleChange}
                       name="last_name"
                       type="text"
-                      placeholder="Gangwar"
+                      placeholder="Last Name"
                     >
                       <AiOutlineUser />
                     </Input>
@@ -132,9 +132,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
 
               <div className="flex flex-col sm:flex-row -space-y-0 justify-around items-center pb-3">
                 <div className="flex flex-row items-center space-x-2">
-                  <label className="hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
-                    DOB*
-                  </label>
+                  <label className="hidden sm:block font-bold">DOB*</label>
                   <div className="flex justify-center space-x-2">
                     <Select
                       label="Day"
@@ -158,9 +156,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                 </div>
 
                 <div className="space-y-3 flex flex-row items-center space-x-2">
-                  <label className="hidden  sm:block text-sm font-bold md:text-lg lg:text-xl xl:text-2xl">
-                    Gender*
-                  </label>
+                  <label className="hidden sm:block font-bold">Gender*</label>
                   <div className="flex flex-row space-x-7 items-center">
                     <label className="flex flex-row space-x-2 items-center">
                       <span>Male</span>
@@ -192,7 +188,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
               <div className="flex flex-row justify-center sm:justify-around">
                 <div className="flex flex-col justify-around space-y-2 sm:space-y-0">
                   <div className="flex flex-col sm:flex-row items-center space-x-2">
-                    <label className="hidden sm:block text-sm font-bold md:text-lg lg:text-xl xl:text-2xl">
+                    <label className="hidden sm:block font-bold">
                       Address*
                     </label>
                     <Input
@@ -206,7 +202,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center space-x-2">
-                    <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                    <label className="hidden sm:block font-bold">
                       District*
                     </label>
                     <Input
@@ -220,7 +216,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center space-x-2">
-                    <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                    <label className=" hidden sm:block font-bold">
                       Pincode*
                     </label>
                     <Input
@@ -246,7 +242,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
 
               <div className="flex flex-col justify-around sm:flex-row pb-3 space-y-2 sm:space-y-0">
                 <div className="flex flex-col sm:flex-row items-center space-x-2">
-                  <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
+                  <label className=" hidden sm:block font-bold">
                     Phone Number*
                   </label>
                   <Input
@@ -260,9 +256,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                 </div>
 
                 <div className=" flex flex-col sm:flex-row items-center space-x-2">
-                  <label className=" hidden text-sm sm:block font-bold md:text-lg lg:text-xl xl:text-2xl">
-                    State*
-                  </label>
+                  <label className="hidden sm:block font-bold">State*</label>
                   <Input
                     onChange={formikProps.handleChange}
                     name="state"
