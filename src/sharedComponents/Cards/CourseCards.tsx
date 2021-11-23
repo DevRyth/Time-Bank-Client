@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 
 interface Props {
   data: { "teacher-name": string; title: string; duration: string };
+  className?: string;
 }
 
-const CourseCards: React.FC<Props> = ({ data }) => {
+const CourseCards: React.FC<Props> = ({ data, className }) => {
   const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
   const slicedTitle = data.title.substring(0, 40);
 
   return (
-    <div className="mx-auto md:mx-0">
-      <div className="w-72 h-80 cursor-pointer rounded-tl-lg mx-auto shadow-stacked hover:scale-95 transform ease-in-out transition-all">
+    <div className={`mx-auto md:mx-0 ${className}`}>
+      <div className=" w-56 h-80 md:w-72 md:h-80 cursor-pointer rounded-tl-lg mx-auto shadow-stacked hover:scale-95 transform ease-in-out transition-all">
         <Link to="/courses/1">
           <div className="bg-gray-300 h-1/2">
             <img

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Dashboard from "../components/Dashboard";
 import Sidebar from "../components/Sidebar";
 import CourseDetailPage from "./CourseDetail.page";
 import CourseRegistrationPage from "./CourseRegistration.page";
@@ -24,6 +25,9 @@ const MainDisplay = () => {
           </Route>
           <Route exact path="/course-register">
             <CourseRegistrationPage />
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
           </Route>
         </Switch>
       </div>
