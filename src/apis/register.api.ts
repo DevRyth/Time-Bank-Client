@@ -14,3 +14,16 @@ export const signup = async (data: RegisterRequest) => {
     console.error("Not able signup");
   }
 };
+
+export const register = async (data: RegisterRequest) => {
+  try {
+    const response = await axios.post<RegisterResponse>(
+      `${BASE_URL}/register`,
+      data
+    );
+    console.log(response);
+    return response.data.user;
+  } catch (error) {
+    console.error("Not able register");
+  }
+};

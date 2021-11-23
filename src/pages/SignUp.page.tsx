@@ -91,7 +91,7 @@ const SignUp: React.FC = () => {
                 placeholder="Username"
                 touched={touched.username}
                 errorMessage={errors.username}
-                outerClassName="mx-auto max-w-max"
+                outerClassName="mx-auto max-w-max pt-4 md:pt-6"
               >
                 <HiOutlineUser />
               </Input>

@@ -42,7 +42,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
   for (let i = 1971; i < 2016; i++) year.push(i.toString());
 
   return (
-    <div className={className}>
+    <div className={`py-6 ${className}`}>
       <div className="text-center text-yellow-700 from-on-primary-dark text-3xl">
         Registration
       </div>
@@ -82,10 +82,10 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
           >
             <div className="border border-gray-400 rounded-lg space-y-7 m-7 p-2">
               <div className="flex flex-col sm:flex-row justify-around items-center sm:items-stretch">
-                <div className="border border-black w-36 h-40 rounded-lg pb-3 sm:pb-0 text-center flex items-center sm:mt-5">
+                <div className="border border-black w-28 h-32 md:w-36 md:h-40 rounded-lg p-3 sm:pb-0 text-center flex items-center sm:mt-5">
                   Click here to upload Profile Photo
                 </div>
-                <div className="flex flex-col space-y-7">
+                <div className="flex flex-col space-y-7 mt-5">
                   <div className="flex flex-row items-center space-x-2">
                     <label className="text-sm md:text-base hidden sm:block font-bold">
                       First name*
