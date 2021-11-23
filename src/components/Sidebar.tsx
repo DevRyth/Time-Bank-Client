@@ -28,7 +28,7 @@ const Sidebar: React.FC<Props> = () => {
         <ListElement
           title="Dashboard"
           path="/dashboard"
-          icon={<AiOutlineHome className="text-white my-auto " />}
+          icon={<AiOutlineHome className="text-white my-auto mr-2 " />}
           className={
             "list-none hover:bg-primary-lite cursor-pointer border-b p-3 text-base text-white font-semibold text-center tracking-wider border-gray-600"
           }
@@ -36,7 +36,7 @@ const Sidebar: React.FC<Props> = () => {
         <ListElement
           title="Statistics"
           path="/statics"
-          icon={<IoIosStats className="text-white my-auto " />}
+          icon={<IoIosStats className="text-white my-auto mr-2 " />}
           className={
             "list-none hover:bg-primary-lite cursor-pointer border-b p-3 text-base text-white font-semibold text-center tracking-wider border-gray-600"
           }
@@ -44,7 +44,7 @@ const Sidebar: React.FC<Props> = () => {
         <ListElement
           title="Courses"
           path="/courses"
-          icon={<FaFolder className="text-white my-auto " />}
+          icon={<FaFolder className="text-white my-auto mr-2 " />}
           className={
             "list-none hover:bg-primary-lite cursor-pointer border-b p-3 text-base text-white font-semibold text-center tracking-wider border-gray-600"
           }
@@ -55,7 +55,7 @@ const Sidebar: React.FC<Props> = () => {
             window.location.href = "/login";
           }}
           title="Logout"
-          icon={<BiLogOutCircle className="text-white my-auto " />}
+          icon={<BiLogOutCircle className="text-white my-auto mr-2 " />}
           className={
             "list-none hover:bg-primary-lite cursor-pointer border-b p-3 text-base text-white font-semibold text-center tracking-wider border-gray-600"
           }

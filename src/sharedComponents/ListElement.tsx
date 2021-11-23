@@ -18,7 +18,7 @@ const ListElement: React.FC<Props> = ({
   return (
     <Link to={path!}>
       <li className={`list-none px-2 flex ${className}`} onClick={onClick}>
-        <div className="flex-row m-2 my-auto">{icon}</div>
+        <div className="flex-row  my-auto">{icon}</div>
         <span>{title}</span>
       </li>
     </Link>
