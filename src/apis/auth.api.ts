@@ -1,20 +1,19 @@
 import axios from "axios";
-import { BASE_URL } from "../constants/constants";
+import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
+import { LoginRequest, LoginResponse } from "../Models/AuthUser";
 
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  token: string;
-  user: any;
-  data: any;
-}
-
-const login = async (data: LoginRequest) => {
+export const login = async (data: LoginRequest) => {
   try {
     const response = await axios.post<LoginResponse>(`${BASE_URL}/login`, data);
     console.log(response);
-  } catch (error) {}
+    localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+    return response.data.data;
+  } catch (error) {
+    console.error("Not able to check credentials!");
+  }
+};
+
+export const logout = () => {
+  localStorage.removeItem(LS_AUTH_TOKEN);
+  window.location.href = "/login";
 };

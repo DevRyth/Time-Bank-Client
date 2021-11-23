@@ -3,7 +3,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { FaFolder } from "react-icons/fa";
 import { IoIosStats } from "react-icons/io";
-import { LS_AUTH_TOKEN } from "../constants/constants";
+import { logout } from "../apis/auth.api";
 import Avatar from "../sharedComponents/Avatar";
 import ListElement from "../sharedComponents/ListElement";
 
@@ -50,10 +50,7 @@ const Sidebar: React.FC<Props> = () => {
           }
         />
         <ListElement
-          onClick={() => {
-            localStorage.removeItem(LS_AUTH_TOKEN);
-            window.location.href = "/login";
-          }}
+          onClick={() => logout()}
           title="Logout"
           icon={<BiLogOutCircle className="text-white my-auto " />}
           className={

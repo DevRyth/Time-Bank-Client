@@ -1,3 +1,4 @@
+import { LoginRequest, LoginResponse } from "../Models/AuthUser";
 import {
   ME_FETCH,
   ME_LOADING,
@@ -5,12 +6,12 @@ import {
   ME_SENDING_DATA,
 } from "./actions.constants";
 
-export const meFetchAction = (user: any) => ({
+export const meFetchAction = (user: LoginResponse) => ({
   type: ME_FETCH,
   payload: user,
 });
 
-export const meSendingData = (data: any) => ({
+export const meSendingData = (data: LoginRequest) => ({
   type: ME_SENDING_DATA,
   payload: data,
 });

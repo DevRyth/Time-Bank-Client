@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import { Formik } from "formik";
-import axios from "axios";
 import * as Yup from "yup";
-import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
 import Alert from "../sharedComponents/Alert/Alert";
+import { store, useAppSelector } from "../Store/store";
+import { meSendingData } from "../actions/auth.action";
+import {
+  authErrorMessageSelector,
+  authLoadingSelector,
+} from "../selectors/auth.selector";
 
 const LogIn: React.FC = () => {
   const initialValues = {
@@ -23,7 +27,9 @@ const LogIn: React.FC = () => {
       .required("Password is the required field!"),
   });
 
-  const [isFormSuccess, setIsFormSuccess] = useState(true);
+  const loginLoading = useAppSelector(authLoadingSelector);
+  const loginError = useAppSelector(authErrorMessageSelector);
+  console.log("Loading Error status: ", loginLoading);
 
   return (
     <div className="bg-background-lite p-10 h-screen min-w-screen">
@@ -44,31 +50,32 @@ const LogIn: React.FC = () => {
               email: values.email,
               password: values.password,
             };
-            const url = BASE_URL + "/login";
-            try {
-              const response: any = await axios.post(url, mappedValues);
-              localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-              helper.setSubmitting(false);
-              window.location.href = "/dashboard";
-            } catch (error) {
-              setIsFormSuccess(false);
-            }
+            // const url = BASE_URL + "/login";
+            // try {
+            //   const response: any = await axios.post(url, mappedValues);
+            //   localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
+            //   helper.setSubmitting(false);
+            //   window.location.href = "/dashboard";
+            // } catch (error) {
+            //   setIsFormSuccess(false);
+            // }
+            store.dispatch(meSendingData(mappedValues));
           }}
         >
-          {({ touched, errors, handleChange, handleSubmit, isSubmitting }) => (
+          {({ touched, errors, handleChange, handleSubmit }) => (
             <form
               onSubmit={handleSubmit}
               className="pt-6 space-y-3 md:space-y-6 md:pt-10 relative"
             >
-              {!isFormSuccess && (
+              {loginError && (
                 <Alert
                   className="rounded-3xl absolute inset-x-0 mx-auto max-w-max text-xs pt-2 pb-2 pl-4 pr-4 md:text-base md:px-6 md:py-2"
                   containsIcon={false}
                 >
-                  Wrong Credentials
+                  {loginError}
                 </Alert>
               )}
-              <div className="pt-6 space-y-3 md:space-y-10 md:pt-10">
+              <div className="pt-10 space-y-8 md:space-y-10 md:pt-10">
                 <Input
                   onChange={handleChange}
                   iconColor="text-primary-dark"
@@ -97,10 +104,11 @@ const LogIn: React.FC = () => {
                   <CgPassword />
                 </Input>
 
-                <div>
+                <div className="pt-6">
                   <Button
+                    type="submit"
                     title="Log In"
-                    isSubmitting={isSubmitting}
+                    isSubmitting={loginLoading}
                     theme="primary"
                   />
                 </div>

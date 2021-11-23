@@ -1,6 +1,7 @@
 import { Reducer } from "redux";
 import {
   ME_FETCH,
+  ME_LOADING,
   ME_LOADING_ERROR,
   ME_SENDING_DATA,
 } from "../actions/actions.constants";
@@ -28,9 +29,13 @@ export const authReducer: Reducer<AuthState> = (
     case ME_SENDING_DATA: {
       return { ...state, loading: true };
     }
+    case ME_LOADING: {
+      const status = action.payload;
+      return { ...state, loading: status };
+    }
     case ME_LOADING_ERROR: {
       const message: string = action.payload;
-      return { ...state, errorMessage: message, loading: false };
+      return { ...state, errorMessage: message };
     }
     default:
       return state;
