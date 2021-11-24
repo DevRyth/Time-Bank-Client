@@ -14,6 +14,7 @@ import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
 import LogIn from "./pages/LogIn.page";
 import PersonalDetails from "./pages/PersonalDetails";
+import Aboutus from "./components/aboutus/Aboutus";
 
 const App: React.FC = () => {
   axiosRequest();
@@ -60,6 +61,9 @@ const App: React.FC = () => {
             ) : (
               <Redirect to="/login" />
             )}
+          </Route>
+          <Route exact path="/aboutus">
+            <Aboutus></Aboutus>
           </Route>
           <Route
             exact
