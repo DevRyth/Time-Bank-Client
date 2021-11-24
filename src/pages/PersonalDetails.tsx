@@ -13,6 +13,7 @@ import { store, useAppSelector } from "../Store/store";
 import { registerUserWithInfo } from "../actions/register.action";
 import { registerError, registerLoading } from "../selectors/register.selector";
 import Alert from "../sharedComponents/Alert/Alert";
+import Footer from "../sharedComponents/footer/Footer";
 
 interface Props {
   className?: string;
@@ -47,7 +48,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
   const errorMessage = useAppSelector(registerError);
 
   return (
-    <div className={`py-6 ${className}`}>
+    <div className={`px-2 py-6 ${className}`}>
       <div className="text-center text-yellow-700 from-on-primary-dark text-3xl">
         Registration
       </div>
@@ -71,20 +72,13 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
               phone_number: values.phone_number,
             },
           };
-          // const url = BASE_URL + "/register";
-          // const response: any = await axios.post(url, mappedValues);
-          // if (response.status === 200) {
-          //   window.location.href = "/dashboard";
-          // }
-          // console.log(mappedValues);
-          // helper.setSubmitting(false);
           store.dispatch(registerUserWithInfo(mappedValues));
         }}
       >
         {({ handleChange, handleSubmit, values }) => (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center py-6"
           >
             {errorMessage && (
               <Alert
@@ -291,6 +285,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
           </form>
         )}
       </Formik>
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../sharedComponents/input/Input";
 import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
@@ -7,15 +6,13 @@ import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik } from "formik";
 import * as Yup from "yup";
-// import PersonalDetails from "./PersonalDetails";
 import { store, useAppSelector } from "../Store/store";
 import { registerSendData } from "../actions/register.action";
 import { registerError, registerLoading } from "../selectors/register.selector";
 import Alert from "../sharedComponents/Alert/Alert";
+import Footer from "../sharedComponents/footer/Footer";
 
 const SignUp: React.FC = () => {
-  // const history = useHistory();
-  // const [showRegisterPage, setShowRegisterPage] = useState(false);
   const isSignupLoading = useAppSelector(registerLoading);
   const errorMessage = useAppSelector(registerError);
 
@@ -152,6 +149,7 @@ const SignUp: React.FC = () => {
           )}
         </Formik>
       </div>
+      <Footer />
       {/* {(showRegisterPage || localStorage.getItem(LS_AUTH_TOKEN)) ? <PersonalDetails className="absolute top-0 bg-secondary-dark"/> : null} */}
     </div>
   );

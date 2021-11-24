@@ -8,7 +8,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import { LS_AUTH_TOKEN, RG_TOKEN } from "./constants/constants";
-import { axiosRequest, axiosResponse } from "./axios/axios";
 import Navigation from "./components/Navigation";
 import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
@@ -17,9 +16,6 @@ import PersonalDetails from "./pages/PersonalDetails";
 import Aboutus from "./components/aboutus/Aboutus";
 
 const App: React.FC = () => {
-  axiosRequest();
-  axiosResponse();
-
   const token = localStorage.getItem(LS_AUTH_TOKEN);
   const registerToken = localStorage.getItem(RG_TOKEN);
 
@@ -62,8 +58,8 @@ const App: React.FC = () => {
               <Redirect to="/login" />
             )}
           </Route>
-          <Route exact path="/aboutus">
-            <Aboutus></Aboutus>
+          <Route exact path="/about">
+            {registerToken ? <Redirect to="/login" /> : <Aboutus />}
           </Route>
           <Route
             exact
@@ -85,7 +81,9 @@ const App: React.FC = () => {
               <Redirect to="/login" />
             )}
           </Route>
-
+          <Route exact path="/register">
+            <PersonalDetails />
+          </Route>
           <Route path="/">
             <Page404 />
           </Route>

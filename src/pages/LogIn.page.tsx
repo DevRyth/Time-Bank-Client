@@ -12,6 +12,7 @@ import {
   authErrorMessageSelector,
   authLoadingSelector,
 } from "../selectors/auth.selector";
+import Footer from "../sharedComponents/footer/Footer";
 
 const LogIn: React.FC = () => {
   const initialValues = {
@@ -32,7 +33,7 @@ const LogIn: React.FC = () => {
   console.log("Loading Error status: ", loginLoading);
 
   return (
-    <div className="bg-background-lite p-10 h-screen min-w-screen">
+    <div className="bg-background-lite p-10 min-h-screen min-w-screen">
       <div className="text-center min-h-full p-10 bg-on-primary-lite">
         <h1 className="text-center text-xl md:text-3xl font-bold">Welcome</h1>
         <p className="tracking-wider md:text-sm pt-4 text-xs">
@@ -117,6 +118,7 @@ const LogIn: React.FC = () => {
           )}
         </Formik>
       </div>
+      <Footer />
     </div>
   );
 };

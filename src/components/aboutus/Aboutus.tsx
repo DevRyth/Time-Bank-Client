@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../sharedComponents/footer/Footer";
 interface Props {}
 const Aboutus: React.FC<Props> = () => {
   return (
@@ -28,6 +29,7 @@ const Aboutus: React.FC<Props> = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
