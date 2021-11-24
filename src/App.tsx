@@ -7,7 +7,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { LS_AUTH_TOKEN } from "./constants/constants";
+import { LS_AUTH_TOKEN, RG_TOKEN } from "./constants/constants";
 import { axiosRequest, axiosResponse } from "./axios/axios";
 import Navigation from "./components/Navigation";
 import MainDisplay from "./pages/MainDisplay";
@@ -20,6 +20,7 @@ const App: React.FC = () => {
   axiosResponse();
 
   const token = localStorage.getItem(LS_AUTH_TOKEN);
+  const registerToken = localStorage.getItem(RG_TOKEN);
 
   return (
     <div>
@@ -32,19 +33,47 @@ const App: React.FC = () => {
             <Redirect to="/login" />
           </Route>
           <Route exact path="/signup">
-            {token ? <Redirect to="/dashboard" /> : <SignUp />}
+            {token ? (
+              registerToken ? (
+                <Redirect to="/register" />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            ) : (
+              <SignUp />
+            )}
           </Route>
           <Route exact path="/login">
-            {token ? <Redirect to="/dashboard" /> : <LogIn />}
+            {token ? (
+              registerToken ? (
+                <Redirect to="/register" />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            ) : (
+              <LogIn />
+            )}
           </Route>
           <Route exact path="/register">
-            <PersonalDetails />
+            {token && registerToken ? (
+              <PersonalDetails />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route
             exact
             path={["/dashboard", "/courses", "/courses/1", "/course-register"]}
           >
-            {token ? <MainDisplay /> : <Redirect to="/login" />}
+            {token ? (
+              registerToken ? (
+                <Redirect to="/register" />
+              ) : (
+                <MainDisplay />
+              )
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/">
             <Page404 />

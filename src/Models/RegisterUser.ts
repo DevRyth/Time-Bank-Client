@@ -8,9 +8,9 @@ export interface RegisterFormRequest {
   user: RegisterFormFields;
 }
 
-export interface RegisterFormFields extends RegisterResponse {
+export interface RegisterFormFields {
   first_name: string;
-  middle_name: string;
+  middle_name?: string;
   last_name: string;
   gender: string;
   birth_date: string;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { logout } from "../apis/auth.api";
+import { RG_TOKEN } from "../constants/constants";
 import Avatar from "../sharedComponents/Avatar";
 import Button from "../sharedComponents/button/Button";
 import ListElement from "../sharedComponents/ListElement";
@@ -48,13 +49,15 @@ const Navigation: React.FC<Props> = () => {
                 "flex justify-center border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"
               }
             />
-            <ListElement
-              title="Logout"
-              onClick={() => logout()}
-              className={
-                "flex justify-center text-sm font-semibold tracking-wider p-1 hover:bg-primary-dark"
-              }
-            />
+            {!localStorage.getItem(RG_TOKEN) && (
+              <ListElement
+                title="Logout"
+                onClick={() => logout()}
+                className={
+                  "flex justify-center text-sm font-semibold tracking-wider p-1 hover:bg-primary-dark"
+                }
+              />
+            )}
           </div>
         </div>
       )}

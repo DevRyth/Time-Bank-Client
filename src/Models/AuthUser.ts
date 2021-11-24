@@ -5,7 +5,7 @@ export interface LoginRequest {
 
 export interface LoginResponse {
   token: string;
-  userWithEmail: UserData;
+  user: UserData;
   data: any;
 }
 
@@ -15,7 +15,7 @@ export interface UserData {
   username: string;
   userInfo: {
     first_name: string;
-    middle_name: string;
+    middle_name?: string;
     last_name: string;
     gender: "male" | "female" | "Female" | "Male";
     birth_date: string;
