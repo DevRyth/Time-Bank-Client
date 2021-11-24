@@ -8,7 +8,7 @@ export interface RegisterFormRequest {
   user: RegisterFormFields;
 }
 
-export interface RegisterFormFields {
+export interface RegisterFormFields extends RegisterResponse {
   first_name: string;
   middle_name: string;
   last_name: string;
@@ -24,10 +24,6 @@ export interface RegisterFormFields {
 }
 export interface RegisterResponse {
   token: string;
-  user: UserData;
-}
-
-export interface UserData {
   user_id: string;
   email: string;
   username: string;

@@ -7,7 +7,7 @@ export const login = async (data: LoginRequest) => {
     const response = await axios.post<LoginResponse>(`${BASE_URL}/login`, data);
     console.log(response);
     localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-    return response.data.data;
+    return response.data.userWithEmail;
   } catch (error) {
     console.error("Not able to check credentials!");
   }

@@ -5,7 +5,7 @@ export interface LoginRequest {
 
 export interface LoginResponse {
   token: string;
-  user: UserData;
+  userWithEmail: UserData;
   data: any;
 }
 

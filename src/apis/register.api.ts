@@ -9,7 +9,7 @@ export const signup = async (data: RegisterRequest) => {
       data
     );
     localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-    return response.data.user;
+    return response.data;
   } catch (error) {
     console.error("Not able signup");
   }
@@ -22,7 +22,7 @@ export const register = async (data: RegisterRequest) => {
       data
     );
     console.log(response);
-    return response.data.user;
+    return response.data;
   } catch (error) {
     console.error("Not able register");
   }
