@@ -3,19 +3,19 @@ import Button from '../sharedComponents/button/Button'
 
 export default function EnrolledCourse() {
     return (
-        <div className=" flex flex-col  font-extrabold   p-3 border-black border-2   space-y-1">
+        <div className=" flex flex-col  font-extrabold   p-4 border-black border-2   space-y-1">
          
             
              
                <div className="flex  justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg ">
                    <div className="flex space-x-1">
-                <div>
+                <div className="mr-3">
                     Tuesday
                 </div>
 
                 <div>|</div>
 
-                <div>
+                <div className="pl-3">
                      12:30
                 </div>
             </div>
@@ -32,13 +32,13 @@ export default function EnrolledCourse() {
             <div className="flex justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg">
             <div className="flex space-x-1">
 
-                <div>
+                <div className="mr-3">
                     Saturday
                 </div>
 
                 <div>|</div>
 
-                <div>
+                <div className="pl-3">
                      06:00
                 </div>
                 </div>
@@ -51,13 +51,13 @@ export default function EnrolledCourse() {
 
             <div className="flex  justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg">
             <div className="flex space-x-1">
-                <div>
+                <div className="mr-3">
                     Thursday
                 </div>
 
                 <div>|</div>
 
-                <div>
+                <div className="pl-3">
                      10:50
                 </div>
                 </div>
