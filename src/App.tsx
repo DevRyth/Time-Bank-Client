@@ -51,9 +51,7 @@ const App: React.FC = () => {
             {token ? <MainDisplay /> : <Redirect to="/login" />}
           </Route>
           
-          <Route exact path="/enrolled">
-            <EnrolledCourse/>
-          </Route>
+         
           <Route path="/">
             <Page404 />
           </Route>
