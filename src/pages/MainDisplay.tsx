@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import EnrolledCourse from "../components/EnrolledCourse";
 import Sidebar from "../components/Sidebar";
 import CourseDetailPage from "./CourseDetail.page";
 import CourseRegistrationPage from "./CourseRegistration.page";
