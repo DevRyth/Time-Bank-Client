@@ -3,14 +3,14 @@ import Button from '../sharedComponents/button/Button'
 
 export default function EnrolledCourse() {
     return (
-        <div className=" flex flex-col    p-3 border-black border-2   space-y-1">
+        <div className=" flex flex-col  font-extrabold   p-3 border-black border-2   space-y-1">
          
             
              
                <div className="flex  justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg ">
                    <div className="flex space-x-1">
                 <div>
-                    Tue
+                    Tuesday
                 </div>
 
                 <div>|</div>
@@ -33,7 +33,7 @@ export default function EnrolledCourse() {
             <div className="flex space-x-1">
 
                 <div>
-                    Sat
+                    Saturday
                 </div>
 
                 <div>|</div>
@@ -52,7 +52,7 @@ export default function EnrolledCourse() {
             <div className="flex  justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg">
             <div className="flex space-x-1">
                 <div>
-                    Sun
+                    Thursday
                 </div>
 
                 <div>|</div>
