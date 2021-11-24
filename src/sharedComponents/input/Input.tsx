@@ -25,9 +25,7 @@ const Input: React.FC<Props> = ({
     <div
       className={`border-b pb-1 pl-1 border-gray-600 flex flex-row ${outerClassName}`}
     >
-      <div className={`my-auto ${iconColor}`}>
-        {children}
-      </div>
+      <div className={`my-auto ${iconColor}`}>{children}</div>
       <div className="flex flex-col">
         <div className="flex-row m-2">
           <input
@@ -50,4 +48,4 @@ const Input: React.FC<Props> = ({
     </div>
   );
 };
-export default Input;
+export default React.memo(Input);

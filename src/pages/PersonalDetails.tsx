@@ -5,12 +5,14 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { BiBuildingHouse } from "react-icons/bi";
 import { MdPersonPinCircle } from "react-icons/md";
 import { MdOutlineRealEstateAgent } from "react-icons/md";
-import { Formik, FormikProps, FormikValues } from "formik";
-import axios from "axios";
+import { Formik } from "formik";
 import Button from "../sharedComponents/button/Button";
-import { BASE_URL } from "../constants/constants";
 import Select from "../sharedComponents/Select";
 import homeImage from "../Images/home.png";
+import { store, useAppSelector } from "../Store/store";
+import { registerUserWithInfo } from "../actions/register.action";
+import { registerError, registerLoading } from "../selectors/register.selector";
+import Alert from "../sharedComponents/Alert/Alert";
 
 interface Props {
   className?: string;
@@ -32,17 +34,20 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
     phone_number: "",
   };
 
-  let day = ["Day"];
+  let day: string[] = [];
   for (let i = 1; i < 32; i++) day.push(i.toString());
 
-  let month = ["Month"];
+  let month: string[] = [];
   for (let i = 1; i < 13; i++) month.push(i.toString());
 
-  let year = ["Year"];
+  let year: string[] = [];
   for (let i = 1971; i < 2016; i++) year.push(i.toString());
 
+  const isLoading = useAppSelector(registerLoading);
+  const errorMessage = useAppSelector(registerError);
+
   return (
-    <div className={className}>
+    <div className={`py-6 ${className}`}>
       <div className="text-center text-yellow-700 from-on-primary-dark text-3xl">
         Registration
       </div>
@@ -66,32 +71,41 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
               phone_number: values.phone_number,
             },
           };
-          const url = BASE_URL + "/register";
-          const response: any = await axios.post(url, mappedValues);
-          if (response.status === 200) {
-            window.location.href = "/dashboard";
-          }
+          // const url = BASE_URL + "/register";
+          // const response: any = await axios.post(url, mappedValues);
+          // if (response.status === 200) {
+          //   window.location.href = "/dashboard";
+          // }
           // console.log(mappedValues);
-          helper.setSubmitting(false);
+          // helper.setSubmitting(false);
+          store.dispatch(registerUserWithInfo(mappedValues));
         }}
       >
-        {(formikProps: FormikProps<FormikValues>) => (
+        {({ handleChange, handleSubmit, values }) => (
           <form
-            onSubmit={formikProps.handleSubmit}
+            onSubmit={handleSubmit}
             className="flex flex-col justify-center"
           >
-            <div className="border border-gray-400 rounded-lg space-y-7 m-7 p-2">
+            {errorMessage && (
+              <Alert
+                className="rounded-3xl absolute inset-x-0 mx-auto max-w-max text-xs pt-2 pb-2 pl-4 pr-4 md:text-base md:px-6 md:py-2"
+                containsIcon={false}
+              >
+                {errorMessage}
+              </Alert>
+            )}
+            <div className="border border-gray-400 rounded-lg space-y-7 m-7 p-6">
               <div className="flex flex-col sm:flex-row justify-around items-center sm:items-stretch">
-                <div className="border border-black w-36 h-40 rounded-lg pb-3 sm:pb-0 text-center flex items-center sm:mt-5">
+                <div className="border border-black w-28 h-32 md:w-36 md:h-40 rounded-lg p-3 sm:pb-0 text-center flex items-center sm:mt-5">
                   Click here to upload Profile Photo
                 </div>
-                <div className="flex flex-col space-y-7">
+                <div className="flex flex-col space-y-7 mt-5">
                   <div className="flex flex-row items-center space-x-2">
                     <label className="text-sm md:text-base hidden sm:block font-bold">
                       First name*
                     </label>
                     <Input
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                       name="first_name"
                       type="text"
                       placeholder="First Name"
@@ -105,7 +119,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       Middle name
                     </label>
                     <Input
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                       name="middle_name"
                       type="text"
                       placeholder="Middle Name"
@@ -119,7 +133,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       Last name*
                     </label>
                     <Input
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                       name="last_name"
                       type="text"
                       placeholder="Last Name"
@@ -130,48 +144,51 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row -space-y-0 justify-around items-center pb-3">
-                <div className="flex flex-row items-center space-x-2">
+              <div className="flex flex-col sm:flex-row justify-around items-center pb-3">
+                <div className="flex flex-row space-x-2 items-center">
                   <label className="hidden sm:block font-bold">DOB*</label>
                   <div className="flex justify-center space-x-2">
                     <Select
                       label="Day"
+                      value={values.birth_date}
                       name="birth_date"
                       options={day}
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                     />
                     <Select
                       label="Month"
                       name="birth_month"
+                      value={values.birth_month}
                       options={month}
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                     />
                     <Select
                       label="Year"
                       name="birth_year"
+                      value={values.birth_year}
                       options={year}
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
 
-                <div className="space-y-3 flex flex-row items-center space-x-2">
+                <div className="space-y-3 pt-4 md:pt-0 flex flex-row items-center space-x-2">
                   <label className="hidden sm:block font-bold">Gender*</label>
                   <div className="flex flex-row space-x-7 items-center">
-                    <label className="flex flex-row space-x-2 items-center">
+                    <div className="flex flex-row space-x-2 items-center">
                       <span>Male</span>
                       <input
-                        onChange={formikProps.handleChange}
+                        onChange={handleChange}
                         className=""
                         type="radio"
                         name="gender"
                         value="Male"
                       ></input>
-                    </label>
+                    </div>
                     <label className="flex flex-row space-x-2 items-center">
                       <span>Female</span>
                       <input
-                        onChange={formikProps.handleChange}
+                        onChange={handleChange}
                         className=""
                         type="radio"
                         name="gender"
@@ -192,7 +209,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       Address*
                     </label>
                     <Input
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                       name="address"
                       type="text"
                       placeholder="Flat no./area"
@@ -206,7 +223,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       District*
                     </label>
                     <Input
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                       name="district"
                       type="text"
                       placeholder="District"
@@ -220,7 +237,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       Pincode*
                     </label>
                     <Input
-                      onChange={formikProps.handleChange}
+                      onChange={handleChange}
                       name="pincode"
                       type="text"
                       placeholder="Pincode"
@@ -246,7 +263,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                     Phone Number*
                   </label>
                   <Input
-                    onChange={formikProps.handleChange}
+                    onChange={handleChange}
                     name="phone_number"
                     type="text"
                     placeholder="Phone Number"
@@ -258,7 +275,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                 <div className=" flex flex-col sm:flex-row items-center space-x-2">
                   <label className="hidden sm:block font-bold">State*</label>
                   <Input
-                    onChange={formikProps.handleChange}
+                    onChange={handleChange}
                     name="state"
                     type="text"
                     placeholder="State"
@@ -269,7 +286,7 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
               </div>
             </div>
             <div className="flex justify-center">
-              <Button title="Submit" theme="primary" />
+              <Button title="Submit" theme="primary" isSubmitting={isLoading} />
             </div>
           </form>
         )}

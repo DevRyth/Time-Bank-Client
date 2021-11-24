@@ -6,14 +6,18 @@ import { HiOutlineUser, MdEmail, CgPassword } from "react-icons/all";
 import Button from "../sharedComponents/button/Button";
 import SwitchButton from "../sharedComponents/switchButton/SwitchButton";
 import { Formik } from "formik";
-import axios from "axios";
 import * as Yup from "yup";
 // import PersonalDetails from "./PersonalDetails";
-import { BASE_URL, LS_AUTH_TOKEN } from "../constants/constants";
+import { store, useAppSelector } from "../Store/store";
+import { registerSendData } from "../actions/register.action";
+import { registerError, registerLoading } from "../selectors/register.selector";
+import Alert from "../sharedComponents/Alert/Alert";
 
 const SignUp: React.FC = () => {
   // const history = useHistory();
   // const [showRegisterPage, setShowRegisterPage] = useState(false);
+  const isSignupLoading = useAppSelector(registerLoading);
+  const errorMessage = useAppSelector(registerError);
 
   const initialValues = {
     username: "",
@@ -52,33 +56,32 @@ const SignUp: React.FC = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={async (values, helper) => {
-            helper.setSubmitting(true);
+          onSubmit={async (values) => {
             const mappedValues = {
               username: values.username,
               email: values.email,
               password: values.password,
             };
             if (values.confirmPassword === values.password) {
-              const url = BASE_URL + "/signup";
-              const response: any = await axios.post(url, mappedValues);
-              if (response.status === 200) {
-                localStorage.setItem(LS_AUTH_TOKEN, response.data.token);
-                window.location.href = "/register";
-                // setShowRegisterPage(true);
-              }
-              console.log(mappedValues);
+              store.dispatch(registerSendData(mappedValues));
             } else {
               console.log("Password entered is not matching!");
             }
-            helper.setSubmitting(false);
           }}
         >
-          {({ handleChange, handleSubmit, errors, touched, isSubmitting }) => (
+          {({ handleChange, handleSubmit, errors, touched }) => (
             <form
               onSubmit={handleSubmit}
-              className="pt-6 space-y-3 md:space-y-10 md:pt-10"
+              className="pt-6 space-y-10 md:space-y-10 md:pt-10"
             >
+              {errorMessage && (
+                <Alert
+                  className="rounded-3xl absolute inset-x-0 mx-auto max-w-max text-xs pt-2 pb-2 pl-4 pr-4 md:text-base md:px-6 md:py-2"
+                  containsIcon={false}
+                >
+                  {errorMessage}
+                </Alert>
+              )}
               <Input
                 onChange={handleChange}
                 iconColor="text-primary-dark"
@@ -88,7 +91,7 @@ const SignUp: React.FC = () => {
                 placeholder="Username"
                 touched={touched.username}
                 errorMessage={errors.username}
-                outerClassName="mx-auto max-w-max"
+                outerClassName="mx-auto max-w-max pt-4 md:pt-6"
               >
                 <HiOutlineUser />
               </Input>
@@ -139,7 +142,7 @@ const SignUp: React.FC = () => {
               />
               <div>
                 <Button
-                  isSubmitting={isSubmitting}
+                  isSubmitting={isSignupLoading}
                   type="submit"
                   title="Sign Up"
                   theme="primary"

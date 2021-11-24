@@ -5,7 +5,6 @@ import Sidebar from "../components/Sidebar";
 import CourseDetailPage from "./CourseDetail.page";
 import CourseRegistrationPage from "./CourseRegistration.page";
 import CoursesPage from "./Courses.page";
-import PersonalDetails from "./PersonalDetails";
 
 const MainDisplay = () => {
   return (
@@ -19,9 +18,6 @@ const MainDisplay = () => {
           </Route>
           <Route exact path="/courses">
             <CoursesPage />
-          </Route>
-          <Route exact path="/register">
-            <PersonalDetails />
           </Route>
           <Route exact path="/course-register">
             <CourseRegistrationPage />

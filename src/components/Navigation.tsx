@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { LS_AUTH_TOKEN } from "../constants/constants";
+import { useHistory } from "react-router";
+import { logout } from "../apis/auth.api";
+import { RG_TOKEN } from "../constants/constants";
 import Avatar from "../sharedComponents/Avatar";
 import Button from "../sharedComponents/button/Button";
 import ListElement from "../sharedComponents/ListElement";
@@ -7,6 +9,7 @@ import ListElement from "../sharedComponents/ListElement";
 interface Props {}
 const Navigation: React.FC<Props> = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
   return (
     <div>
       {isOpen && (
@@ -46,22 +49,20 @@ const Navigation: React.FC<Props> = () => {
                 "flex justify-center border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"
               }
             />
-            <ListElement
-              title="Logout"
-              onClick={() => {
-                setIsOpen(false);
-                localStorage.removeItem(LS_AUTH_TOKEN);
-                window.location.href = "/";
-              }}
-              className={
-                "flex justify-center text-sm font-semibold tracking-wider p-1 hover:bg-primary-dark"
-              }
-            />
+            {!localStorage.getItem(RG_TOKEN) && (
+              <ListElement
+                title="Logout"
+                onClick={() => logout()}
+                className={
+                  "flex justify-center text-sm font-semibold tracking-wider p-1 hover:bg-primary-dark"
+                }
+              />
+            )}
           </div>
         </div>
       )}
       <div>
-        <div className="bg-on-secondary ">
+        <div className="bg-on-secondary px-6">
           <nav className="py-0.5">
             <div className="flex justify-between">
               <div className="flex items-center">
@@ -88,14 +89,16 @@ const Navigation: React.FC<Props> = () => {
                 />
               </div>
               {!localStorage.getItem("auth_token") ? (
-                <div className="flex flex-col md:flex-row items-center space-y-1">
+                <div className="flex flex-col py-3 md:py-0 md:flex-row items-center md:space-y-0 space-y-1">
                   <Button
+                    onClick={() => history.push("/login")}
                     title="Login"
                     type="submit"
                     theme="secondary"
                     className={"py-0.5 md:mr-2"}
                   />
                   <Button
+                    onClick={() => history.push("/signup")}
                     title="Signup"
                     type="submit"
                     theme="secondary"
