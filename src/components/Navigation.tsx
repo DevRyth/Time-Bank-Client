@@ -19,26 +19,10 @@ const Navigation: React.FC<Props> = () => {
           >
             <ListElement
               onClick={() => setIsOpen(false)}
-              title="Profile"
-              path="/profile"
-              className={
-                "flex justify-center border-b text-sm hover:bg-primary-dark font-semibold tracking-wider border-secondary-lite p-1"
-              }
-            />
-            <ListElement
-              onClick={() => setIsOpen(false)}
               title="Dashboard"
               path="/dashboard"
               className={
                 "flex justify-center  border-b text-sm font-semibold hover:bg-primary-dark tracking-wider border-secondary-lite p-1"
-              }
-            />
-            <ListElement
-              onClick={() => setIsOpen(false)}
-              title="Statistics"
-              path="/statistics"
-              className={
-                "flex justify-center  border-b text-sm font-semibold  tracking-wider hover:bg-primary-dark border-secondary-lite p-1"
               }
             />
             <ListElement
@@ -49,6 +33,16 @@ const Navigation: React.FC<Props> = () => {
                 "flex justify-center border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"
               }
             />
+
+            <ListElement
+              onClick={() => setIsOpen(false)}
+              title="Course Register"
+              path="/course-register"
+              className={
+                "flex justify-center border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"
+              }
+            />
+
             {!localStorage.getItem(RG_TOKEN) && (
               <ListElement
                 title="Logout"

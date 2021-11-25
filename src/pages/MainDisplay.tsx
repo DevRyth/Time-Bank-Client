@@ -22,9 +22,6 @@ const MainDisplay = () => {
           <Route exact path="/courses">
             <CoursesPage />
           </Route>
-          <Route exact path="/coursedashboards">
-            <CoursesPage />
-          </Route>
           <Route exact path="/course-register">
             <CourseRegistrationPage />
           </Route>

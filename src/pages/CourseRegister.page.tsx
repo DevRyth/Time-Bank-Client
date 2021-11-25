@@ -5,8 +5,7 @@ interface Props {}
 
 const CourseRegister: React.FC<Props> = () => {
   return (
-    // <div className=" bg-on-secondary px-4  pt-6 h-screen w-screen sm:">
-    <div className="bg-white p-4 max-h rounded-lg font-bold lg:text-xl">
+    <div className="bg-white p-4 mx-0 rounded-lg font-bold lg:text-xl">
       Course Details
       <div className="flex flex-col space-y-4 p-2 lg:p-8">
         <div className="flex flex-col space-y-4 lg:space-y-2 lg:flex-row">

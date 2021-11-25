@@ -88,7 +88,7 @@ const Courses: React.FC = () => {
         </div>
       </div>
 
-      <div className="px-5 lg:px-16 mt-5 py-2 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
+      <div className="px-5 lg:px-16 mt-5 py-2 md:space-x-10 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
         {Array(10)
           .fill(1)
           .map((item, index) => (
