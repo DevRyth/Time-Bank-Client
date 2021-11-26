@@ -1,10 +1,15 @@
 import { LoginRequest, LoginResponse } from "../Models/AuthUser";
 import {
   ME_FETCH,
+  ME_FETCH_USER,
   ME_LOADING,
   ME_LOADING_ERROR,
   ME_SENDING_DATA,
 } from "./actions.constants";
+
+export const meFetchUserAction = () => ({
+  type: ME_FETCH_USER,
+});
 
 export const meFetchAction = (user: LoginResponse) => ({
   type: ME_FETCH,

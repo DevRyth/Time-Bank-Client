@@ -1,9 +1,9 @@
 import { Reducer } from "redux";
-import { ME_FETCH } from "../actions/actions.constants";
-import { LoginResponse, UserData } from "../Models/AuthUser";
+import { ME_FETCH, ME_FETCH_USER } from "../actions/actions.constants";
+import { UserData } from "../Models/AuthUser";
 
 interface UserState {
-  byId: { [id: number]: LoginResponse };
+  byId: { [id: number]: UserData };
 }
 
 const initialState: UserState = {
@@ -15,9 +15,16 @@ export const userReducer: Reducer<UserState> = (
   action
 ) => {
   switch (action.type) {
+    case ME_FETCH_USER:
     case ME_FETCH: {
-      const user: UserData = action.payload.data.user;
-      return { ...state, [user.user_id]: user };
+      const user: UserData = action.payload;
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [user?.user_id]: user,
+        },
+      };
     }
     default:
       return state;

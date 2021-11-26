@@ -4,11 +4,18 @@ import { BiLogOutCircle } from "react-icons/bi";
 import { FaFolder } from "react-icons/fa";
 import { IoIosStats } from "react-icons/io";
 import { logout } from "../apis/auth.api";
+import { userData } from "../selectors/user.selector";
 import Avatar from "../sharedComponents/Avatar";
 import ListElement from "../sharedComponents/ListElement";
+import { useAppSelector } from "../Store/store";
 
 interface Props {}
 const Sidebar: React.FC<Props> = () => {
+  const user = useAppSelector(userData);
+  const fullName =
+    user?.user_info &&
+    user.user_info?.first_name + " " + user.user_info?.last_name;
+
   return (
     <div className="hidden md:block bg-primary-dark height md:w-60 md:fixed md:z-10">
       <div className="bg-primary-lite p-2">
@@ -18,10 +25,10 @@ const Sidebar: React.FC<Props> = () => {
           className="h-28 w-28 self-center mx-auto my-2"
         />
         <h2 className="text-white text-center text-xl font-medium tracking-wider">
-          Utkarsh Gangwar
+          {fullName}
         </h2>
-        <h3 className="text-white text-xs text-opacity-20 text-center mb-2">
-          utkarshgangwar@gmail.com
+        <h3 className="text-white text-xs text-opacity-50 text-center mb-2">
+          {user?.email}
         </h3>
       </div>
       <div className="mt-5">

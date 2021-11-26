@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import SignUp from "./pages/SignUp.page";
 import {
   BrowserRouter as Router,
@@ -7,17 +7,35 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { LS_AUTH_TOKEN, RG_TOKEN } from "./constants/constants";
+import { token, RG_TOKEN } from "./constants/constants";
 import Navigation from "./components/Navigation";
 import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
 import LogIn from "./pages/LogIn.page";
 import PersonalDetails from "./pages/PersonalDetails";
 import Aboutus from "./components/aboutus/Aboutus";
+import { store, useAppSelector } from "./Store/store";
+import { meFetchUserAction } from "./actions/auth.action";
+import { userData } from "./selectors/user.selector";
+import { ImSpinner11 } from "react-icons/im";
 
 const App: React.FC = () => {
-  const token = localStorage.getItem(LS_AUTH_TOKEN);
+  useEffect(() => {
+    if (token) store.dispatch(meFetchUserAction());
+    else return;
+  }, []); //eslint-disable-line
+
+  const user = useAppSelector(userData);
+
   const registerToken = localStorage.getItem(RG_TOKEN);
+
+  if (!user && token) {
+    return (
+      <div className="w-screen h-screen">
+        <ImSpinner11 className="w-full h-12 m-auto animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -30,7 +48,7 @@ const App: React.FC = () => {
             <Redirect to="/login" />
           </Route>
           <Route exact path="/signup">
-            {token ? (
+            {token && user ? (
               registerToken ? (
                 <Redirect to="/register" />
               ) : (
@@ -41,7 +59,7 @@ const App: React.FC = () => {
             )}
           </Route>
           <Route exact path="/login">
-            {token ? (
+            {token && user ? (
               registerToken ? (
                 <Redirect to="/register" />
               ) : (
@@ -52,7 +70,7 @@ const App: React.FC = () => {
             )}
           </Route>
           <Route exact path="/register">
-            {token && registerToken ? (
+            {token && user && registerToken ? (
               <PersonalDetails />
             ) : (
               <Redirect to="/login" />
@@ -71,7 +89,7 @@ const App: React.FC = () => {
               "/course-register",
             ]}
           >
-            {token ? (
+            {token && user ? (
               registerToken ? (
                 <Redirect to="/register" />
               ) : (

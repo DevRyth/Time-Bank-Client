@@ -12,3 +12,5 @@ export const authErrorMessageSelector = createSelector(
   [authSelectors],
   (auth) => auth.errorMessage
 );
+
+export const authId = createSelector([authSelectors], (auth) => auth.id);

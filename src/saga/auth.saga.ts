@@ -1,12 +1,13 @@
-import { call, put, takeEvery } from "@redux-saga/core/effects";
+import { all, call, put, takeEvery } from "@redux-saga/core/effects";
 import { AnyAction } from "redux";
-import { ME_SENDING_DATA } from "../actions/actions.constants";
+import { ME_FETCH_USER, ME_SENDING_DATA } from "../actions/actions.constants";
 import {
   meFetchAction,
   meIsLoading,
   meLoadingError,
 } from "../actions/auth.action";
 import { login } from "../apis/auth.api";
+import { fetchUser } from "../apis/auth.api";
 
 function* meSendingData(action: AnyAction): Generator<any> {
   console.log("Sending data to API");
@@ -22,6 +23,21 @@ function* meSendingData(action: AnyAction): Generator<any> {
   }
 }
 
+function* meFetchUser(): Generator<any> {
+  const userData: any = yield call(fetchUser);
+  console.log("User data: ", userData);
+  if (userData) {
+    yield put(meFetchAction(userData));
+  } else {
+    console.error("Cannot fetch user data");
+    // localStorage.removeItem(LS_AUTH_TOKEN);
+    // window.location.href = "/";
+  }
+}
+
 export function* watchMeSendingData() {
-  yield takeEvery(ME_SENDING_DATA, meSendingData);
+  yield all([
+    takeEvery(ME_SENDING_DATA, meSendingData),
+    takeEvery(ME_FETCH_USER, meFetchUser),
+  ]);
 }

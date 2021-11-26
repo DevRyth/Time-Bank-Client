@@ -25,7 +25,7 @@ const ProgressBar: React.FC<Props> = ({ percentage, className }) => {
       <div className="flex justify-around p-4">
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-primary-dark "></div>
-          <div className="text-xs font-medium ">Remaining Time</div>
+          <div className="text-xs font-medium ">Total Earned</div>
         </div>
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-secondary-dark"></div>

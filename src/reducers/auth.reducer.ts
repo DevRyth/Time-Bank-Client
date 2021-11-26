@@ -1,10 +1,12 @@
 import { Reducer } from "redux";
 import {
   ME_FETCH,
+  ME_FETCH_USER,
   ME_LOADING,
   ME_LOADING_ERROR,
   ME_SENDING_DATA,
 } from "../actions/actions.constants";
+import { UserData } from "../Models/AuthUser";
 
 export interface AuthState {
   id?: number;
@@ -22,9 +24,10 @@ export const authReducer: Reducer<AuthState> = (
   action
 ) => {
   switch (action.type) {
+    case ME_FETCH_USER:
     case ME_FETCH: {
-      const userId: number = action.payload.id;
-      return { ...state, id: userId, loading: false };
+      const user: UserData = action.payload;
+      return { ...state, id: user?.user_id, loading: false };
     }
     case ME_SENDING_DATA: {
       return { ...state, loading: true };

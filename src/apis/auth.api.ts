@@ -21,3 +21,13 @@ export const logout = () => {
   localStorage.removeItem(LS_AUTH_TOKEN);
   window.location.href = "/login";
 };
+
+export const fetchUser = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/me`);
+    console.log("User Data after fetching: ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Not able to fetch user data");
+  }
+};

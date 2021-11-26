@@ -5,9 +5,11 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { authReducer } from "../reducers/auth.reducer";
 import rootSaga from "../saga/root.saga";
 import { registerReducer } from "../reducers/register.reducer";
+import { userReducer } from "../reducers/user.reducer";
 
 const reducer = combineReducers({
   auth: authReducer,
+  user: userReducer,
   register: registerReducer,
 });
 

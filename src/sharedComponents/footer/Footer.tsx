@@ -83,7 +83,9 @@ const Footer: React.FC<Props> = ({ path }) => {
           <div className="sm:w-2/3 text-left py-6">
             <div className="md:flex flex-row justify-around">
               <div className="sm:text-center text-sm text-secondary-dark font-bold mb-2 hover:text-white">
-                <Link to={"https://www.google.com/"}>© 2020</Link>
+                <Link to={"https://www.google.com/"}>
+                  ©2020 All rights are reserved
+                </Link>
               </div>
               <div className="sm:text-center text-sm text-secondary-dark font-bold mb-2 hover:text-white">
                 <Link to={"https://www.google.com/"}>Terms of Use</Link>
