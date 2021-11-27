@@ -59,7 +59,7 @@ const Appointment: React.FC<Props> = ({
   ];
 
   const hrs: String[] = [];
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 24; i++) {
     let str = "";
     if (i < 10) str = str + "0" + i.toString();
     else str = str + i.toString();
@@ -76,10 +76,8 @@ const Appointment: React.FC<Props> = ({
 
   console.log("Schedule: ", schedule);
 
-  // const [appointment, setAppointment] = useState<Number[]>([1]);
-
   return (
-    <div className="border-2 border-primary-dark p-3 rounded-lg bg-white">
+    <div className="border-2 border-primary-dark p-3 mt-6 rounded-lg bg-white">
       <div className="flex justify-center">
         <button
           type="button"

@@ -1,4 +1,5 @@
 import React from "react";
+import { IoWarningOutline } from "react-icons/io5";
 import Input from "../sharedComponents/input/Input";
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 const CourseInfo: React.FC<Props> = ({ formikValues }) => {
   return (
     <div className="bg-white mt-6 mx-0 rounded-lg font-bold lg:text-xl tracking-wider">
-      <div className="flex flex-col space-y-6 p-2 lg:p-8 mt-6">
+      <div className="flex flex-col space-y-10 p-2 lg:p-8 mt-6">
         <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row">
           <label className="flex flex-col space-y-3 md:space-y-2">
             <span className="text-base">Title</span>
@@ -78,7 +79,17 @@ const CourseInfo: React.FC<Props> = ({ formikValues }) => {
             name="summary"
             className="border border-gray-600 text-primary-dark rounded-lg w-full text-base p-2"
             placeholder="About your skill"
-          ></textarea>
+          />
+          {formikValues.touched.summary && (
+            <div className="relative">
+              <div className="absolute text-left flex text-yellow-600">
+                {formikValues.errors.summary && (
+                  <IoWarningOutline className="my-auto" />
+                )}
+                <p className="ml-2 text-xs">{formikValues.errors.summary}</p>
+              </div>
+            </div>
+          )}
         </label>
         <label className="flex pt-3 flex-col space-y-2">
           <span className="text-base">What people will learn?</span>
@@ -90,7 +101,19 @@ const CourseInfo: React.FC<Props> = ({ formikValues }) => {
             name="description"
             className="border border-gray-600 text-primary-dark rounded-lg w-full text-base p-2"
             placeholder="Descriptive points"
-          ></textarea>
+          />
+          {formikValues.touched.description && (
+            <div className="relative">
+              <div className="absolute text-left flex text-yellow-600">
+                {formikValues.errors.description && (
+                  <IoWarningOutline className="my-auto" />
+                )}
+                <p className="ml-2 text-xs">
+                  {formikValues.errors.description}
+                </p>
+              </div>
+            </div>
+          )}
         </label>
       </div>
     </div>

@@ -1,6 +1,11 @@
 import { Reducer } from "redux";
-import { ME_FETCH, ME_FETCH_USER } from "../actions/actions.constants";
+import {
+  COURSE_DATA,
+  ME_FETCH,
+  ME_FETCH_USER,
+} from "../actions/actions.constants";
 import { UserData } from "../Models/AuthUser";
+import { CourseResponse } from "../Models/Course";
 
 interface UserState {
   byId: { [id: number]: UserData };
@@ -23,6 +28,22 @@ export const userReducer: Reducer<UserState> = (
         byId: {
           ...state.byId,
           [user?.user_id]: user,
+        },
+      };
+    }
+    case COURSE_DATA: {
+      const course = action.payload as CourseResponse;
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [course.creator_id]: {
+            ...state.byId[course.creator_id],
+            courses: {
+              ...state.byId[course.creator_id].courses,
+              ...course.courses,
+            },
+          },
         },
       };
     }

@@ -49,9 +49,17 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={`px-2 py-6 ${className}`}>
-      <div className="text-center text-yellow-700 from-on-primary-dark text-3xl">
+      <div className="text-center pb-5 text-yellow-700 from-on-primary-dark text-3xl">
         Registration
       </div>
+      {errorMessage && (
+        <Alert
+          className="rounded-3xl absolute inset-x-0 mx-auto max-w-max text-xs pt-2 pb-2 pl-4 pr-4 md:text-base md:px-6 md:py-2"
+          containsIcon={false}
+        >
+          {errorMessage}
+        </Alert>
+      )}
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, helper) => {
@@ -75,19 +83,11 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
           store.dispatch(registerUserWithInfo(mappedValues));
         }}
       >
-        {({ handleChange, handleSubmit, values }) => (
+        {({ handleChange, handleSubmit, values, touched, errors }) => (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col justify-center py-6"
+            className="flex flex-col mt-4 justify-center py-6"
           >
-            {errorMessage && (
-              <Alert
-                className="rounded-3xl absolute inset-x-0 mx-auto max-w-max text-xs pt-2 pb-2 pl-4 pr-4 md:text-base md:px-6 md:py-2"
-                containsIcon={false}
-              >
-                {errorMessage}
-              </Alert>
-            )}
             <div className="border border-gray-400 rounded-lg space-y-7 m-7 p-6">
               <div className="flex flex-col sm:flex-row justify-around items-center sm:items-stretch">
                 <div className="border border-black w-28 h-32 md:w-36 md:h-40 rounded-lg p-3 sm:pb-0 text-center flex items-center sm:mt-5">
@@ -99,6 +99,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       First name*
                     </label>
                     <Input
+                      touched={touched.first_name}
+                      errorMessage={errors.middle_name}
                       onChange={handleChange}
                       name="first_name"
                       type="text"
@@ -114,6 +116,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                     </label>
                     <Input
                       onChange={handleChange}
+                      errorMessage={errors.middle_name}
+                      touched={touched.middle_name}
                       name="middle_name"
                       type="text"
                       placeholder="Middle Name"
@@ -128,6 +132,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                     </label>
                     <Input
                       onChange={handleChange}
+                      errorMessage={errors.middle_name}
+                      touched={touched.middle_name}
                       name="last_name"
                       type="text"
                       placeholder="Last Name"
@@ -217,6 +223,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       District*
                     </label>
                     <Input
+                      errorMessage={errors.district}
+                      touched={touched.district}
                       onChange={handleChange}
                       name="district"
                       type="text"
@@ -231,6 +239,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                       Pincode*
                     </label>
                     <Input
+                      errorMessage={errors.pincode}
+                      touched={touched.pincode}
                       onChange={handleChange}
                       name="pincode"
                       type="text"
@@ -257,6 +267,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                     Phone Number*
                   </label>
                   <Input
+                    errorMessage={errors.phone_number}
+                    touched={touched.phone_number}
                     onChange={handleChange}
                     name="phone_number"
                     type="text"
@@ -269,6 +281,8 @@ const PersonalDetails: React.FC<Props> = ({ className }) => {
                 <div className=" flex flex-col sm:flex-row items-center space-x-2">
                   <label className="hidden sm:block font-bold">State*</label>
                   <Input
+                    errorMessage={errors.state}
+                    touched={touched.state}
                     onChange={handleChange}
                     name="state"
                     type="text"

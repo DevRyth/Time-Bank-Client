@@ -21,6 +21,7 @@ const Button: React.FC<Props> = ({
   return (
     <button
       {...rest}
+      disabled={isSubmitting}
       className={`${bgColor} hover:bg-blue-700 text-white text-sm md:text-base py-2 px-6 rounded-full ${className}`}
     >
       {isSubmitting ? <ImSpinner3 className="animate-spin" /> : title}

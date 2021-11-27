@@ -18,4 +18,4 @@ export const REGISTER_USER_INFO = "register/user_info";
 export const COURSE_REGISTER_SEND_DATA = "course-register/send";
 export const COURSE_REGISTER_LOADING = "course-register/loading";
 export const COURSE_REGISTER_ERROR = "course-register/error";
-export const COURSE_REGISTER_INFO = "course-register/info";
+export const COURSE_DATA = "course/data";

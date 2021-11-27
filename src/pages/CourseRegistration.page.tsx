@@ -1,13 +1,21 @@
-import axios from "axios";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import Appointment from "../components/Appointment.component";
-import { BASE_URL } from "../constants/constants";
 import Button from "../sharedComponents/button/Button";
 import CourseRegister from "../components/CourseInfo";
 import * as Yup from "yup";
+import { store, useAppSelector } from "../Store/store";
+import { courseRegisterSendData } from "../actions/course.action";
+import {
+  courseErrorMessageSelector,
+  courseLoadingSelector,
+} from "../selectors/course.selector";
+import Alert from "../sharedComponents/Alert/Alert";
 
 const CourseRegistration: React.FC = () => {
+  const isLoading = useAppSelector(courseLoadingSelector);
+  const errorMessage = useAppSelector(courseErrorMessageSelector);
+
   const [schedule, setSchedule] = useState([
     {
       appointment: {
@@ -50,16 +58,22 @@ const CourseRegistration: React.FC = () => {
   });
 
   return (
-    <div className="min-h-full p-3 font-extrabold lg:text-2xl">
+    <div className="min-h-full p-3 font-extrabold lg:text-2xl relative">
       <h1 className="text-center text-2xl md:text-4xl text-primary-dark">
         Register For Course
       </h1>
+      {errorMessage && (
+        <Alert
+          className="rounded-3xl absolute inset-x-0 mx-auto max-w-max mt-4 text-xs pt-2 pb-2 pl-4 pr-4 md:text-base md:px-6 md:py-2"
+          containsIcon={false}
+        >
+          {errorMessage}
+        </Alert>
+      )}
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={async (values, helper) => {
-          helper.setSubmitting(true);
-
           let newSchedule: any[] = [];
 
           values.schedule.forEach((item) => {
@@ -72,8 +86,6 @@ const CourseRegistration: React.FC = () => {
             });
           });
 
-          console.log("New Schedule", newSchedule);
-
           const mappedValues = {
             title: values.title,
             description: values.description,
@@ -81,16 +93,16 @@ const CourseRegistration: React.FC = () => {
             summary: values.summary,
             schedule: newSchedule,
           };
-          console.log("Course Registration Values", mappedValues);
 
-          const url = BASE_URL + "/course-register";
-          try {
-            await axios.post(url, mappedValues);
-          } catch (error) {
-            console.log(error);
-          } finally {
-            helper.setSubmitting(false);
-          }
+          // const url = BASE_URL + "/course-register";
+          // try {
+          //   await axios.post(url, mappedValues);
+          // } catch (error) {
+          //   console.log(error);
+          // } finally {
+          //   helper.setSubmitting(false);
+          // }
+          store.dispatch(courseRegisterSendData(mappedValues));
         }}
       >
         {({
@@ -121,10 +133,10 @@ const CourseRegistration: React.FC = () => {
               }}
             />
             <Button
-              isSubmitting={isSubmitting}
+              isSubmitting={isLoading}
               type="submit"
               title="Submit"
-              className="m-auto"
+              className={`m-auto`}
               theme="primary"
             ></Button>
           </form>

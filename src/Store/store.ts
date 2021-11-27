@@ -6,11 +6,13 @@ import { authReducer } from "../reducers/auth.reducer";
 import rootSaga from "../saga/root.saga";
 import { registerReducer } from "../reducers/register.reducer";
 import { userReducer } from "../reducers/user.reducer";
+import { courseReducer } from "../reducers/course.reducer";
 
 const reducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   register: registerReducer,
+  course: courseReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware({});
