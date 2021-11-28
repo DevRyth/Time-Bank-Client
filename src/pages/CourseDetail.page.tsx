@@ -42,7 +42,9 @@ const CourseDetail: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       {isLoading && (
-        <ImSpinner9 className="animate-spin py-10 h-6 w-full mx-auto" />
+        <div className="py-10">
+          <ImSpinner9 className="animate-spin h-6 mx-auto w-6" />
+        </div>
       )}
       <div className="md:grid md:grid-cols-4 md:px-16 lg:px-24">
         <div className="md:col-span-1 h-52 mt-6">
