@@ -18,6 +18,8 @@ import { store, useAppSelector } from "./Store/store";
 import { meFetchUserAction } from "./actions/auth.action";
 import { userData } from "./selectors/user.selector";
 import { ImSpinner11 } from "react-icons/im";
+import { authErrorMessageSelector } from "./selectors/auth.selector";
+import Button from "./sharedComponents/button/Button";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -28,11 +30,24 @@ const App: React.FC = () => {
   const user = useAppSelector(userData);
 
   const registerToken = localStorage.getItem(RG_TOKEN);
+  const errorMessage = useAppSelector(authErrorMessageSelector);
 
   if (!user && token) {
     return (
-      <div className="w-screen h-screen">
-        <ImSpinner11 className="w-full h-12 m-auto animate-spin" />
+      <div className="w-screen h-screen pt-10 pb-6">
+        {errorMessage ? (
+          <div className="flex flex-col text-center">
+            <span className="text-xl font-extrabold">{errorMessage}</span>
+            <Button
+              onClick={() => (window.location.href = "/")}
+              title="Back To Homepage"
+              className="font-medium max-w-max mx-auto mt-6"
+              theme="secondary"
+            />
+          </div>
+        ) : (
+          <ImSpinner11 className="w-full h-12 m-auto animate-spin" />
+        )}
       </div>
     );
   }
@@ -84,7 +99,7 @@ const App: React.FC = () => {
             path={[
               "/dashboard",
               "/courses",
-              "/courses/1",
+              "/courses/:id",
               "/register",
               "/course-register",
             ]}

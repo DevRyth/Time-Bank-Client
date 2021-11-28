@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CourseImage from "../Images/coursedefault.jpg";
 import Button from "../sharedComponents/button/Button";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/all";
+import { store } from "../Store/store";
+import { useParams } from "react-router";
+import { courseId } from "../actions/course.action";
 
 const CourseDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  console.log(id);
+  useEffect(() => {
+    // async function courseDetails() {
+    //   const response = await axios.get(`${BASE_URL}/course`, {
+    //     params: { course_id: 2 },
+    //   });
+    //   console.log(response.data);
+    // }
+    // courseDetails();
+    store.dispatch(courseId(+id));
+  }, [id]);
+
   const [isAboutSliced, setIsAboutSliced] = useState(true);
   const field = {
     image: CourseImage,
@@ -50,7 +66,6 @@ const CourseDetail: React.FC = () => {
         <hr className="border mt-2 md:hidden" />
         <div className="md:my-auto mt-6">
           <div className="md:col-span-1 h-full">
-            <p className="font-bold text-xl text-center">{field.duration}</p>
             <div className="text-center mt-2">
               <Button
                 className="font-bold uppercase hover:scale-95 transform transition-all ease-in-out w-44 shadow-stacked"

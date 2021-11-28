@@ -29,6 +29,7 @@ function* meFetchUser(): Generator<any> {
   if (userData) {
     yield put(meFetchAction(userData));
   } else {
+    yield put(meLoadingError("Check your internet connection"));
     console.error("Cannot fetch user data");
     // localStorage.removeItem(LS_AUTH_TOKEN);
     // window.location.href = "/";

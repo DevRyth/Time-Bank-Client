@@ -8,15 +8,15 @@ import CoursesPage from "./Courses.page";
 
 const MainDisplay = () => {
   return (
-    <div className="flex">
+    <div className="lg:flex">
       <Sidebar />
-      <div className="md:w-72"></div>
+      <div className="w-72 lg:block hidden"></div>
       <div className="mx-auto max-w-full">
         <Switch>
           <Route exact path="/dashboard">
             <Dashboard />
           </Route>
-          <Route exact path="/courses/1">
+          <Route exact path="/courses/:id">
             <CourseDetailPage />
           </Route>
           <Route exact path="/courses">

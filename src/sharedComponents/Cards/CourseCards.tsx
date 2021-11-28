@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import CourseDefaultImage from "../../Images/coursedefault.jpg";
 import { MdFavoriteBorder, BiTimeFive, MdFavorite } from "react-icons/all";
 import { Link } from "react-router-dom";
+import { CourseData } from "../../Models/Course";
 
 interface Props {
-  data: { "teacher-name": string; title: string; duration: string };
+  data: CourseData;
   className?: string;
 }
 
 const CourseCards: React.FC<Props> = ({ data, className }) => {
   const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
-  const slicedTitle = data.title.substring(0, 40);
+  const slicedTitle = data?.title.substring(0, 40);
 
   return (
     <div className={`mx-auto md:mx-0 ${className}`}>
-      <div className=" w-56 h-80 md:w-72 md:h-80 cursor-pointer rounded-tl-lg mx-auto shadow-stacked hover:scale-95 transform ease-in-out transition-all">
-        <Link to="/courses/1">
+      <div className="w-56 h-80 md:w-72 md:h-80 cursor-pointer rounded-tl-lg mx-auto shadow-stacked hover:scale-95 transform ease-in-out transition-all">
+        <Link to={`/courses/${data?.course_id}`}>
           <div className="bg-gray-300 h-1/2">
             <img
               src={CourseDefaultImage}
@@ -24,7 +25,7 @@ const CourseCards: React.FC<Props> = ({ data, className }) => {
             />
           </div>
           <div className="rounded-br-lg px-6 pt-3 bg-white h-1/2">
-            <div className="">{data["teacher-name"]}</div>
+            <div className="">{data?.creator?.user_info.first_name}</div>
             <div className="font-extrabold mt-2 text-lg h-16">
               {slicedTitle}
             </div>
@@ -48,9 +49,9 @@ const CourseCards: React.FC<Props> = ({ data, className }) => {
                   />
                 )}
               </div>
-              <div className="flex pr-5">
-                <BiTimeFive className="my-auto mr-3 text-primary-dark h-10" />
-                <span className="my-auto">{data.duration}</span>
+              <div className="flex ">
+                <BiTimeFive className="m-auto mr-3 text-primary-dark h-10" />
+                <span className="my-auto">Tuesday, 10:00</span>
               </div>
             </div>
           </div>

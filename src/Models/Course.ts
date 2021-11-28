@@ -22,7 +22,7 @@ export interface CourseData {
   summary: string;
   description: string;
   difficulty: string;
-  creator: string;
+  creator: Creator;
   schedule: Schedule[];
   course_id: number;
   __v: number;
@@ -40,4 +40,39 @@ export interface Appointment {
   day: string;
   appointment_id: number;
   __v: number;
+}
+
+export interface Creator {
+  _id: string;
+  email: string;
+  username: string;
+  password: string;
+  time_bank: string;
+  courses: string[];
+  user_id: number;
+  __v: number;
+  user_info: UserInfo;
+}
+
+export interface UserInfo {
+  _id: string;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  gender: string;
+  birth_date: number;
+  birth_month: number;
+  birth_year: number;
+  address: string;
+  district: string;
+  state: string;
+  pincode: number;
+  phone_number: string;
+  userinfo_id: number;
+  __v: number;
+}
+
+export interface Schedule {
+  appointment: Appointment;
+  _id: string;
 }

@@ -1,6 +1,10 @@
-import { CourseResponse } from "../Models/Course";
+import { CourseData, CourseResponse } from "../Models/Course";
 import {
+  COURSE_ALL,
+  COURSE_ALL_DATA,
   COURSE_DATA,
+  COURSE_ID,
+  COURSE_ID_DATA,
   COURSE_REGISTER_ERROR,
   COURSE_REGISTER_LOADING,
   COURSE_REGISTER_SEND_DATA,
@@ -23,5 +27,25 @@ export const courseRegisterError = (message: string) => ({
 
 export const courseData = (course: CourseResponse) => ({
   type: COURSE_DATA,
+  payload: course,
+});
+
+export const courseIdData = (course: CourseData) => ({
+  type: COURSE_ID_DATA,
+  payload: course,
+});
+
+export const courseId = (id: number) => ({
+  type: COURSE_ID,
+  payload: id,
+});
+
+export const courseAll = (offset: number, limit: number) => ({
+  type: COURSE_ALL,
+  payload: { offset, limit },
+});
+
+export const courseAllData = (course: CourseData[]) => ({
+  type: COURSE_ALL_DATA,
   payload: course,
 });

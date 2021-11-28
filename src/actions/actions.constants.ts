@@ -19,3 +19,7 @@ export const COURSE_REGISTER_SEND_DATA = "course-register/send";
 export const COURSE_REGISTER_LOADING = "course-register/loading";
 export const COURSE_REGISTER_ERROR = "course-register/error";
 export const COURSE_DATA = "course/data";
+export const COURSE_ID_DATA = "course/id_data";
+export const COURSE_ID = "course/id";
+export const COURSE_ALL_DATA = "course/all_data";
+export const COURSE_ALL = "course/all";
