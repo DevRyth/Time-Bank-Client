@@ -59,10 +59,14 @@ export const courseReducer: Reducer<CourseRegisterState> = (
 
     case COURSE_ALL_DATA: {
       const course = action.payload as CourseData[];
-      course.forEach((item) => {
-        return { ...state.byId, [item.course_id]: item };
-      });
-      return { ...state, loading: false, byId: course };
+      const updatedCourses = course.reduce((previous, item) => {
+        return { ...previous, [item.course_id]: item };
+      }, {});
+      return {
+        ...state,
+        loading: false,
+        byId: { ...state.byId, ...updatedCourses },
+      };
     }
 
     default:

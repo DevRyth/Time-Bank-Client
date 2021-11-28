@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import CourseImage from "../Images/coursedefault.jpg";
 import Button from "../sharedComponents/button/Button";
-import { AiOutlinePlusCircle } from "react-icons/all";
+import { AiOutlinePlusCircle, ImSpinner9 } from "react-icons/all";
 import { store, useAppSelector } from "../Store/store";
 import { useParams } from "react-router";
 import { courseId } from "../actions/course.action";
-import { courseById } from "../selectors/course.selector";
+import {
+  courseById,
+  courseLoadingSelector,
+} from "../selectors/course.selector";
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,6 +18,7 @@ const CourseDetail: React.FC = () => {
   }, [id]);
 
   const courseData = useAppSelector(courseById)[+id];
+  const isLoading = useAppSelector(courseLoadingSelector);
 
   const [isAboutSliced, setIsAboutSliced] = useState(true);
 
@@ -33,6 +37,9 @@ const CourseDetail: React.FC = () => {
 
   return (
     <div>
+      {isLoading && (
+        <ImSpinner9 className="animate-spin my-10 h-6 w-full mx-auto" />
+      )}
       <div className="md:grid md:grid-cols-4 md:px-16 lg:px-24">
         <div className="md:col-span-1 h-52 mt-6">
           <img
@@ -72,7 +79,7 @@ const CourseDetail: React.FC = () => {
       </div>
       <div className="m-3 rounded-xl p-6 shadow-stacked md:mx-10 md:mt-6">
         <div>
-          <h2 className="text-lg font-bold">About this course</h2>
+          <h2 className="text-lg font-bold">What you will learn?</h2>
         </div>
         <div className="mt-3">
           <p className="text-sm">{slicedAbout}</p>
