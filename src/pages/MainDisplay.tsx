@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
+import Dashboard from "./Dashboard";
 import Sidebar from "../components/Sidebar";
 import CourseDetailPage from "./CourseDetail.page";
 import CourseRegistrationPage from "./CourseRegistration.page";
