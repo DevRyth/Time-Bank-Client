@@ -54,7 +54,7 @@ const Courses: React.FC = () => {
           if (index === 0) {
             className = "md:ml-10";
           } else className = "";
-          return <CourseCards key={index} data={item} className={className} />;
+          return <CourseCards indexImage={index} key={index} data={item} className={className} />;
         })}
       </div>
     </div>

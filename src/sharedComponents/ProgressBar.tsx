@@ -25,7 +25,7 @@ const ProgressBar: React.FC<Props> = ({
         value={percentage}
         styles={buildStyles({
           textSize: "14px",
-          trailColor: "#3C5654",
+          trailColor: (percentage === "0") ? "#DDDDDD" : "#3C5654",
           pathColor: "#C89C32",
         })}
         className={`mb-2 mx-auto transform motion-reduce:transform-none ${progressClassName}`}
@@ -33,15 +33,15 @@ const ProgressBar: React.FC<Props> = ({
       <div className="flex justify-around px-4 py-8">
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-primary-dark "></div>
-          <div className="text-sm font-medium ">Earned: {data?.earnedTime}</div>
+          <div className="text-sm font-medium ">Earned: <span className="font-semibold text-base">{data?.earnedTime}</span></div>
         </div>
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-secondary-dark"></div>
-          <div className="text-sm font-medium ">Used: {data?.usedTime}</div>
+          <div className="text-sm font-medium ">Used: <span className="font-semibold text-base">{data?.usedTime}</span></div>
         </div>
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-red-800"></div>
-          <div className="text-sm font-medium ">Credits: {data?.time}</div>
+          <div className="text-sm font-medium ">Credits: <span className="font-semibold text-base">{data?.time}</span></div>
         </div>
       </div>
     </div>

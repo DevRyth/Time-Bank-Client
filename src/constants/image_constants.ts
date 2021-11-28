@@ -1,0 +1,18 @@
+export const imagesUrl = [
+    "https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=590&h=800&D80F3D79-4382-49FA-BE4B4D0C62A5C3ED",
+    "https://5.imimg.com/data5/JM/QA/MY-8644468/guitar-500x500.jpg",
+    "https://images.indianexpress.com/2019/12/sanskrit.jpg",
+    "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20191004160106/How-to-Prepare-for-Competitive-Programming.png",
+    "https://media.wired.com/photos/5f592bfb643fbe1f6e6807ec/191:100/w_2400,h_1256,c_limit/business_chess_1200074974.jpg",
+    "https://i2.wp.com/systemzone.net/wp-content/uploads/2017/02/Computer-Network.jpg?resize=600%2C300&ssl=1",
+    "https://www.worldatlas.com/r/w1200/upload/29/6d/1c/shutterstock-1140854771.jpg",
+    "https://aralingua.com/wp-content/uploads/2019/03/History-of-Arabic-Translation-in-Arab-World.jpg",
+    "https://static.scientificamerican.com/blogs/cache/file/15E43A6F-3941-471A-BF4A81AECDC8C8AA.jpg",
+    "https://miro.medium.com/max/990/1*RJ8DZD1b-ipwDENqdK3WRA.png",
+    "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/fa/6926005ea411e490ff8d4c5d4ff426/chemistry_logo.png?auto=format%2Ccompress&dpr=1",
+    "https://249261-772960-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2021/04/Engineering-drawing-components-and-tips.jpg",
+    "https://manavrachna.edu.in/wp-content/uploads/2021/07/civil-vs-architecture.jpg",
+    "https://cdn.mos.cms.futurecdn.net/steVjWGx3vYPjMpJL2jVcV.jpg",
+    "https://www.simplilearn.com/ice9/free_resources_article_thumb/The_Top_35_IoT_Terms.jpg",
+    "https://clueylearning.com.au/wp-content/uploads/2019/08/most-effective-way-to-study-according-to-science.jpg",
+];

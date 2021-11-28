@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CourseImage from "../Images/coursedefault.jpg";
+// import CourseImage from "../Images/coursedefault.jpg"; removeInFuture
 import Button from "../sharedComponents/button/Button";
 import { AiOutlinePlusCircle, ImSpinner9 } from "react-icons/all";
 import { store, useAppSelector } from "../Store/store";
@@ -10,6 +10,7 @@ import {
   courseLoadingSelector,
 } from "../selectors/course.selector";
 import EnrolledCourse from "../components/EnrolledCourse";
+import { imagesUrl } from "../constants/image_constants";
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -46,7 +47,7 @@ const CourseDetail: React.FC = () => {
       <div className="md:grid md:grid-cols-4 md:px-16 lg:px-24">
         <div className="md:col-span-1 h-52 mt-6">
           <img
-            src={CourseImage}
+            src={imagesUrl[Math.floor(Math.random() * imagesUrl.length)]}
             alt="courseimage"
             className="w-44 rounded-xl border-1 border-primary-dark shadow-stacked mx-auto object-cover h-full object-center"
           />
