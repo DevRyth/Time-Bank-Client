@@ -9,7 +9,7 @@ interface Props {
 const ProgressBar: React.FC<Props> = ({ percentage, className }) => {
   return (
     <div
-      className={`p-2 border-2 w-72 md:w-96 hover:shadow-stacked cursor-pointer transform transition-ease duration-700 hover:scale-95 rounded-md border-primary-lite flex flex-col ${className}`}
+      className={`p-2 border-2 mx-auto w-72 md:w-96 hover:shadow-stacked cursor-pointer transform transition-ease duration-700 hover:scale-95 rounded-md border-primary-lite flex flex-col ${className}`}
     >
       <span className="p-3 text-lg font-extrabold">Time Chart</span>
       <CircularProgressbar
