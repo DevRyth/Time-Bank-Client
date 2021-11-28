@@ -99,9 +99,7 @@ const CourseDetail: React.FC = () => {
       </div>
       {isEnrollmentOpen && (
         <div>
-          <div className="absolute bg-black opacity-50 transition-transform duration-1000 ease-in-out scale-150 inset-0">
-            hhgh
-          </div>
+          <div className="absolute bg-black opacity-50 transition-transform duration-1000 ease-in-out scale-150 inset-0"></div>
           <div className="absolute bg-primary-lite rounded-3xl border-primary-dark border-2 mt-10 top-0 right-0 left-0 mx-2 md:mx-32">
             <EnrolledCourse
               setIsOpen={() => setIsEnrollmentOpen(!isEnrollmentOpen)}
