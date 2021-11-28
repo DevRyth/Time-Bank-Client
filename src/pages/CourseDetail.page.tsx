@@ -9,6 +9,7 @@ import {
   courseById,
   courseLoadingSelector,
 } from "../selectors/course.selector";
+import EnrolledCourse from "../components/EnrolledCourse";
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,10 +36,12 @@ const CourseDetail: React.FC = () => {
     setIsAboutSliced(!slicedAbout);
   };
 
+  const [isEnrollmentOpen, setIsEnrollmentOpen] = useState(false);
+
   return (
-    <div>
+    <div className="relative min-h-screen">
       {isLoading && (
-        <ImSpinner9 className="animate-spin my-10 h-6 w-full mx-auto" />
+        <ImSpinner9 className="animate-spin py-10 h-6 w-full mx-auto" />
       )}
       <div className="md:grid md:grid-cols-4 md:px-16 lg:px-24">
         <div className="md:col-span-1 h-52 mt-6">
@@ -63,6 +66,7 @@ const CourseDetail: React.FC = () => {
           <div className="md:col-span-1 h-full">
             <div className="text-center mt-2">
               <Button
+                onClick={() => setIsEnrollmentOpen(true)}
                 className="font-bold uppercase hover:scale-95 transform transition-all ease-in-out w-44 shadow-stacked"
                 title="enroll"
               />
@@ -93,6 +97,19 @@ const CourseDetail: React.FC = () => {
           )}
         </div>
       </div>
+      {isEnrollmentOpen && (
+        <div>
+          <div className="absolute bg-black opacity-50 transition-transform duration-1000 ease-in-out scale-150 inset-0">
+            hhgh
+          </div>
+          <div className="absolute bg-primary-lite rounded-3xl border-primary-dark border-2 mt-10 top-0 right-0 left-0 mx-2 md:mx-32">
+            <EnrolledCourse
+              setIsOpen={() => setIsEnrollmentOpen(!isEnrollmentOpen)}
+              data={courseData.schedule}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

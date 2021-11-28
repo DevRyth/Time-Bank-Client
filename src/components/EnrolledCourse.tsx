@@ -1,73 +1,36 @@
-import React from 'react'
-import Button from '../sharedComponents/button/Button'
+import React from "react";
+import Button from "../sharedComponents/button/Button";
+import { CgClose } from "react-icons/all";
+import { Schedule } from "../Models/Course";
 
-export default function EnrolledCourse() {
-    return (
-        <div className=" flex flex-col  font-extrabold   p-4 border-black border-2   space-y-1">
-         
-            
-             
-               <div className="flex  justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg ">
-                   <div className="flex space-x-1">
-                <div className="mr-3">
-                    Tuesday
-                </div>
-
-                <div>|</div>
-
-                <div className="pl-3">
-                     12:30
-                </div>
-            </div>
-                <Button title="Enroll" theme="primary">
-                </Button>
-
-            </div>
-           
-
-                
-           
-
-
-            <div className="flex justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg">
-            <div className="flex space-x-1">
-
-                <div className="mr-3">
-                    Saturday
-                </div>
-
-                <div>|</div>
-
-                <div className="pl-3">
-                     06:00
-                </div>
-                </div>
-
-                <Button title="Enroll" theme="primary">
-                </Button>
-
-            </div>
-
-
-            <div className="flex  justify-between  p-3 space-x-2 items-center shadow-stacked rounded-lg">
-            <div className="flex space-x-1">
-                <div className="mr-3">
-                    Thursday
-                </div>
-
-                <div>|</div>
-
-                <div className="pl-3">
-                     10:50
-                </div>
-                </div>
-                <Button title="Enroll" theme="primary">
-                </Button>
-            </div>
-            
-
-
-           
-           </div>
-    )
+interface Props {
+  setIsOpen?: () => void;
+  data: Schedule[];
 }
+
+export const EnrolledCourse: React.FC<Props> = ({ setIsOpen, data }) => {
+  return (
+    <div className=" flex flex-col font-extrabold p-4 space-y-6">
+      <div className="mx-auto cursor-pointer">
+        <CgClose className="h-6 w-6 text-white" onClick={setIsOpen} />
+      </div>
+      {data?.map((item, index) => (
+        <div
+          key={index}
+          className="flex justify-between p-3 space-x-2 items-center shadow-stacked rounded-lg bg-white"
+        >
+          <div className="flex space-x-1">
+            <div className="mr-3">{item?.appointment?.day}</div>
+
+            <div>|</div>
+
+            <div className="pl-3">{item?.appointment.start}</div>
+          </div>
+          <Button title="Enroll" onClick={() => null} theme="primary"></Button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default React.memo(EnrolledCourse);
