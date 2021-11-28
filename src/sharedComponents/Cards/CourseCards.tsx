@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import CourseDefaultImage from "../../Images/coursedefault.jpg";
+// import CourseDefaultImage from "../../Images/coursedefault.jpg"; removeInFuture
 import { MdFavoriteBorder, BiTimeFive, MdFavorite } from "react-icons/all";
 import { Link } from "react-router-dom";
 import { CourseData } from "../../Models/Course";
+import { imagesUrl } from "../../constants/image_constants";
 
 interface Props {
   data: CourseData;
   className?: string;
+  indexImage: number; //removeInFuture
 }
 
-const CourseCards: React.FC<Props> = ({ data, className }) => {
+const CourseCards: React.FC<Props> = ({ data, className, indexImage }) => {
   const [isFavouriteClicked, setIsFavouriteClicked] = useState(false);
   const slicedTitle = data?.title.substring(0, 40);
 
@@ -19,7 +21,7 @@ const CourseCards: React.FC<Props> = ({ data, className }) => {
         <Link to={`/courses/${data?.course_id}`}>
           <div className="bg-gray-300 h-1/2">
             <img
-              src={CourseDefaultImage}
+              src={imagesUrl[indexImage % imagesUrl.length]}
               className="h-full w-full object-cover object-center"
               alt="courseImage"
             />

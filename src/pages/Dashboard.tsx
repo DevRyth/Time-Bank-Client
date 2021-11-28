@@ -72,7 +72,7 @@ const Dashboard: React.FC<Props> = () => {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 gap-2 mt-5 mx-auto">
           {allCoursesData?.slice(3).map((item, index) => {
-            return <CourseCards key={index} className="mb-5" data={item} />;
+            return <CourseCards indexImage={index} className="mb-5" data={item} />;
           })}
         </div>
       </div>
@@ -87,7 +87,7 @@ const Dashboard: React.FC<Props> = () => {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 gap-2 mt-5 mx-auto">
           {allCoursesData?.slice(3).map((item, index) => {
-            return <CourseCards key={index} className="mb-5" data={item} />;
+            return <CourseCards indexImage={index} key={index} className="mb-5" data={item} />;
           })}
         </div>
       </div>
