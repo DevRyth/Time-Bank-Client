@@ -10,8 +10,8 @@ const MainDisplay = () => {
   return (
     <div className="lg:flex">
       <Sidebar />
-      <div className="w-72 lg:block hidden"></div>
-      <div className="mx-auto max-w-full">
+      <div className="w-1/5 lg:block hidden"></div>
+      <div className="mx-auto lg:w-4/5 min-h-screen">
         <Switch>
           <Route exact path="/dashboard">
             <Dashboard />

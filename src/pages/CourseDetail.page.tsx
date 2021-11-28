@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CourseImage from "../Images/coursedefault.jpg";
 import Button from "../sharedComponents/button/Button";
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/all";
+import { AiOutlinePlusCircle } from "react-icons/all";
 import { store } from "../Store/store";
 import { useParams } from "react-router";
 import { courseId } from "../actions/course.action";
@@ -10,13 +10,6 @@ const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   console.log(id);
   useEffect(() => {
-    // async function courseDetails() {
-    //   const response = await axios.get(`${BASE_URL}/course`, {
-    //     params: { course_id: 2 },
-    //   });
-    //   console.log(response.data);
-    // }
-    // courseDetails();
     store.dispatch(courseId(+id));
   }, [id]);
 
@@ -90,15 +83,10 @@ const CourseDetail: React.FC = () => {
           <p className="text-sm">{slicedAbout}</p>
         </div>
         <div className="flex mt-3 cursor-pointer" onClick={handleSliceClicked}>
-          {isAboutSliced ? (
+          {isAboutSliced && (
             <>
               <AiOutlinePlusCircle className="my-auto text-primary-dark" />
               <span className="text-sm ml-1 text-primary-dark">See more</span>
-            </>
-          ) : (
-            <>
-              <AiOutlineMinusCircle className="my-auto text-primary-dark" />
-              <span className="text-sm ml-1 text-primary-dark">See less</span>
             </>
           )}
         </div>
