@@ -14,7 +14,11 @@ const Sidebar: React.FC<Props> = () => {
   const user = useAppSelector(userData);
   const fullName =
     user?.user_info &&
-    user.user_info?.first_name + " " + user.user_info?.last_name;
+    user.user_info?.first_name +
+      " " +
+      user?.user_info?.middle_name +
+      " " +
+      user.user_info?.last_name;
 
   return (
     <div className="hidden lg:block bg-primary-dark height lg:w-1/5 lg:fixed lg:z-10">

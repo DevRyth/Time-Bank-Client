@@ -1,15 +1,23 @@
 import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { TimeBank } from "../Models/AuthUser";
 interface Props {
   percentage: any;
+  progressClassName: string;
   className?: string;
+  data?: TimeBank;
 }
 
-const ProgressBar: React.FC<Props> = ({ percentage, className }) => {
+const ProgressBar: React.FC<Props> = ({
+  percentage,
+  progressClassName,
+  className,
+  data,
+}) => {
   return (
     <div
-      className={`p-2 border-2 w-72 md:w-96 hover:shadow-stacked cursor-pointer transform transition-ease duration-700 hover:scale-95 rounded-md border-primary-lite flex flex-col ${className}`}
+      className={`p-2 border-2 hover:shadow-stacked cursor-pointer transform transition-ease duration-200 hover:scale-95 rounded-md border-primary-lite flex flex-col ${className}`}
     >
       <span className="p-3 text-lg font-extrabold">Time Chart</span>
       <CircularProgressbar
@@ -20,16 +28,20 @@ const ProgressBar: React.FC<Props> = ({ percentage, className }) => {
           trailColor: "#3C5654",
           pathColor: "#C89C32",
         })}
-        className="w-28 h-28 mb-2 mx-auto transform motion-reduce:transform-none "
+        className={`mb-2 mx-auto transform motion-reduce:transform-none ${progressClassName}`}
       />
-      <div className="flex justify-around p-4">
+      <div className="flex justify-around px-4 py-8">
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-primary-dark "></div>
-          <div className="text-xs font-medium ">Earned: </div>
+          <div className="text-sm font-medium ">Earned: {data?.earnedTime}</div>
         </div>
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-secondary-dark"></div>
-          <div className="text-xs font-medium ">Spent: </div>
+          <div className="text-sm font-medium ">Used: {data?.usedTime}</div>
+        </div>
+        <div className="flex flex-row my-auto">
+          <div className="h-3 w-3 mx-2 my-auto bg-red-800"></div>
+          <div className="text-sm font-medium ">Credits: {data?.time}</div>
         </div>
       </div>
     </div>

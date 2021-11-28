@@ -39,8 +39,8 @@ const App: React.FC = () => {
           <div className="flex flex-col text-center">
             <span className="text-xl font-extrabold">{errorMessage}</span>
             <Button
-              onClick={() => (window.location.href = "/")}
-              title="Back To Homepage"
+              onClick={() => window.location.reload()}
+              title="Reload"
               className="font-medium max-w-max mx-auto mt-6"
               theme="secondary"
             />

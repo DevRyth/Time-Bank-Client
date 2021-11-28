@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import CourseImage from "../Images/coursedefault.jpg";
 import Button from "../sharedComponents/button/Button";
 import { AiOutlinePlusCircle } from "react-icons/all";
-import { store } from "../Store/store";
+import { store, useAppSelector } from "../Store/store";
 import { useParams } from "react-router";
 import { courseId } from "../actions/course.action";
+import { courseById } from "../selectors/course.selector";
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,22 +14,18 @@ const CourseDetail: React.FC = () => {
     store.dispatch(courseId(+id));
   }, [id]);
 
+  const courseData = useAppSelector(courseById)[+id];
+
   const [isAboutSliced, setIsAboutSliced] = useState(true);
-  const field = {
-    image: CourseImage,
-    "teacher-name": "Shivam Yadav",
-    title: "UX Design from concept to wireframe",
-    "short-description":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, quaerat.",
-    comments: 2,
-    duration: "00:30:00",
-    about:
-      " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis placeat vero velit ratione iusto debitis a voluptates fuga similique architecto, obcaecati esse deleniti provident nemo impedit, veniam dolor ut? Voluptates! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis placeat vero velit ratione iusto debitis a voluptates fuga similique architecto, obcaecati esse deleniti provident nemo impedit, veniam dolor ut? Voluptates!",
-  };
 
   const slicedAbout = isAboutSliced
-    ? field.about.substring(0, 200)
-    : field.about;
+    ? courseData?.description.substring(0, 200)
+    : courseData?.description;
+
+  const fullName =
+    courseData?.creator?.user_info?.first_name +
+    " " +
+    courseData?.creator?.user_info?.last_name;
 
   const handleSliceClicked = () => {
     setIsAboutSliced(!slicedAbout);
@@ -39,7 +36,7 @@ const CourseDetail: React.FC = () => {
       <div className="md:grid md:grid-cols-4 md:px-16 lg:px-24">
         <div className="md:col-span-1 h-52 mt-6">
           <img
-            src={field.image}
+            src={CourseImage}
             alt="courseimage"
             className="w-44 rounded-xl border-1 border-primary-dark shadow-stacked mx-auto object-cover h-full object-center"
           />
@@ -47,13 +44,11 @@ const CourseDetail: React.FC = () => {
         <div className="md:col-span-2 md:my-auto text-center md:text-left">
           <div className="h-full mt-10 mx-6 space-y-3">
             <h2 className="text-xl font-extrabold tracking-wide">
-              {field.title}
+              {courseData?.title}
             </h2>
-            <h3 className="text-gray-500 text-sm italic">{`by ${field["teacher-name"]}`}</h3>
-            <p className="tracking-wide font-bold">
-              {field["short-description"]}
-            </p>
-            <span className="text-sm font-extrabold">{`${field.comments} Comments`}</span>
+            <h3 className="text-gray-500 text-sm italic">{`by ${fullName}`}</h3>
+            <p className="tracking-wide font-bold">{courseData?.summary}</p>
+            <span className="text-sm font-extrabold">{`0 Comments`}</span>
           </div>
         </div>
         <hr className="border mt-2 md:hidden" />
@@ -83,7 +78,7 @@ const CourseDetail: React.FC = () => {
           <p className="text-sm">{slicedAbout}</p>
         </div>
         <div className="flex mt-3 cursor-pointer" onClick={handleSliceClicked}>
-          {isAboutSliced && (
+          {isAboutSliced && courseData?.description.length > 400 && (
             <>
               <AiOutlinePlusCircle className="my-auto text-primary-dark" />
               <span className="text-sm ml-1 text-primary-dark">See more</span>

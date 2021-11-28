@@ -36,7 +36,7 @@ const Navigation: React.FC<Props> = () => {
 
             <ListElement
               onClick={() => setIsOpen(false)}
-              title="Course Register"
+              title="Register Course"
               path="/course-register"
               className={
                 "flex justify-center border-b text-sm font-semibold  tracking-wider border-secondary-lite p-1 hover:bg-primary-dark"

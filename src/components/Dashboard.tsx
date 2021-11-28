@@ -5,6 +5,7 @@ import {
   allCourses as allSelector,
   courseLoadingSelector,
 } from "../selectors/course.selector";
+import { userData } from "../selectors/user.selector";
 import CourseCards from "../sharedComponents/Cards/CourseCards";
 import ProgressBar from "../sharedComponents/ProgressBar";
 import { store, useAppSelector } from "../Store/store";
@@ -12,6 +13,7 @@ interface Props {}
 const Dashboard: React.FC<Props> = () => {
   const allCoursesData = useAppSelector(allSelector);
   const isLoading = useAppSelector(courseLoadingSelector);
+  const timeBank = useAppSelector(userData)?.time_bank;
 
   useEffect(() => {
     store.dispatch(courseAll(1, 100));
@@ -20,7 +22,11 @@ const Dashboard: React.FC<Props> = () => {
   return (
     <div className="py-10 px-5">
       <div>
-        <ProgressBar className={"mx-auto"} percentage="56" />
+        <ProgressBar
+          progressClassName={"mx-auto h-36 w-36"}
+          percentage="0"
+          data={timeBank}
+        />
       </div>
       <div className="m-auto">
         <div className="md:flex flex-row text-2xl justify-center font-bold py-4 mt-14">
