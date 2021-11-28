@@ -17,7 +17,7 @@ import Aboutus from "./components/aboutus/Aboutus";
 import { store, useAppSelector } from "./Store/store";
 import { meFetchUserAction } from "./actions/auth.action";
 import { userData } from "./selectors/user.selector";
-import { ImSpinner11 } from "react-icons/im";
+import { GiAbstract066 } from "react-icons/gi";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -31,8 +31,8 @@ const App: React.FC = () => {
 
   if (!user && token) {
     return (
-      <div className="w-screen h-screen">
-        <ImSpinner11 className="w-full h-12 m-auto animate-spin" />
+      <div className="w-screen h-screen flex ">
+        <GiAbstract066 className="w-full h-12 justify-center  m-auto  animate-spin" />
       </div>
     );
   }
