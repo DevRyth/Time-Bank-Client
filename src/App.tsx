@@ -34,9 +34,9 @@ const App: React.FC = () => {
 
   if (!user && token) {
     return (
-      <div className="w-screen h-screen pt-10 pb-6">
+      <div className="w-screen h-screen">
         {errorMessage ? (
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col text-center pt-10 pb-6">
             <span className="text-xl font-extrabold">{errorMessage}</span>
             <Button
               onClick={() => window.location.reload()}
