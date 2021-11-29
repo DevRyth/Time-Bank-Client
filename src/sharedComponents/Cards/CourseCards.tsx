@@ -17,7 +17,7 @@ const CourseCards: React.FC<Props> = ({ data, className, indexImage }) => {
 
   return (
     <div className={`mx-auto md:mx-0 ${className}`}>
-      <div className="w-56 h-80 md:w-72 md:h-80 cursor-pointer rounded-tl-lg mx-auto shadow-stacked hover:scale-95 transform ease-in-out transition-all">
+      <div className="h-80 w-72 cursor-pointer rounded-tl-lg mx-auto shadow-stacked hover:scale-95 transform ease-in-out transition-all">
         <Link to={`/courses/${data?.course_id}`}>
           <div className="bg-gray-300 h-1/2">
             <img

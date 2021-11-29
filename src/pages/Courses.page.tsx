@@ -48,13 +48,20 @@ const Courses: React.FC = () => {
       {isLoading && (
         <ImSpinner9 className="animate-spin my-5 h-12 w-full mx-auto" />
       )}
-      <div className="lg:px-16 mt-5 py-2 md:space-x-10 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
+      <div className="lg:px-16 mt-10 py-2 md:space-x-10 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
         {allCoursesData.map((item, index) => {
           let className = "";
           if (index === 0) {
             className = "md:ml-10";
           } else className = "";
-          return <CourseCards indexImage={index} key={index} data={item} className={className} />;
+          return (
+            <CourseCards
+              indexImage={index}
+              key={index}
+              data={item}
+              className={className}
+            />
+          );
         })}
       </div>
     </div>

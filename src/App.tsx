@@ -17,9 +17,9 @@ import Aboutus from "./components/aboutus/Aboutus";
 import { store, useAppSelector } from "./Store/store";
 import { meFetchUserAction } from "./actions/auth.action";
 import { userData } from "./selectors/user.selector";
-import { ImSpinner11 } from "react-icons/im";
 import { authErrorMessageSelector } from "./selectors/auth.selector";
 import Button from "./sharedComponents/button/Button";
+import { GiAbstract066 } from "react-icons/gi";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -46,7 +46,9 @@ const App: React.FC = () => {
             />
           </div>
         ) : (
-          <ImSpinner11 className="w-full h-12 m-auto animate-spin" />
+          <div className="">
+            <GiAbstract066 className="w-12 h-12 animate-spin" />
+          </div>
         )}
       </div>
     );
