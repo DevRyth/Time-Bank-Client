@@ -46,8 +46,8 @@ const App: React.FC = () => {
             />
           </div>
         ) : (
-          <div className="">
-            <GiAbstract066 className="w-12 h-12 animate-spin" />
+          <div className="flex h-screen items-center">
+            <GiAbstract066 className="mx-auto w-12 h-12 animate-spin" />
           </div>
         )}
       </div>
