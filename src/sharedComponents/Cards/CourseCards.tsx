@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 // import CourseDefaultImage from "../../Images/coursedefault.jpg"; removeInFuture
-import { MdFavoriteBorder, BiTimeFive, MdFavorite } from "react-icons/all";
+import {
+  MdFavoriteBorder,
+  BiTimeFive,
+  MdFavorite,
+  AiFillDelete,
+} from "react-icons/all";
 import { Link } from "react-router-dom";
 import { CourseData } from "../../Models/Course";
 import { imagesUrl } from "../../constants/image_constants";
@@ -50,6 +55,15 @@ const CourseCards: React.FC<Props> = ({ data, className, indexImage }) => {
                     className="text-primary-dark h-5 w-5 my-auto"
                   />
                 )}
+              </div>
+              <div
+                className="flex"
+                onClick={(event) => {
+                  event.preventDefault();
+                  alert("Are you sure to delete the course");
+                }}
+              >
+                <AiFillDelete className="text-red-700 h-5 w-5 my-auto" />
               </div>
               <div className="flex ">
                 <BiTimeFive className="m-auto mr-3 text-primary-dark h-10" />
