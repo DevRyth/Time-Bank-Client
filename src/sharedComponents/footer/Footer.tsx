@@ -15,9 +15,7 @@ const Footer: React.FC<Props> = ({ path }) => {
         <div className="sm:flex flex-col pt-6 md:flex-row justify-between ">
           <div className="flex flex-col mb-6 sm:flex items-center">
             <div className=" text-2xl font-extrabold mb-2">Time Bank</div>
-            <div className="w-2/3 text-sm text-center">
-              Lorem ndv mndfvbjhdf vbolo
-            </div>
+            <div className="w-2/3 text-sm text-center">You Teach You Learn</div>
             <div className="hidden space-x-2  md:flex flex-row mt-6">
               <FaFacebook className="hover:-translate-y-1 transform" />
               <AiFillInstagram className="hover:-translate-y-1 transform" />

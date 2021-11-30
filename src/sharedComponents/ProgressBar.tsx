@@ -17,7 +17,7 @@ const ProgressBar: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`p-2 border-2 hover:shadow-stacked cursor-pointer transform transition-ease duration-200 hover:scale-95 rounded-md border-primary-lite flex flex-col ${className}`}
+      className={`p-2 border-2 hover:shadow-stacked cursor-pointer rounded-md border-primary-lite flex flex-col ${className}`}
     >
       <span className="p-3 text-lg font-extrabold">Time Chart</span>
       <CircularProgressbar
@@ -25,7 +25,7 @@ const ProgressBar: React.FC<Props> = ({
         value={percentage}
         styles={buildStyles({
           textSize: "14px",
-          trailColor: (percentage === "0") ? "#DDDDDD" : "#3C5654",
+          trailColor: percentage === "0" ? "#DDDDDD" : "#3C5654",
           pathColor: "#C89C32",
         })}
         className={`mb-2 mx-auto transform motion-reduce:transform-none ${progressClassName}`}
@@ -33,15 +33,24 @@ const ProgressBar: React.FC<Props> = ({
       <div className="flex justify-around px-4 py-8">
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-primary-dark "></div>
-          <div className="text-sm font-medium ">Earned: <span className="font-semibold text-base">{data?.earnedTime}</span></div>
+          <div className="text-sm font-medium ">
+            Earned:{" "}
+            <span className="font-semibold text-base">{data?.earnedTime}</span>
+          </div>
         </div>
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-secondary-dark"></div>
-          <div className="text-sm font-medium ">Used: <span className="font-semibold text-base">{data?.usedTime}</span></div>
+          <div className="text-sm font-medium ">
+            Used:{" "}
+            <span className="font-semibold text-base">{data?.usedTime}</span>
+          </div>
         </div>
         <div className="flex flex-row my-auto">
           <div className="h-3 w-3 mx-2 my-auto bg-red-800"></div>
-          <div className="text-sm font-medium ">Credits: <span className="font-semibold text-base">{data?.time}</span></div>
+          <div className="text-sm font-medium ">
+            Credits:{" "}
+            <span className="font-semibold text-base">{data?.time}</span>
+          </div>
         </div>
       </div>
     </div>

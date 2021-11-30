@@ -7,7 +7,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { token, RG_TOKEN } from "./constants/constants";
+import { token, RG_TOKEN, LS_AUTH_TOKEN } from "./constants/constants";
 import Navigation from "./components/Navigation";
 import MainDisplay from "./pages/MainDisplay";
 import Page404 from "./pages/Page404";
@@ -39,7 +39,10 @@ const App: React.FC = () => {
           <div className="flex flex-col text-center pt-10 pb-6">
             <span className="text-xl font-extrabold">{errorMessage}</span>
             <Button
-              onClick={() => window.location.reload()}
+              onClick={() => {
+                token && localStorage.removeItem(LS_AUTH_TOKEN);
+                window.location.reload();
+              }}
               title="Reload"
               className="font-medium max-w-max mx-auto mt-6"
               theme="secondary"

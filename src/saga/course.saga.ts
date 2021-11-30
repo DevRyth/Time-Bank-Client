@@ -20,7 +20,7 @@ function* courseRegister(action: AnyAction): Generator<any> {
   const response: any = yield call(course, data);
   if (response) {
     yield put(courseData(response));
-    window.location.href = "/created-course";
+    window.location.href = "/dashboard";
   } else {
     yield put(courseRegisterError("Unable To Send Data"));
     yield put(courseRegisterLoading(false));
