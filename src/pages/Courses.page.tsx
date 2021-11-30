@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../sharedComponents/button/Button";
 import Input from "../sharedComponents/input/Input";
-import { AiOutlineSearch, ImSpinner9 } from "react-icons/all";
+import {
+  AiOutlinePlusCircle,
+  AiOutlineSearch,
+  ImSpinner9,
+} from "react-icons/all";
 import CourseCards from "../sharedComponents/Cards/CourseCards";
 import { store, useAppSelector } from "../Store/store";
 import { courseAll } from "../actions/course.action";
@@ -14,6 +18,8 @@ const Courses: React.FC = () => {
   useEffect(() => {
     store.dispatch(courseAll(1, 100));
   }, []);
+
+  const [seeMore, setSeeMore] = useState(4);
 
   const allCoursesData = useAppSelector(allCourses);
   const isLoading = useAppSelector(courseLoadingSelector);
@@ -49,7 +55,7 @@ const Courses: React.FC = () => {
         <ImSpinner9 className="animate-spin my-5 h-12 w-full mx-auto" />
       )}
       <div className="lg:px-16 mt-10 py-2 md:space-x-10 space-y-4 md:pt-10 grid grid-cols-1 gap-y-8 md:grid-cols-1 lg:grid-cols-2 md:space-y-0">
-        {allCoursesData.map((item, index) => {
+        {allCoursesData?.slice(0, seeMore).map((item, index) => {
           let className = "";
           if (index === 0) {
             className = "md:ml-10";
@@ -64,6 +70,15 @@ const Courses: React.FC = () => {
           );
         })}
       </div>
+      {allCoursesData.length > seeMore && (
+        <div
+          className="flex mx-auto my-10 bg-secondary-dark max-w-max px-4 py-2 rounded-xl cursor-pointer"
+          onClick={() => setSeeMore(seeMore + 4)}
+        >
+          <AiOutlinePlusCircle className="my-auto h-6 w-6 text-white" />
+          <span className="ml-1 text-white text-lg">See more</span>
+        </div>
+      )}
     </div>
   );
 };

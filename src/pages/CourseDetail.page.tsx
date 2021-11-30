@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import CourseImage from "../Images/coursedefault.jpg"; removeInFuture
 import Button from "../sharedComponents/button/Button";
-import { AiOutlinePlusCircle, ImSpinner9 } from "react-icons/all";
+import {
+  AiOutlinePlusCircle,
+  ImSpinner9,
+  IoWarningOutline,
+} from "react-icons/all";
 import { store, useAppSelector } from "../Store/store";
 import { useParams } from "react-router";
 import { courseId } from "../actions/course.action";
@@ -23,6 +27,7 @@ const CourseDetail: React.FC = () => {
   const isLoading = useAppSelector(courseLoadingSelector);
 
   const [isAboutSliced, setIsAboutSliced] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
 
   const slicedAbout = isAboutSliced
     ? courseData?.description.substring(0, 200)
@@ -38,6 +43,7 @@ const CourseDetail: React.FC = () => {
   };
 
   const [isEnrollmentOpen, setIsEnrollmentOpen] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <div className="relative min-h-screen">
@@ -60,8 +66,12 @@ const CourseDetail: React.FC = () => {
               {courseData?.title}
             </h2>
             <h3 className="text-gray-500 text-sm italic">{`by ${fullName}`}</h3>
-            <p className="tracking-wide font-bold">{courseData?.summary}</p>
-            <span className="text-sm font-extrabold">{`0 Comments`}</span>
+            <p className="tracking-wide font-bold pb-3">
+              {`${courseData?.summary.substr(0, 200)} ${
+                courseData?.summary.length > 200 ? "..." : ""
+              }`}
+            </p>
+            <span className="text-sm italic font-extrabold">{`0 Comments`}</span>
           </div>
         </div>
         <hr className="border mt-2 md:hidden" />
@@ -69,13 +79,31 @@ const CourseDetail: React.FC = () => {
           <div className="md:col-span-1 h-full">
             <div className="text-center mt-2">
               <Button
-                onClick={() => setIsEnrollmentOpen(true)}
+                onClick={() => {
+                  if (isChecked) setIsEnrollmentOpen(true);
+                  else {
+                    setError("Check the input box");
+                  }
+                }}
                 className="font-bold uppercase hover:scale-95 transform transition-all ease-in-out w-44 shadow-stacked"
                 title="enroll"
               />
+              {!isChecked && (
+                <div>
+                  <div className="justify-center flex mt-3 text-yellow-600">
+                    {error && <IoWarningOutline className="my-auto" />}
+                    <p className="ml-2 text-xs">{error}</p>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="my-auto flex mt-6 w-56 mx-auto">
-              <input type="checkbox" className="mt-2" />
+              <input
+                type="checkbox"
+                className="mt-2"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+              />
               <p className="ml-2 text-sm">
                 I accept the terms and conditions applied to this course.
               </p>
@@ -106,7 +134,7 @@ const CourseDetail: React.FC = () => {
           <div className="absolute bg-primary-lite rounded-3xl border-primary-dark border-2 mt-10 top-0 right-0 left-0 mx-2 md:mx-32">
             <EnrolledCourse
               setIsOpen={() => setIsEnrollmentOpen(!isEnrollmentOpen)}
-              data={courseData.schedule}
+              data={courseData}
             />
           </div>
         </div>

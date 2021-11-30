@@ -39,3 +39,12 @@ export const allCourses = async (data: { offset: number; limit: number }) => {
     console.error("Not able to send data");
   }
 };
+
+export const enroll = async (data: any) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/enroll-course`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Not able to send data");
+  }
+};

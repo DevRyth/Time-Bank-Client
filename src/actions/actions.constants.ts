@@ -23,3 +23,9 @@ export const COURSE_ID_DATA = "course/id_data";
 export const COURSE_ID = "course/id";
 export const COURSE_ALL_DATA = "course/all_data";
 export const COURSE_ALL = "course/all";
+
+// enroll-course
+export const COURSE_ENROLL = "course/enroll";
+export const COURSE_ENROLL_SEND_DATA = "course/enroll_send_data";
+export const COURSE_ENROLL_LOADING = "course/enroll_loading";
+export const COURSE_ENROLL_ERROR = "course/enroll_error";

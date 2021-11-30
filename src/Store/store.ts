@@ -7,12 +7,14 @@ import rootSaga from "../saga/root.saga";
 import { registerReducer } from "../reducers/register.reducer";
 import { userReducer } from "../reducers/user.reducer";
 import { courseReducer } from "../reducers/course.reducer";
+import { courseEnrollReducer } from "../reducers/enroll.reducer";
 
 const reducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   register: registerReducer,
   course: courseReducer,
+  enroll: courseEnrollReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware({});
