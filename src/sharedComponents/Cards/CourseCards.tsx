@@ -9,6 +9,8 @@ import {
 import { Link } from "react-router-dom";
 import { CourseData } from "../../Models/Course";
 import { imagesUrl } from "../../constants/image_constants";
+import axios from "axios";
+import { BASE_URL } from "../../constants/constants";
 
 interface Props {
   data: CourseData;
@@ -58,9 +60,12 @@ const CourseCards: React.FC<Props> = ({ data, className, indexImage }) => {
               </div>
               <div
                 className="flex"
-                onClick={(event) => {
+                onClick={async (event) => {
                   event.preventDefault();
-                  alert("Are you sure to delete the course");
+                  if(window.confirm("Are you sure to delete the course")) {
+                    const response = await axios.delete(BASE_URL+"/delete-course", {params: {course_id: data.course_id}});
+                    if(response.status === 200) window.location.href = "/dashboard";
+                  }
                 }}
               >
                 <AiFillDelete className="text-red-700 h-5 w-5 my-auto" />
