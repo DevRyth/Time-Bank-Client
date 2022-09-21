@@ -18,12 +18,16 @@ module.exports = {
       },
       colors: {
         primary: {
-          dark: "#3C5654",
-          lite: "#425C5A",
+          dark: "#009085",
+          "semi-dark": "03c1b5",
+          lite: "#60f4e7",
+          on: "#000000"
         },
         secondary: {
-          dark: "#C89C32",
-          lite: "#D6AF14",
+          dark: "#96a281",
+          "semi-dark": "#faffe3",
+          lite: "#faffe3",
+          on: "#000000"
         },
         brand: {
           primary: "#3391b2",
@@ -32,11 +36,6 @@ module.exports = {
         background: {
           lite: "#E2ECEB",
         },
-        "on-primary": {
-          dark: "#ECFAFA",
-          lite: "#FFFFFF",
-        },
-        "on-secondary": "#697C7A",
       },
     },
   },
